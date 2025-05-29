@@ -1,5 +1,6 @@
-import { Stack } from "expo-router";
+import {Stack} from "expo-router";
+import "./tailwind.css"
 
 export default function RootLayout() {
-    return <Stack />;
+    return <Stack/>;
 }
