@@ -2,6 +2,7 @@ import React, {useCallback, useState} from "react";
 import {LayoutChangeEvent, TouchableOpacity, View} from "react-native";
 import Svg from "react-native-svg";
 import {StyledPath} from "@/ui/svg";
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 export interface MenuBarWithButtonProps {
     /** Explicit width. Leave undefined to make it fill its parent */
@@ -55,7 +56,7 @@ const MenuBar: React.FC<MenuBarWithButtonProps> = ({
     return (
         <View
             onLayout={onLayout}
-            className="relative" /* container for absolutely-positioned button */
+            className="relative"
         >
             <MenuBarShape
                 width={measuredWidth}
@@ -80,7 +81,9 @@ const MenuBar: React.FC<MenuBarWithButtonProps> = ({
                     },
                     buttonStyle,
                 ]}
-            />
+            >
+                <Ionicons name="add-outline" size={40} color="white"/>
+            </TouchableOpacity>
         </View>
     );
 };
@@ -104,7 +107,6 @@ const MenuBarShape: React.FC<ShapeProps> = ({
                                                 dipDepth = 38,
                                                 dipWidth = 120,
                                             }) => {
-    /* If width is not supplied, we’ll capture it via onLayout */
     const [measuredWidth, setMeasuredWidth] = useState<number | undefined>(
         width,
     );
