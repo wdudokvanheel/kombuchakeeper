@@ -1,11 +1,12 @@
-import {Text, View} from "react-native";
-import {Link} from "expo-router"
+import React from 'react';
+
+import {Text} from "react-native";
+import BrewList from "./brewlist";
 
 const Index = () =>
-    <View className="bg-blue-800 flex-1 items-center justify-start">
-        <Text className="text-amber-600 text-4xl top-2">Kombucha Keeper</Text>
+    <>
+        <Text className="text-brown-700 text-4xl font-bold text-center">Kombucha Keeper</Text>
 
-        <Link href="/brew/new">A new brew</Link>
-    </View>
-
+        <BrewList/>
+    </>
 export default Index;
