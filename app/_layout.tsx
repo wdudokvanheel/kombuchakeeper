@@ -9,18 +9,21 @@ const RootLayout = () => {
 
     return (
         <>
-            <SafeAreaView className="flex-1 bg-gray-100">
-                <View className="flex-1 ps-4 pe-4 pb-4">
-                    <Slot/>
-                </View>
-                <View className="ms-4 me-4">
+            <View className="flex-1 bg-brown-100">
+                <SafeAreaView className="flex-1">
+                    <View className="flex-1">
+                        <Slot/>
+                    </View>
+                </SafeAreaView>
+                <View className="mx-0">
                     <MenuBar
-                        height={70}
+                        height={95}
                         dipWidth={160}
+                        cornerRadius={80}
                         onPress={() => router.push("/brew/new")}
                     />
                 </View>
-            </SafeAreaView>
+            </View>
         </>
     )
 }

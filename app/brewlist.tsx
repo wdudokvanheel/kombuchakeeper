@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {FlatList, Text, View} from "react-native";
 import {Brew, BrewState} from "@/models/brew";
-import {CircularProgress, CircularProgressBase} from "react-native-circular-progress-indicator";
+import {CircularProgressBase} from "react-native-circular-progress-indicator";
 
 const BrewList = () => {
     const [brews, setBrews] = useState<Brew[]>([])
@@ -75,7 +75,7 @@ const BrewList = () => {
     }, []);
 
     const stateBackgroundColor: Record<string, string> = {
-        F1: 'bg-yellow-300',
+        F1: 'bg-yellow-400',
         F2: 'bg-orange-400',
         Bottled: 'bg-gray-300',
         Failed: 'bg-gray-300'
@@ -83,7 +83,7 @@ const BrewList = () => {
 
     let renderItem = ({item: brew}: { item: Brew }) => {
         return (
-            <View className="bg-brown-200 rounded-3xl p-4 flex-1 mt-4 ">
+            <View className="bg-white shadow-[0_6px_8px_rgba(0,0,0,0.05)] rounded-[32px] p-4 flex-1 mb-4 mx-4">
                 <View className="flex-row items-start h-fit">
                     <View className="w-1/4 items-start">
                         <CircularProgressBase
@@ -91,7 +91,7 @@ const BrewList = () => {
                             activeStrokeWidth={16}
                             inActiveStrokeWidth={16}
                             activeStrokeColor={brew.isCurrentFermentationComplete() ? '#9BB068' : '#926247'}
-                            activeStrokeSecondaryColor={brew.isCurrentFermentationComplete() ? '#7D944D' : '#704A33'}
+                            activeStrokeSecondaryColor={brew.isCurrentFermentationComplete() ? '#9BB068' : '#704A33'}
                             inActiveStrokeColor={'#C0A091'}
                             value={brew.getDaysSinceStart() || 0}
                             maxValue={brew.getCurrentFermentationDuration()}
