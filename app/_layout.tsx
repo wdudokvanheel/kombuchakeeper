@@ -1,17 +1,15 @@
-import {Slot, Stack} from "expo-router";
+import {Slot, useRouter} from "expo-router";
 import "./tailwind.css"
 import {View} from "react-native";
 import {SafeAreaView} from 'react-native-safe-area-context';
-import MenuBarShape from "@/app/menuBarShape";
 import MenuBar from "@/app/menubar"
-import {useRouter} from 'expo-router';
 
 const RootLayout = () => {
     const router = useRouter()
 
     return (
         <>
-            <SafeAreaView className="flex-1">
+            <SafeAreaView className="flex-1 bg-gray-100">
                 <View className="flex-1 ps-4 pe-4 pb-4">
                     <Slot/>
                 </View>
