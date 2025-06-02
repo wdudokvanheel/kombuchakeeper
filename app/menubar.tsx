@@ -70,7 +70,7 @@ const MenuBar: React.FC<MenuBarWithButtonProps> = ({
             <TouchableOpacity
                 onPress={onPress}
                 activeOpacity={0.8}
-                className="absolute items-center justify-center bg-green-500 shadow-lg shadow-black shadow-md"
+                className="absolute items-center justify-center bg-green-500 shadow-md shadow-green-500"
                 style={[
                     {
                         width: buttonDiameter,
