@@ -1,89 +1,23 @@
 import React, {useEffect, useState} from 'react';
 import {FlatList, Text, View} from "react-native";
-import {Brew, BrewState} from "@/models/brew";
+import {Brew} from "@/models/brew";
 import {CircularProgressBase} from "react-native-circular-progress-indicator";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import {BrewService} from "@/services/brew-service";
 
 type BrewListItemProps = {
     brew: Brew;
 };
 
-const stateBackgroundColor: Record<string, string> = {
-    F1: 'bg-yellow-400',
-    F2: 'bg-orange-400',
-    Bottled: 'bg-gray-300',
-    Failed: 'bg-gray-300',
-};
-
 const BrewList = () => {
     const [brews, setBrews] = useState<Brew[]>([])
+    const updateList = () =>
+        BrewService
+            .fetchBrews()
+            .then(brews => setBrews(brews))
 
     useEffect(() => {
-        const today = new Date();
-        const yesterday = new Date(today);
-        yesterday.setDate(yesterday.getDate() - 1);
-        const fiveDaysAgo = new Date(today);
-        fiveDaysAgo.setDate(fiveDaysAgo.getDate() - 5);
-        const tenDaysAgo = new Date(today);
-        tenDaysAgo.setDate(tenDaysAgo.getDate() - 10);
-        const fifteenDaysAgo = new Date(today);
-        fifteenDaysAgo.setDate(fifteenDaysAgo.getDate() - 15);
-        const twoDaysFromNow = new Date(today);
-        twoDaysFromNow.setDate(twoDaysFromNow.getDate() + 2);
-        const fourteenDaysFromNow = new Date(today);
-        fourteenDaysFromNow.setDate(fourteenDaysFromNow.getDate() + 14);
-
-        const brews: Brew[] = [
-            // 1) Just started yesterday in F1, with a 14-day target for F1
-            new Brew({
-                id: 1,
-                name: 'Yesterday’s Starter',
-                createdAt: yesterday,
-                state: BrewState.FirstFermentation,
-                firstFermentationEnd: fourteenDaysFromNow,
-            }),
-
-            // 2) Still in F1, but its target (firstFermentationEnd) is today
-            new Brew({
-                id: 2,
-                name: 'Today’s F1 Target',
-                createdAt: tenDaysAgo,
-                state: BrewState.FirstFermentation,
-                firstFermentationEnd: today,
-            }),
-
-            // 3) Currently in F2, with secondFermentationEnd two days from now
-            new Brew({
-                id: 3,
-                name: 'F2 In Progress',
-                createdAt: tenDaysAgo,
-                state: BrewState.SecondFermentation,
-                firstFermentationEnd: fiveDaysAgo,
-                secondFermentationEnd: twoDaysFromNow,
-            }),
-
-            // 4) Already completed (Bottled)
-            new Brew({
-                id: 4,
-                name: 'Completed Batch',
-                createdAt: fifteenDaysAgo,
-                state: BrewState.Bottled,
-                firstFermentationEnd: tenDaysAgo,
-                secondFermentationEnd: fiveDaysAgo,
-                notes: 'Tastes great—bottled 5 days ago and stored cold.',
-            }),
-
-            // 5) Failed brew
-            new Brew({
-                id: 5,
-                name: 'Failed Attempt',
-                createdAt: tenDaysAgo,
-                state: BrewState.Failed,
-                notes: 'Mold appeared midway through F1.',
-            }),
-        ];
-
-        setBrews(brews);
+        updateList()
     }, []);
 
     return (
@@ -97,13 +31,21 @@ const BrewList = () => {
         </View>
     );
 }
+export default BrewList;
+
+const stateLabelBackgroundColor: Record<string, string> = {
+    F1: 'bg-yellow-400',
+    F2: 'bg-orange-400',
+    Bottled: 'bg-gray-300',
+    Failed: 'bg-gray-300',
+};
 
 const BrewListItem = ({brew}: BrewListItemProps) => (
     <View className="bg-white shadow-[0_6px_8px_rgba(0,0,0,0.05)] rounded-[38px] p-4 flex-1 mb-4 mx-4">
         <View className="flex-row items-start h-fit">
             <View className="w-1/4 h-full justify-center">
                 <View
-                    className={`items-center justify-center my-2 mx-2 rounded-3xl flex-1 ${stateBackgroundColor[brew.state]}`}>
+                    className={`items-center justify-center my-2 mx-2 rounded-3xl flex-1 ${stateLabelBackgroundColor[brew.state]}`}>
                     {(brew.state === 'F1' || brew.state === 'F2') && (
                         <Text className="text-3xl  text-brown-950">{brew.state}</Text>
                     )}
@@ -133,4 +75,3 @@ const BrewListItem = ({brew}: BrewListItemProps) => (
         </View>
     </View>
 );
-export default BrewList;
