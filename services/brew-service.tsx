@@ -1,4 +1,8 @@
 import {Brew, BrewState} from '@/models/brew'
+import {QueryKey, useQuery} from '@tanstack/react-query'
+import {queryClient} from '@/services/query-client'
+
+export const BREWS_QUERY_KEY: QueryKey = ['brews']
 
 export interface BrewServiceInterface {
     fetchBrews(): Promise<Brew[]>
@@ -10,6 +14,8 @@ export interface BrewServiceInterface {
     updateBrew(brew: Brew): Promise<void>
 
     deleteBrew(id: number): Promise<void>
+
+    useBrews(): ReturnType<typeof useQuery<Brew[]>>
 }
 
 class MockBrewService implements BrewServiceInterface {
@@ -17,59 +23,57 @@ class MockBrewService implements BrewServiceInterface {
 
     constructor() {
         const today = new Date()
-        const yesterday = new Date(today)
-        yesterday.setDate(yesterday.getDate() - 1)
-        const fiveDaysAgo = new Date(today)
-        fiveDaysAgo.setDate(fiveDaysAgo.getDate() - 5)
-        const tenDaysAgo = new Date(today)
-        tenDaysAgo.setDate(tenDaysAgo.getDate() - 10)
-        const fifteenDaysAgo = new Date(today)
-        fifteenDaysAgo.setDate(fifteenDaysAgo.getDate() - 15)
-        const twoDaysFromNow = new Date(today)
-        twoDaysFromNow.setDate(twoDaysFromNow.getDate() + 2)
-        const fourteenDaysFromNow = new Date(today)
-        fourteenDaysFromNow.setDate(fourteenDaysFromNow.getDate() + 14)
+        const d = (days: number) => new Date(today.getTime() + days * 86_400_000)
 
         this.brews = [
             new Brew({
                 id: 1,
                 name: 'Yesterday’s Starter',
-                createdAt: yesterday,
+                createdAt: d(-1),
                 state: BrewState.FirstFermentation,
-                firstFermentationEnd: fourteenDaysFromNow,
+                firstFermentationEnd: d(14)
             }),
             new Brew({
                 id: 2,
                 name: 'Today’s F1 Target',
-                createdAt: tenDaysAgo,
+                createdAt: d(-10),
                 state: BrewState.FirstFermentation,
-                firstFermentationEnd: today,
+                firstFermentationEnd: d(0)
             }),
             new Brew({
                 id: 3,
                 name: 'F2 In Progress',
-                createdAt: tenDaysAgo,
+                createdAt: d(-10),
                 state: BrewState.SecondFermentation,
-                firstFermentationEnd: fiveDaysAgo,
-                secondFermentationEnd: twoDaysFromNow,
+                firstFermentationEnd: d(-5),
+                secondFermentationEnd: d(2)
             }),
             new Brew({
                 id: 4,
                 name: 'Completed Batch',
-                createdAt: fifteenDaysAgo,
+                createdAt: d(-15),
                 state: BrewState.Bottled,
-                firstFermentationEnd: tenDaysAgo,
-                secondFermentationEnd: fiveDaysAgo,
-                notes: 'Tastes great—bottled 5 days ago and stored cold.',
+                firstFermentationEnd: d(-10),
+                secondFermentationEnd: d(-5),
+                notes: 'Tastes great—bottled 5 days ago and stored cold.'
             }),
             new Brew({
                 id: 5,
                 name: 'Failed Attempt',
-                createdAt: tenDaysAgo,
+                createdAt: d(-10),
                 state: BrewState.Failed,
-                notes: 'Mold appeared midway through F1.',
+                notes: 'Mold appeared midway through F1.'
             }),
         ]
+
+        this.updateBrewData()
+    }
+
+    private updateBrewData() {
+        queryClient.setQueryData<Brew[]>({
+            queryKey: BREWS_QUERY_KEY,
+            updater: [...this.brews],
+        })
     }
 
     async fetchBrews(): Promise<Brew[]> {
@@ -83,17 +87,27 @@ class MockBrewService implements BrewServiceInterface {
 
     async addBrew(brew: Brew): Promise<void> {
         this.brews.push(brew)
+        this.updateBrewData()
     }
 
     async updateBrew(updated: Brew): Promise<void> {
         const index = this.brews.findIndex((b) => b.id === updated.id)
         if (index >= 0) {
             this.brews[index] = updated
+            this.updateBrewData()
         }
     }
 
     async deleteBrew(id: number): Promise<void> {
         this.brews = this.brews.filter((b) => b.id !== id)
+        this.updateBrewData()
+    }
+
+    useBrews() {
+        return useQuery({
+            queryKey: BREWS_QUERY_KEY,
+            queryFn: () => this.fetchBrews(),
+        })
     }
 }
 

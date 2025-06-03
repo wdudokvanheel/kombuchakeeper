@@ -12,15 +12,7 @@ type BrewListItemProps = {
 };
 
 const BrewList = () => {
-    const [brews, setBrews] = useState<Brew[]>([])
-    const updateList = () =>
-        BrewService
-            .fetchBrews()
-            .then(brews => setBrews(brews))
-
-    useEffect(() => {
-        updateList()
-    }, []);
+    const {data: brews = []} = BrewService.useBrews()
 
     return (
         <View className="w-fit">
@@ -33,6 +25,7 @@ const BrewList = () => {
         </View>
     );
 }
+
 export default BrewList;
 
 const stateLabelBackgroundColor: Record<string, string> = {
@@ -42,7 +35,7 @@ const stateLabelBackgroundColor: Record<string, string> = {
     Failed: 'bg-gray-300',
 };
 
-const BrewListItem = ({brew}: BrewListItemProps) => (
+const BrewListItem = ({brew}: BrewListItemProps) =>
     <Link href={`/brew/${brew.id}`} asChild>
         <Pressable>
             <View className="bg-white shadow-[0_6px_8px_rgba(0,0,0,0.05)] rounded-[38px] p-4 flex-1 mb-4 mx-4">
@@ -80,4 +73,3 @@ const BrewListItem = ({brew}: BrewListItemProps) => (
             </View>
         </Pressable>
     </Link>
-);
