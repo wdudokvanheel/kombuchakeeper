@@ -38,20 +38,17 @@ export default function BrewDetail() {
     }
 
     return (
-        <SafeAreaView className="flex-1 p-4">
-            <Link href="/" className="color-purple-600">Back</Link>
-            <View style={{flex: 1, padding: 16}}>
-                <Text style={{fontSize: 24, fontWeight: 'bold'}}>{brew.name}</Text>
-                <Text>State: {brew.state}</Text>
-                <Text>Created At: {brew.createdAt.toDateString()}</Text>
-                {brew.firstFermentationEnd && (
-                    <Text>F1 Ends: {brew.firstFermentationEnd.toDateString()}</Text>
-                )}
-                {brew.secondFermentationEnd && (
-                    <Text>F2 Ends: {brew.secondFermentationEnd.toDateString()}</Text>
-                )}
-                {brew.notes && <Text style={{marginTop: 12}}>{brew.notes}</Text>}
-            </View>
-        </SafeAreaView>
+        <>
+            <Text className="text-3xl font-semibold text-center">{brew.name}</Text>
+            <Text>State: {brew.state}</Text>
+            <Text>Created At: {brew.createdAt.toDateString()}</Text>
+            {brew.firstFermentationEnd && (
+                <Text>F1 Ends: {brew.firstFermentationEnd.toDateString()}</Text>
+            )}
+            {brew.secondFermentationEnd && (
+                <Text>F2 Ends: {brew.secondFermentationEnd.toDateString()}</Text>
+            )}
+            {brew.notes && <Text>{brew.notes}</Text>}
+        </>
     )
 }

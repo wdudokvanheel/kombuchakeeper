@@ -13,6 +13,7 @@ const MainLayout = () => {
             <View className="flex-1 mt-4">
                 <Slot/>
             </View>
+
             <View className="mx-0">
                 <MenuBar
                     height={100}
