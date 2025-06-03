@@ -1,8 +1,9 @@
-import React, {useState, useEffect} from 'react'
-import {View, Text, ActivityIndicator} from 'react-native'
-import {useLocalSearchParams} from 'expo-router'
+import React, {useEffect, useState} from 'react'
+import {ActivityIndicator, Text, View} from 'react-native'
+import {Link, useLocalSearchParams} from 'expo-router'
 import {Brew} from '@/models/brew'
 import {BrewService} from '@/services/brew-service'
+import {SafeAreaView} from "react-native-safe-area-context";
 
 export default function BrewDetail() {
     const {id} = useLocalSearchParams();
@@ -37,17 +38,20 @@ export default function BrewDetail() {
     }
 
     return (
-        <View style={{flex: 1, padding: 16}}>
-            <Text style={{fontSize: 24, fontWeight: 'bold'}}>{brew.name}</Text>
-            <Text>State: {brew.state}</Text>
-            <Text>Created At: {brew.createdAt.toDateString()}</Text>
-            {brew.firstFermentationEnd && (
-                <Text>F1 Ends: {brew.firstFermentationEnd.toDateString()}</Text>
-            )}
-            {brew.secondFermentationEnd && (
-                <Text>F2 Ends: {brew.secondFermentationEnd.toDateString()}</Text>
-            )}
-            {brew.notes && <Text style={{marginTop: 12}}>{brew.notes}</Text>}
-        </View>
+        <SafeAreaView className="flex-1 p-4">
+            <Link href="/" className="color-purple-600">Back</Link>
+            <View style={{flex: 1, padding: 16}}>
+                <Text style={{fontSize: 24, fontWeight: 'bold'}}>{brew.name}</Text>
+                <Text>State: {brew.state}</Text>
+                <Text>Created At: {brew.createdAt.toDateString()}</Text>
+                {brew.firstFermentationEnd && (
+                    <Text>F1 Ends: {brew.firstFermentationEnd.toDateString()}</Text>
+                )}
+                {brew.secondFermentationEnd && (
+                    <Text>F2 Ends: {brew.secondFermentationEnd.toDateString()}</Text>
+                )}
+                {brew.notes && <Text style={{marginTop: 12}}>{brew.notes}</Text>}
+            </View>
+        </SafeAreaView>
     )
 }

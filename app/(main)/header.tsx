@@ -20,8 +20,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({
             ]}
         >
             <SafeAreaView className="p-0 px-8 m-0 bg-brown-800" edges={['top']}>
-                <Text className="text-brown-100 text-4xl font-extrabold text-center p-0 mb-2" numberOfLines={1}
-                      adjustsFontSizeToFit={true}>Kombucha Keeper</Text>
+                <Text className="text-brown-100 text-4xl font-extrabold text-center p-0 mb-2">Kombucha Keeper</Text>
             </SafeAreaView>
         </View>
     );
