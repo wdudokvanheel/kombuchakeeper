@@ -1,22 +1,28 @@
 {
   "expo": {
-    "name": "kombuchakeeper",
+    "name": "Kombucha Keeper",
     "slug": "kombuchakeeper",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "kombuchakeeper",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "nl.wdudokvanheel.kombuchakeeper",
+      "buildNumber": "3",
+      "config": {
+        "usesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "nl.wdudokvanheel.kombuchakeeper"
     },
     "web": {
       "bundler": "metro",
