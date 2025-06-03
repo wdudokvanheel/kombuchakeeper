@@ -17,7 +17,7 @@ const RootLayout = () => {
                 </View>
                 <View className="mx-0">
                     <MenuBar
-                        height={85}
+                        height={100}
                         dipWidth={160}
                         cornerRadius={80}
                         onPress={() => router.push("/brew/new")}
