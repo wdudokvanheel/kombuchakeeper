@@ -2,7 +2,7 @@
   "expo": {
     "name": "Kombucha Keeper",
     "slug": "kombuchakeeper",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "kombuchakeeper",
@@ -11,7 +11,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "nl.wdudokvanheel.kombuchakeeper",
-      "buildNumber": "2",
+      "buildNumber": "1",
       "config": {
         "usesNonExemptEncryption": false
       }

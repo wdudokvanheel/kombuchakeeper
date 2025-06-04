@@ -1,13 +1,21 @@
 import {Link, Slot} from "expo-router";
 import {View} from "react-native";
-import {SafeAreaView} from "react-native-safe-area-context";
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
-const BrewLayout = () =>
-    <View className="flex-1 mt-4 m-4">
-        <SafeAreaView className="flex-1 p-4">
-            <Link href="/" className="color-purple-600">Back</Link>
+const BrewLayout = () => {
+    const insets = useSafeAreaInsets();
+
+    return (
+        <View className="flex-1 px-4" style={[
+            {
+                paddingTop: insets.top,
+                paddingBottom: insets.bottom,
+            }]}
+        >
+            <Link href="/" className="color-purple-600 mb-4">Back</Link>
             <Slot/>
-        </SafeAreaView>
-    </View>
+        </View>
+    )
+}
 
 export default BrewLayout;
