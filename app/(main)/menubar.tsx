@@ -1,8 +1,8 @@
+import {StyledPath} from "@/ui/svg";
+import Ionicons from '@expo/vector-icons/Ionicons';
 import React, {useCallback, useState} from "react";
 import {LayoutChangeEvent, TouchableOpacity, View} from "react-native";
 import Svg from "react-native-svg";
-import {StyledPath} from "@/ui/svg";
-import Ionicons from '@expo/vector-icons/Ionicons';
 
 export interface MenuBarWithButtonProps {
     /** Explicit width. Leave undefined to make it fill its parent */

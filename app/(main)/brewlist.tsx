@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import {FlatList, Text, View, Pressable} from "react-native";
-import {Link} from "expo-router";
 import {Brew} from "@/models/brew";
-import {CircularProgressBase} from "react-native-circular-progress-indicator";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import {BrewService} from "@/services/brew-service";
 import {NativeWindColors} from "@/ui/nativewind";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import {Link} from "expo-router";
+import React from 'react';
+import {FlatList, Pressable, Text, View} from "react-native";
+import {CircularProgressBase} from "react-native-circular-progress-indicator";
 
 type BrewListItemProps = {
     brew: Brew

@@ -1,6 +1,6 @@
 import {Brew, BrewState} from '@/models/brew'
-import {QueryKey, useQuery} from '@tanstack/react-query'
 import {queryClient} from '@/services/query-client'
+import {QueryKey, useQuery} from '@tanstack/react-query'
 
 export const BREWS_QUERY_KEY: QueryKey = ['brews']
 

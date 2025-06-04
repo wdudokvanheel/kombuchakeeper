@@ -1,9 +1,8 @@
-import React, {useEffect, useState} from 'react'
-import {ActivityIndicator, Text, View} from 'react-native'
-import {Link, useLocalSearchParams} from 'expo-router'
 import {Brew} from '@/models/brew'
 import {BrewService} from '@/services/brew-service'
-import {SafeAreaView} from "react-native-safe-area-context";
+import {useLocalSearchParams} from 'expo-router'
+import React, {useEffect, useState} from 'react'
+import {ActivityIndicator, Text, View} from 'react-native'
 
 export default function BrewDetail() {
     const {id} = useLocalSearchParams();
