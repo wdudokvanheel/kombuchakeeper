@@ -16,6 +16,7 @@ const BrewList = () => {
 
     return (
         <FlatList
+            alwaysBounceVertical={false}
             className="overflow-visible z-0"
             data={brews}
             keyExtractor={item => String(item.id || 0)}
@@ -48,10 +49,10 @@ const BrewListItem = ({brew}: BrewListItemProps) =>
                                 <Text className="text-3xl text-brown-950">{brew.state}</Text>
                             )}
                             {brew.state === 'Failed' && (
-                                <Ionicons name="warning-sharp" size={45} color="white" />
+                                <Ionicons name="warning-sharp" size={45} color="white"/>
                             )}
                             {brew.state === 'Bottled' && (
-                                <Ionicons name="checkmark-outline" size={45} color="white" />
+                                <Ionicons name="checkmark-outline" size={45} color="white"/>
                             )}
                         </View>
                     </View>
