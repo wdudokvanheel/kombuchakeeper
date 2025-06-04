@@ -12,6 +12,7 @@ const RootLayout = () =>
             <View className="flex-1 bg-brown-100">
                 <Slot/>
             </View>
+
         </QueryClientProvider>
     </SafeAreaProvider>
 

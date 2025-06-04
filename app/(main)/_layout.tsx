@@ -31,7 +31,6 @@ const MainLayout = () => {
                             notes: 'Test'
                         }))
                         // router.push("/brew/new")
-
                     }
                 />
             </View>
