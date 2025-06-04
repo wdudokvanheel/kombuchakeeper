@@ -3,7 +3,7 @@ const colors = require('tailwindcss/colors');
 
 module.exports = {
     presets: [require('nativewind/preset')],
-    content: ["./app/**/*.{js,jsx,ts,tsx}"],
+    content: ["./app/**/*.{js,jsx,ts,tsx}", "./ui/**/*.{js,jsx,ts,tsx}"],
     theme: {
         colors: {
             transparent: 'transparent',

@@ -2,24 +2,25 @@ import {NativeWindColors} from "@/ui/nativewind";
 import React, {useState} from "react";
 import {TextInput, View} from "react-native";
 
-interface BorderedTextInputProps {
+interface ThemedTextInputProps {
     value: string;
     onChangeText: (text: string) => void;
     placeholder?: string;
 }
 
-const ThemedTextInput: React.FC<BorderedTextInputProps> = ({
-                                                               value,
-                                                               onChangeText,
-                                                               placeholder,
-                                                           }) => {
+const ThemedTextInput: React.FC<ThemedTextInputProps> = ({
+                                                             value,
+                                                             onChangeText,
+                                                             placeholder,
+                                                         }) => {
     const [focused, setFocused] = useState(false);
 
     return (
         <View
-            className={`w-full rounded-[64px] border-[6px] mb-6 ${
-                focused ? "border-brown-300/50" : "border-white/0"
-            }`}
+            className="w-full rounded-[64px] border-[6px] border-green-600 mb-6"
+            style={[{
+                borderColor: focused ? (NativeWindColors.brown[400] + '30') : '#FFFFFF'
+            }]}
         >
             <TextInput
                 multiline={false}
@@ -29,7 +30,7 @@ const ThemedTextInput: React.FC<BorderedTextInputProps> = ({
                 maxLength={15}
                 value={value}
                 onChangeText={onChangeText}
-                className="bg-white font-semibold text-purple-600 rounded-[3em] p-6 border border-white focus:border-brown-900"
+                className="bg-white font-semibold text-purple-600 rounded-[64px] p-4 border border-white focus:border-brown-800"
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}
                 style={[
