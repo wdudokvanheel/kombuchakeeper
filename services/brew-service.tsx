@@ -5,7 +5,7 @@ import {queryClient} from '@/services/query-client'
 export const BREWS_QUERY_KEY: QueryKey = ['brews']
 
 export interface BrewServiceInterface {
-    fetchBrews(): Promise<Brew[]>
+    allBrews(): ReturnType<typeof useQuery<Brew[]>>
 
     getBrewById(id: number): Promise<Brew | null>
 
@@ -14,8 +14,6 @@ export interface BrewServiceInterface {
     updateBrew(brew: Brew): Promise<void>
 
     deleteBrew(id: number): Promise<void>
-
-    useBrews(): ReturnType<typeof useQuery<Brew[]>>
 }
 
 class MockBrewService implements BrewServiceInterface {
@@ -70,10 +68,11 @@ class MockBrewService implements BrewServiceInterface {
     }
 
     private updateBrewData() {
-        queryClient.setQueryData<Brew[]>({
-            queryKey: BREWS_QUERY_KEY,
-            updater: [...this.brews],
-        })
+        queryClient.invalidateQueries({queryKey: BREWS_QUERY_KEY})
+    }
+
+    private createNextId() {
+        return this.brews.length ? Math.max(...this.brews.map(b => b.id)) + 1 : 1
     }
 
     async fetchBrews(): Promise<Brew[]> {
@@ -86,6 +85,10 @@ class MockBrewService implements BrewServiceInterface {
     }
 
     async addBrew(brew: Brew): Promise<void> {
+        if (brew.id === undefined) {
+            brew.id = this.createNextId()
+        }
+
         this.brews.push(brew)
         this.updateBrewData()
     }
@@ -103,7 +106,7 @@ class MockBrewService implements BrewServiceInterface {
         this.updateBrewData()
     }
 
-    useBrews() {
+    allBrews() {
         return useQuery({
             queryKey: BREWS_QUERY_KEY,
             queryFn: () => this.fetchBrews(),

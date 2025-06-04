@@ -8,11 +8,11 @@ import {BrewService} from "@/services/brew-service";
 import {NativeWindColors} from "@/ui/nativewind";
 
 type BrewListItemProps = {
-    brew: Brew;
+    brew: Brew
 };
 
 const BrewList = () => {
-    const {data: brews = []} = BrewService.useBrews()
+    const {data: brews = []} = BrewService.allBrews()
 
     return (
         <View className="w-fit">

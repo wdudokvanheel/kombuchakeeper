@@ -2,6 +2,8 @@ import {Slot, useRouter} from "expo-router";
 import {View} from "react-native";
 import MenuBar from "@/app/(main)/menubar"
 import AppHeader from "@/app/(main)/header"
+import {Brew, BrewState} from "@/models/brew"
+import {BrewService} from "@/services/brew-service"
 
 const MainLayout = () => {
     const router = useRouter()
@@ -19,7 +21,18 @@ const MainLayout = () => {
                     height={100}
                     dipWidth={160}
                     cornerRadius={80}
-                    onPress={() => router.push("/brew/new")}
+                    onPress={() =>
+                        BrewService.addBrew(new Brew({
+                            name: 'Test',
+                            createdAt: new Date(),
+                            state: BrewState.Bottled,
+                            firstFermentationEnd: new Date(),
+                            secondFermentationEnd: new Date(),
+                            notes: 'Test'
+                        }))
+                        // router.push("/brew/new")
+
+                    }
                 />
             </View>
         </>
