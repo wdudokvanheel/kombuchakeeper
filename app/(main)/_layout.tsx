@@ -12,7 +12,7 @@ const MainLayout = () => {
         <>
             <AppHeader radius={50}/>
 
-            <View className="flex-1 mt-4">
+            <View className="flex-1">
                 <Slot/>
             </View>
 

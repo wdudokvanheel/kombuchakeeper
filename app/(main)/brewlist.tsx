@@ -15,14 +15,14 @@ const BrewList = () => {
     const {data: brews = []} = BrewService.allBrews()
 
     return (
-        <View className="w-fit">
-            <FlatList
-                data={brews}
-                keyExtractor={item => String(item.id || 0)}
-                renderItem={({item}) => <BrewListItem brew={item}/>}
-                scrollEnabled={false}
-            />
-        </View>
+        <FlatList
+            className="overflow-visible z-0"
+            data={brews}
+            keyExtractor={item => String(item.id || 0)}
+            renderItem={({item}) => <BrewListItem brew={item}/>}
+            scrollEnabled={true}
+            ListFooterComponent={<View className="mb-12"/>}
+        />
     );
 }
 
@@ -38,21 +38,28 @@ const stateLabelBackgroundColor: Record<string, string> = {
 const BrewListItem = ({brew}: BrewListItemProps) =>
     <Link href={`/brew/${brew.id}`} asChild>
         <Pressable>
-            <View className="bg-white shadow-[0_6px_8px_rgba(0,0,0,0.05)] rounded-[38px] p-4 flex-1 mb-4 mx-4">
-                <View className="flex-row items-start h-fit">
-                    <View className="w-1/4 h-full justify-center">
+            <View className="bg-white shadow-[0_6px_8px_rgba(0,0,0,0.05)] rounded-[38px] p-4 mt-4 mx-4">
+                <View className="flex-row">
+                    <View className="w-1/4 p-2">
                         <View
-                            className={`items-center justify-center my-2 mx-2 rounded-3xl flex-1 ${stateLabelBackgroundColor[brew.state]}`}>
+                            className={`items-center justify-center rounded-3xl flex-1 ${stateLabelBackgroundColor[brew.state]}`}
+                        >
                             {(brew.state === 'F1' || brew.state === 'F2') && (
-                                <Text className="text-3xl  text-brown-950">{brew.state}</Text>
+                                <Text className="text-3xl text-brown-950">{brew.state}</Text>
                             )}
-                            {brew.state === 'Failed' && <Ionicons name="warning-sharp" size={45} color="white"/>}
-                            {brew.state === 'Bottled' && <Ionicons name="checkmark-outline" size={45} color="white"/>}
+                            {brew.state === 'Failed' && (
+                                <Ionicons name="warning-sharp" size={45} color="white" />
+                            )}
+                            {brew.state === 'Bottled' && (
+                                <Ionicons name="checkmark-outline" size={45} color="white" />
+                            )}
                         </View>
                     </View>
+
                     <View className="w-2/4 items-start ps-2 pt-1">
                         <Text className="text-xl text-brown-800">{brew.name}</Text>
                     </View>
+
                     <View className="w-1/4 items-end py-2 px-2">
                         <CircularProgressBase
                             radius={32}
