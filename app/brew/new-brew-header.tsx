@@ -1,6 +1,7 @@
+import Ionicons from "@expo/vector-icons/Ionicons";
 import {Link} from "expo-router";
 import React from "react";
-import {Text, View} from "react-native";
+import {Text, TouchableOpacity, View} from "react-native";
 import {useSafeAreaInsets} from "react-native-safe-area-context";
 
 const NewBrewHeader: React.FC = () => {
@@ -23,9 +24,16 @@ const NewBrewHeader: React.FC = () => {
             </View>
 
             <View className="px-8 pb-8">
-                <Link href="/" className="text-brown-100 mt-8 mb-8">
-                    Back
-                </Link>
+                <TouchableOpacity activeOpacity={0.8}>
+                    <Link href="/" className="text-brown-100 mt-4 mb-8">
+
+                        <View className="w-12 h-12 rounded-full border border-white justify-center items-center">
+                            <Ionicons name="chevron-back" size={20} color="white"/>
+                        </View>
+                    </Link>
+                </TouchableOpacity>
+
+
                 <Text className="text-5xl font-bold text-brown-100">Start new brew</Text>
             </View>
         </View>
