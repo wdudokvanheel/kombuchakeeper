@@ -1,3 +1,4 @@
+import NewBrewHeader from "@/app/brew/new-brew-header";
 import {Brew} from "@/models/brew"
 import {BrewService} from "@/services/brew-service"
 import ThemedTextInput from "@/ui/components/themed-textinput"
@@ -24,35 +25,42 @@ const NewBrew: React.FC = () => {
     };
 
     return (
-        <View className="flex-1 justify-between">
-            <View className="flex-1">
-                <Text className="text-lg font-semibold text-brown-900 mb-2">
-                    Brew Name
-                </Text>
+        <>
+            <NewBrewHeader/>
 
-                <ThemedTextInput
-                    value={name}
-                    onChangeText={setName}
-                    placeholder="Unnamed brew"
-                />
+            <View className="flex-1 justify-between px-4 pt-4">
+                <View className="flex-1">
+                    <Text className="text-lg font-semibold text-brown-900 mb-2">
+                        Brew Name
+                    </Text>
 
-                <Text className="text-lg font-semibold text-gray-700 mb-2">
-                    First Fermentation duration
-                </Text>
-                <ThemedTextInput
-                    value={days}
-                    onChangeText={setDays}
-                    placeholder="Number of days"
-                />
+                    <ThemedTextInput
+                        value={name}
+                        onChangeText={setName}
+                        placeholder="Unnamed brew"
+                    />
+
+                    <Text className="text-lg font-semibold text-gray-700 mb-2">
+                        First Fermentation duration
+                    </Text>
+                    <ThemedTextInput
+                        value={days}
+                        onChangeText={setDays}
+                        placeholder="Number of days"
+                    />
+                </View>
+
+                <View>
+                    <TouchableOpacity
+                        onPress={saveBrew}
+                        className="bg-brown-800 rounded-[64px] py-4 items-center"
+                    >
+                        <Text className="text-white text-xl font-semibold">Add Brew</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
 
-            <TouchableOpacity
-                onPress={saveBrew}
-                className="bg-green-600 rounded-[64px] py-4 items-center"
-            >
-                <Text className="text-white text-xl font-semibold">Add Brew</Text>
-            </TouchableOpacity>
-        </View>
+        </>
     );
 };
 
