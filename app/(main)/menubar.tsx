@@ -2,7 +2,7 @@ import {StyledPath} from "@/ui/svg";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, {useCallback, useState} from "react";
 import {LayoutChangeEvent, TouchableOpacity, View} from "react-native";
-import Svg from "react-native-svg";
+import Svg, {Defs, FeDropShadow, Filter} from "react-native-svg";
 
 export interface MenuBarWithButtonProps {
     /** Explicit width. Leave undefined to make it fill its parent */
@@ -34,9 +34,10 @@ const MenuBar: React.FC<MenuBarWithButtonProps> = ({
     const onLayout = useCallback(
         (e: LayoutChangeEvent) => {
             if (width === undefined) {
-                const rawW = e.nativeEvent.layout.width;
-                const w = Math.ceil(rawW);
-                if (w !== measuredWidth) setMeasuredWidth(w);
+                const w = Math.ceil(e.nativeEvent.layout.width);
+                if (w !== measuredWidth) {
+                    setMeasuredWidth(w)
+                }
             }
         },
         [width, measuredWidth]
@@ -108,16 +109,15 @@ const MenuBarShape: React.FC<ShapeProps> = ({
                                                 dipDepth = 38,
                                                 dipWidth = 120,
                                             }) => {
-    const [measuredWidth, setMeasuredWidth] = useState<number | undefined>(
-        width,
-    );
+    const [measuredWidth, setMeasuredWidth] = useState<number | undefined>(width)
 
     const onLayout = useCallback(
         (e: LayoutChangeEvent) => {
             if (width === undefined) {
-                const rawW = e.nativeEvent.layout.width;
-                const w = Math.ceil(rawW);
-                if (w !== measuredWidth) setMeasuredWidth(w);
+                const w = Math.ceil(e.nativeEvent.layout.width);
+                if (w !== measuredWidth) {
+                    setMeasuredWidth(w)
+                }
             }
         },
         [width, measuredWidth],
@@ -136,26 +136,51 @@ const MenuBarShape: React.FC<ShapeProps> = ({
     const rightFlatStart = w / 2 + dw / 2;
     const cp = dw * 0.25;
     const pathData = `
-        M ${r} 0
+        M ${r} 10
         H ${leftFlatEnd}
-        C ${leftFlatEnd + cp} 0, ${w / 2 - cp} ${dipDepth}, ${w / 2} ${dipDepth}
-        C ${w / 2 + cp} ${dipDepth}, ${rightFlatStart - cp} 0, ${rightFlatStart} 0
+        C ${leftFlatEnd + cp} 10, ${w / 2 - cp} ${dipDepth}, ${w / 2} ${dipDepth}
+        C ${w / 2 + cp} ${dipDepth}, ${rightFlatStart - cp} 10, ${rightFlatStart} 10
         H ${w - r}
         A ${r} ${r} 0 0 1 ${w} ${r}
         V ${h}
         H 0
         V ${r}
-        A ${r} ${r} 0 0 1 ${r} 0
+        A ${r} ${r} 0 0 1 ${r} 10
         Z
-    `;
+  `;
 
     return (
-        <View onLayout={onLayout}>
-            <Svg width={w} height={h} viewBox={`0 0 ${w} ${h - 1}`}>
-                <StyledPath d={pathData} className="fill-brown-800"/>
+        <View onLayout={onLayout} className="overflow-visible">
+            <Svg
+                width={w}
+                height={h}
+                viewBox={`0 0 ${w} ${h}`}
+            >
+                <Defs>
+                    <Filter
+                        id="topShadow"
+                        y="-25%"
+                        height="150%"
+                    >
+                        <FeDropShadow
+                            dx={0}
+                            dy={-4}
+                            stdDeviation={4}
+                            floodColor="#000"
+                            floodOpacity={0.05}
+                        />
+                    </Filter>
+                </Defs>
+
+                <StyledPath
+                    d={pathData}
+                    className="fill-white"
+                    filter="url(#topShadow)"
+                />
             </Svg>
         </View>
     );
 };
+
 
 export default MenuBar;
