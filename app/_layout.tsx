@@ -1,6 +1,6 @@
 import {queryClient} from '@/services/query-client'
 import {QueryClientProvider} from '@tanstack/react-query'
-import {Slot} from "expo-router";
+import {Slot, Stack} from "expo-router";
 import {View} from "react-native";
 import {initialWindowMetrics, SafeAreaProvider} from 'react-native-safe-area-context'
 
@@ -11,7 +11,7 @@ const RootLayout = () =>
         <QueryClientProvider client={queryClient}>
 
             <View className="flex-1 bg-brown-100">
-                <Slot/>
+                <Stack screenOptions={{headerShown: false}}/>
             </View>
 
         </QueryClientProvider>

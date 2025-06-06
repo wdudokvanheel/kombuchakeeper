@@ -57,7 +57,7 @@ const NewBrew: React.FC = () => {
                         className="bg-brown-800 rounded-[64px] py-4 px-6 flex-row items-center justify-center"
                     >
                         <Text className="text-white text-xl font-semibold">Add brew</Text>
-                        <Ionicons name="add" size={24} color="white" className="ml-2" />
+                        <Ionicons name="add" size={24} color="white" className="ml-2"/>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -70,6 +70,11 @@ export default NewBrew;
 
 const NewBrewHeader: React.FC = () => {
     const insets = useSafeAreaInsets();
+    const router = useRouter();
+
+    const handleBack = () => {
+        router.back();
+    };
 
     return (
         <View
@@ -88,15 +93,11 @@ const NewBrewHeader: React.FC = () => {
             </View>
 
             <View className="px-4 pb-8">
-                <TouchableOpacity activeOpacity={0.8}>
-                    <Link href="/" className="text-brown-100 mt-4 mb-8">
-
-                        <View className="w-12 h-12 rounded-full border border-white justify-center items-center">
-                            <Ionicons name="chevron-back" size={20} color="white"/>
-                        </View>
-                    </Link>
+                <TouchableOpacity activeOpacity={0.8} onPress={handleBack}>
+                    <View className="w-12 h-12 rounded-full border border-white justify-center items-center mt-4 mb-8">
+                        <Ionicons name="chevron-back" size={20} color="white"/>
+                    </View>
                 </TouchableOpacity>
-
 
                 <Text className="text-5xl font-bold text-brown-100">Start new brew</Text>
             </View>

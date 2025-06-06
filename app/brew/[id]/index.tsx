@@ -4,7 +4,7 @@ import {BrewService} from '@/services/brew-service'
 import AdaptiveProgressCircle from '@/ui/components/adaptive-progress-circle'
 import {NativeWindColors} from '@/ui/nativewind'
 import Ionicons from '@expo/vector-icons/Ionicons'
-import {Link, useLocalSearchParams} from 'expo-router'
+import {Link, Stack, useLocalSearchParams, useRouter} from 'expo-router'
 import React, {useEffect, useState} from 'react'
 import {ActivityIndicator, Text, TouchableOpacity, View} from 'react-native'
 import {useSafeAreaInsets} from "react-native-safe-area-context"
@@ -100,19 +100,22 @@ interface BrewDetailHeaderProps {
 
 const BrewDetailHeader: React.FC<BrewDetailHeaderProps> = ({title, background, children}) => {
     const insets = useSafeAreaInsets()
+    const router = useRouter();
+
+    const handleBack = () => {
+        router.back();
+    };
 
     return (
         <>
             <View style={{paddingTop: insets.top, backgroundColor: background}} className="relative">
                 <View className="px-4">
                     <View className="flex-row items-center mt-4 mb-8">
-                        <TouchableOpacity activeOpacity={0.8}>
-                            <Link href="/">
-                                <View
-                                    className="w-12 h-12 rounded-full border border-brown-100 justify-center items-center">
-                                    <Ionicons name="chevron-back" size={20} color={NativeWindColors.brown[100]}/>
-                                </View>
-                            </Link>
+                        <TouchableOpacity activeOpacity={0.8} onPress={handleBack}>
+                            <View
+                                className="w-12 h-12 rounded-full border border-brown-100 justify-center items-center">
+                                <Ionicons name="chevron-back" size={20} color={NativeWindColors.brown[100]}/>
+                            </View>
                         </TouchableOpacity>
                         <Text className="text-brown-100 text-2xl font-semibold ml-4">{title}</Text>
                     </View>
