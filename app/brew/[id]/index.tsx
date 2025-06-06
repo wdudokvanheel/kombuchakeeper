@@ -1,16 +1,24 @@
-import {Brew} from '@/models/brew'
+import FermentationPanel from "@/app/brew/[id]/fermentation-panel"
+import {Brew, BrewState} from '@/models/brew'
 import {BrewService} from '@/services/brew-service'
-import AdaptiveProgressCircle from '@/ui/components/adaptive-progress-circle';
-import {NativeWindColors} from '@/ui/nativewind';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import AdaptiveProgressCircle from '@/ui/components/adaptive-progress-circle'
+import {NativeWindColors} from '@/ui/nativewind'
+import Ionicons from '@expo/vector-icons/Ionicons'
 import {Link, useLocalSearchParams} from 'expo-router'
 import React, {useEffect, useState} from 'react'
 import {ActivityIndicator, Text, TouchableOpacity, View} from 'react-native'
-import {useSafeAreaInsets} from "react-native-safe-area-context";
-import Svg, {Path} from 'react-native-svg';
+import {useSafeAreaInsets} from "react-native-safe-area-context"
+import Svg, {Path} from 'react-native-svg'
 
 const BrewDetail: React.FC = () => {
-    const {id} = useLocalSearchParams();
+    const brewStateColors: Record<BrewState, string> = {
+        [BrewState.F1]: NativeWindColors.yellow[500],
+        [BrewState.F2]: NativeWindColors.orange[400],
+        [BrewState.Bottled]: NativeWindColors.green[400],
+        [BrewState.Failed]: NativeWindColors.gray[400],
+    }
+
+    const {id} = useLocalSearchParams()
 
     const [brew, setBrew] = useState<Brew | null>(null)
     const [loading, setLoading] = useState(true)
@@ -45,47 +53,37 @@ const BrewDetail: React.FC = () => {
         )
     }
 
+    const background = brewStateColors[brew.state] ?? NativeWindColors.gray[200]
+
     return (
         <>
-            <BrewDetailHeader title={brew.name}/>
+            <BrewDetailHeader title={brew.name} background={background}>
+                <View className="mb-12 mt-0">
+                    <Text className="text-center text-9xl font-bold text-brown-100">{brew.getDaysLeft()}</Text>
+                    <Text className="text-center text-white text-lg -mt-4">days remaining</Text>
+                </View>
+            </BrewDetailHeader>
 
             <View className="flex-1 px-4">
                 <Text className="my-4 font-semibold text-brown-900">Fermentation</Text>
                 <View className="flex-row gap-8">
-                    <View className="flex-1 bg-brown-100 rounded-[2rem] p-4">
-                        <Text className="text-brown-900 text-lg font-bold">First</Text>
+                    <FermentationPanel
+                        title={"First"}
+                        color={NativeWindColors.yellow[400]}
+                        labelColor={NativeWindColors.brown[800]}
+                        start={brew.createdAt}
+                        started={true}
+                        end={brew.firstFermentationEnd}
+                    />
 
-                        <View className="p-6">
-                            <AdaptiveProgressCircle
-                                activeStrokeWidth={24}
-                                inActiveStrokeWidth={24}
-                                activeStrokeColor={NativeWindColors.yellow[500]}
-                                inActiveStrokeColor={NativeWindColors.gray[200]}
-                                value={3}
-                                maxValue={5}
-                                className="aspect-square"
-                            >
-                                <Text className="text-xl font-semibold">5d</Text>
-                            </AdaptiveProgressCircle>
-                        </View>
-                    </View>
-
-                    <View className="flex-1 bg-brown-100 rounded-[2rem] p-4 opacity-50">
-                        <Text className="text-brown-900 text-lg font-bold">Second</Text>
-                        <View className="p-6">
-                            <AdaptiveProgressCircle
-                                activeStrokeWidth={24}
-                                inActiveStrokeWidth={24}
-                                activeStrokeColor={NativeWindColors.orange[500]}
-                                inActiveStrokeColor={NativeWindColors.gray[200]}
-                                value={0}
-                                maxValue={5}
-                                className="aspect-square"
-                            >
-                                <Text className="text-xl font-semibold"></Text>
-                            </AdaptiveProgressCircle>
-                        </View>
-                    </View>
+                    <FermentationPanel
+                        title={"Second"}
+                        color={NativeWindColors.orange[400]}
+                        labelColor={NativeWindColors.brown[800]}
+                        start={brew.firstFermentationEnd}
+                        started={brew.hasFirstFermentationEnded()}
+                        end={brew.secondFermentationEnd}
+                    />
                 </View>
             </View>
         </>
@@ -95,15 +93,17 @@ const BrewDetail: React.FC = () => {
 export default BrewDetail
 
 interface BrewDetailHeaderProps {
-    title: string;
+    title: string
+    background: string
+    children?: React.ReactNode
 }
 
-const BrewDetailHeader: React.FC<BrewDetailHeaderProps> = ({title}) => {
-    const insets = useSafeAreaInsets();
+const BrewDetailHeader: React.FC<BrewDetailHeaderProps> = ({title, background, children}) => {
+    const insets = useSafeAreaInsets()
 
     return (
         <>
-            <View style={{paddingTop: insets.top}} className="relative bg-orange-400">
+            <View style={{paddingTop: insets.top, backgroundColor: background}} className="relative">
                 <View className="px-4">
                     <View className="flex-row items-center mt-4 mb-8">
                         <TouchableOpacity activeOpacity={0.8}>
@@ -117,14 +117,11 @@ const BrewDetailHeader: React.FC<BrewDetailHeaderProps> = ({title}) => {
                         <Text className="text-brown-100 text-2xl font-semibold ml-4">{title}</Text>
                     </View>
 
-                    <View className="mb-12 mt-0">
-                        <Text className="text-center text-9xl font-bold text-brown-100">5</Text>
-                        <Text className="text-center text-white text-lg -mt-4">days remaining</Text>
-                    </View>
+                    {children}
                 </View>
             </View>
             <Svg width="100%" height={40} viewBox="0 0 100 100" preserveAspectRatio="none">
-                <Path d="M0 0 H100 V100 Q50 -100 0 100 Z" fill={NativeWindColors.orange[400]}/>
+                <Path d="M0 0 H100 V100 Q50 -100 0 100 Z" fill={background}/>
             </Svg>
 
             {/* Decorative circles */}
@@ -135,7 +132,6 @@ const BrewDetailHeader: React.FC<BrewDetailHeaderProps> = ({title}) => {
                 <View className="absolute top-[180px] left-[-40px] w-20 h-20 rounded-full bg-white/15"/>
                 <View className="absolute top-[140px] left-[75px] w-10 h-10 rounded-full bg-white/15"/>
             </View>
-
         </>
-    );
-};
+    )
+}

@@ -26,23 +26,23 @@ class MockBrewService implements BrewServiceInterface {
         this.brews = [
             new Brew({
                 id: 1,
-                name: 'Yesterday’s Starter',
-                createdAt: d(-1),
-                state: BrewState.FirstFermentation,
+                name: 'Already Started',
+                createdAt: d(-5),
+                state: BrewState.F1,
                 firstFermentationEnd: d(14)
             }),
             new Brew({
                 id: 2,
                 name: 'Today’s F1 Target',
                 createdAt: d(-10),
-                state: BrewState.FirstFermentation,
+                state: BrewState.F1,
                 firstFermentationEnd: d(0)
             }),
             new Brew({
                 id: 3,
                 name: 'F2 In Progress',
                 createdAt: d(-10),
-                state: BrewState.SecondFermentation,
+                state: BrewState.F2,
                 firstFermentationEnd: d(-5),
                 secondFermentationEnd: d(2)
             }),

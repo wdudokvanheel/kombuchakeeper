@@ -29,7 +29,7 @@ const BrewList = () => {
 export default BrewList;
 
 const stateLabelBackgroundColor: Record<string, string> = {
-    F1: 'bg-yellow-400',
+    F1: 'bg-yellow-500',
     F2: 'bg-orange-400',
     Bottled: 'bg-gray-300',
     Failed: 'bg-gray-300',
@@ -45,7 +45,7 @@ const BrewListItem = ({brew}: BrewListItemProps) =>
                             className={`items-center justify-center rounded-3xl flex-1 ${stateLabelBackgroundColor[brew.state]}`}
                         >
                             {(brew.state === 'F1' || brew.state === 'F2') && (
-                                <Text className="text-3xl text-brown-950">{brew.state}</Text>
+                                <Text className="text-3xl text-white">{brew.state}</Text>
                             )}
                             {brew.state === 'Failed' && (
                                 <Ionicons name="warning-sharp" size={45} color="white"/>
@@ -67,7 +67,7 @@ const BrewListItem = ({brew}: BrewListItemProps) =>
                             inActiveStrokeWidth={16}
                             activeStrokeColor={brew.isCurrentFermentationComplete() ? NativeWindColors.green[500] : NativeWindColors.brown[600]}
                             activeStrokeSecondaryColor={brew.isCurrentFermentationComplete() ? NativeWindColors.green[500] : NativeWindColors.brown[700]}
-                            inActiveStrokeColor={NativeWindColors.brown[400]}
+                            inActiveStrokeColor={NativeWindColors.gray[200]}
                             value={brew.getDaysSinceStart() || 0}
                             maxValue={brew.getCurrentFermentationDuration()}
                         >
