@@ -17,7 +17,7 @@ const BrewList = () => {
     return (
         <FlatList
             alwaysBounceVertical={false}
-            className="overflow-visible z-0 mt-4 mb-12"
+            className="overflow-visible z-0 mb-12 px-4"
             data={brews}
             keyExtractor={item => String(item.id || 0)}
             renderItem={({item}) => <BrewListItem brew={item}/>}
@@ -38,7 +38,7 @@ const stateLabelBackgroundColor: Record<string, string> = {
 const BrewListItem = ({brew}: BrewListItemProps) =>
     <Link href={`/brew/${brew.id}`} asChild>
         <Pressable>
-            <View className="bg-white shadow-[0_6px_8px_rgba(0,0,0,0.05)] rounded-[38px] p-4 mb-4 mx-4">
+            <View className="bg-white shadow-[0_6px_8px_rgba(0,0,0,0.05)] rounded-[38px] p-4 mt-4">
                 <View className="flex-row">
                     <View className="w-1/4 p-2">
                         <View

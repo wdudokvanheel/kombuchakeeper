@@ -49,11 +49,10 @@ const BrewDetail: React.FC = () => {
         <>
             <BrewDetailHeader title={brew.name}/>
 
-            <View className="flex-1 px-8 ">
-                <Text className="my-4 font-semibold text-brown-900">Brew details</Text>
+            <View className="flex-1 px-4">
+                <Text className="my-4 font-semibold text-brown-900">Fermentation</Text>
                 <View className="flex-row gap-8">
                     <View className="flex-1 bg-brown-100 rounded-[2rem] p-4">
-
                         <Text className="text-brown-900 text-lg font-bold">First</Text>
 
                         <View className="p-6">
@@ -105,7 +104,7 @@ const BrewDetailHeader: React.FC<BrewDetailHeaderProps> = ({title}) => {
     return (
         <>
             <View style={{paddingTop: insets.top}} className="relative bg-orange-400">
-                <View className="px-4 ">
+                <View className="px-4">
                     <View className="flex-row items-center mt-4 mb-8">
                         <TouchableOpacity activeOpacity={0.8}>
                             <Link href="/">
@@ -115,7 +114,7 @@ const BrewDetailHeader: React.FC<BrewDetailHeaderProps> = ({title}) => {
                                 </View>
                             </Link>
                         </TouchableOpacity>
-                        <Text className="text-brown-100 text-xl font-semibold ml-4">{title}</Text>
+                        <Text className="text-brown-100 text-2xl font-semibold ml-4">{title}</Text>
                     </View>
 
                     <View className="mb-12 mt-0">
@@ -124,7 +123,7 @@ const BrewDetailHeader: React.FC<BrewDetailHeaderProps> = ({title}) => {
                     </View>
                 </View>
             </View>
-            <Svg width="100%" height={48} viewBox="0 0 100 100" preserveAspectRatio="none">
+            <Svg width="100%" height={40} viewBox="0 0 100 100" preserveAspectRatio="none">
                 <Path d="M0 0 H100 V100 Q50 -100 0 100 Z" fill={NativeWindColors.orange[400]}/>
             </Svg>
 

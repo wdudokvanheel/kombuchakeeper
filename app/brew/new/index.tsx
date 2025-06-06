@@ -76,8 +76,8 @@ const NewBrewHeader: React.FC = () => {
             className="bg-green-500 overflow-hidden w-full z-50"
             style={{
                 paddingTop: insets.top,
-                borderBottomLeftRadius: 50,
-                borderBottomRightRadius: 50,
+                borderBottomLeftRadius: 40,
+                borderBottomRightRadius: 40,
             }}
         >
             {/* Decorative circles */}
