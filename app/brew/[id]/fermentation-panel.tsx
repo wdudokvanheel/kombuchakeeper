@@ -50,7 +50,7 @@ const FermentationPanel: React.FC<FermentationPanelProps> = ({title, started, co
         return days
     }, [startDay, today, maxValue])
 
-    const completed = today.getTime() >= endDay?.getTime()
+    const completed = endDay ? today.getTime() >= endDay.getTime() : false
 
     let strokeColor = color
 

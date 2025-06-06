@@ -2,7 +2,7 @@ import {Brew} from "@/models/brew"
 import {BrewService} from "@/services/brew-service"
 import ThemedTextInput from "@/ui/components/themed-textinput"
 import Ionicons from "@expo/vector-icons/Ionicons";
-import {useRouter, Link} from "expo-router"
+import {useRouter} from "expo-router"
 import React, {useState} from "react"
 import {Text, TouchableOpacity, View} from "react-native"
 import {useSafeAreaInsets} from "react-native-safe-area-context";
@@ -95,7 +95,7 @@ const NewBrewHeader: React.FC = () => {
             <View className="px-4 pb-8">
                 <TouchableOpacity activeOpacity={0.8} onPress={handleBack}>
                     <View className="w-12 h-12 rounded-full border border-white justify-center items-center mt-4 mb-8">
-                        <Ionicons name="chevron-back" size={20} color="white"/>
+                        <Ionicons name="chevron-down" size={20} color="white"/>
                     </View>
                 </TouchableOpacity>
 
