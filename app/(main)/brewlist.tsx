@@ -1,11 +1,12 @@
 import {Brew} from "@/models/brew";
 import {BrewService} from "@/services/brew-service";
 import {BrewStateColor, BrewStateLabelColor} from "@/ui/brewstate-color";
+import Text from "@/ui/components/text";
 import {NativeWindColors} from "@/ui/nativewind";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import {Link} from "expo-router";
 import React from 'react';
-import {FlatList, Pressable, Text, View} from "react-native";
+import {FlatList, Pressable, View} from "react-native";
 import {CircularProgressBase} from "react-native-circular-progress-indicator";
 
 type BrewListItemProps = {
@@ -59,8 +60,8 @@ const BrewListItem = ({brew}: BrewListItemProps) => {
                             </View>
                         </View>
 
-                        <View className="w-2/4 items-start ps-2 pt-1">
-                            <Text className="text-xl text-brown-800">
+                        <View className="w-2/4 items-start ps-2 pt-2">
+                            <Text className="text-2xl text-brown-800">
                                 {brew.name}
                             </Text>
                         </View>

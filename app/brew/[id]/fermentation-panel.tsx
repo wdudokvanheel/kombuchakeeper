@@ -1,8 +1,9 @@
 import AdaptiveProgressCircle from "@/ui/components/adaptive-progress-circle"
+import Text from "@/ui/components/text";
 import {NativeWindColors} from "@/ui/nativewind"
 import MatIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import React from "react"
-import {Text, View} from "react-native"
+import {View} from "react-native"
 
 interface FermentationPanelProps {
     title: string

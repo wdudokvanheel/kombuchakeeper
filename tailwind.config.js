@@ -5,6 +5,11 @@ module.exports = {
     presets: [require('nativewind/preset')],
     content: ["./app/**/*.{js,jsx,ts,tsx}", "./ui/**/*.{js,jsx,ts,tsx}"],
     theme: {
+        extend: {
+            fontFamily: {
+                sans: ['Urbanist'],
+            },
+        },
         colors: {
             transparent: 'transparent',
             current: 'currentColor',

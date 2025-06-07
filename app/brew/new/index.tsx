@@ -1,10 +1,11 @@
 import {Brew} from "@/models/brew"
 import {BrewService} from "@/services/brew-service"
+import Text from "@/ui/components/text";
 import ThemedTextInput from "@/ui/components/themed-textinput"
 import Ionicons from "@expo/vector-icons/Ionicons";
 import {useRouter} from "expo-router"
 import React, {useState} from "react"
-import {Text, TouchableOpacity, View} from "react-native"
+import {TouchableOpacity, View} from "react-native"
 import {useSafeAreaInsets} from "react-native-safe-area-context";
 
 const NewBrew: React.FC = () => {

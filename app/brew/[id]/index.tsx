@@ -2,11 +2,12 @@ import FermentationPanel from "@/app/brew/[id]/fermentation-panel"
 import {Brew} from '@/models/brew'
 import {BrewService} from '@/services/brew-service'
 import {BrewStateColor, BrewStateLabelColor} from "@/ui/brewstate-color";
+import Text from "@/ui/components/text";
 import {NativeWindColors} from '@/ui/nativewind'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import {useLocalSearchParams, useRouter} from 'expo-router'
 import React, {useEffect, useState} from 'react'
-import {ActivityIndicator, Text, TouchableOpacity, View} from 'react-native'
+import {ActivityIndicator, TouchableOpacity, View} from 'react-native'
 import {useSafeAreaInsets} from "react-native-safe-area-context"
 import Svg, {Path} from 'react-native-svg'
 
