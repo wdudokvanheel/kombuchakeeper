@@ -123,6 +123,10 @@ export class Brew {
         }
     }
 
+    hasEnded(): boolean {
+        return this.state === BrewState.Bottled || this.state === BrewState.Failed;
+    }
+
     hasFirstFermentationEnded(): boolean {
         return this.secondFermentationEnd != undefined && this.state != BrewState.F1
     }
