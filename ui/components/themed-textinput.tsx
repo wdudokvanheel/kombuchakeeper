@@ -27,6 +27,7 @@ const ThemedTextInput: React.FC<ThemedTextInputProps> = ({
                 placeholder={placeholder}
                 numberOfLines={1}
                 selectionColor={NativeWindColors.orange[300]}
+                placeholderTextColor={NativeWindColors.gray[400]}
                 maxLength={15}
                 value={value}
                 onChangeText={onChangeText}
