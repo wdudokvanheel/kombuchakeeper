@@ -55,23 +55,16 @@ const FermentationPanel: React.FC<FermentationPanelProps> = ({title, icon, start
     const completed = endDay ? today.getTime() >= endDay.getTime() : false
 
     let strokeColor = color
+    let label = `${value}d`
 
     if (completed) {
         strokeColor = NativeWindColors.green[500]
     }
 
-    let label = `${value}d`
-    let computedLabelColor = labelColor
-
-    if (!completed) {
-        label = `${maxValue - value}d`
-    } else {
-        computedLabelColor = NativeWindColors.green[700]
-    }
-
     if (!started) {
         label = ""
-        computedLabelColor = NativeWindColors.gray[700]
+    } else if (!completed) {
+        label = `${maxValue - value}d`
     }
 
     return (
@@ -88,7 +81,7 @@ const FermentationPanel: React.FC<FermentationPanelProps> = ({title, icon, start
                     activeStrokeColor={strokeColor}
                     inActiveStrokeColor={NativeWindColors.gray[200]}
                     value={value}
-                    maxValue={maxValue }
+                    maxValue={maxValue}
                     className="aspect-square"
                 >
                     <Text className="text-3xl font-semibold text-center text-brown-800">
