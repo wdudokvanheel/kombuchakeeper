@@ -1,7 +1,7 @@
 import FermentationPanel from "@/app/brew/[id]/fermentation-panel"
 import {Brew} from '@/models/brew'
 import {BrewService} from '@/services/brew-service'
-import BrewStateColor from "@/ui/brewstate-color";
+import {BrewStateColor, BrewStateLabelColor} from "@/ui/brewstate-color";
 import {NativeWindColors} from '@/ui/nativewind'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import {useLocalSearchParams, useRouter} from 'expo-router'
@@ -47,13 +47,24 @@ const BrewDetail: React.FC = () => {
     }
 
     const background = BrewStateColor[brew.state] ?? NativeWindColors.gray[200]
+    const foreground = BrewStateLabelColor[brew.state] ?? NativeWindColors.gray[900]
 
     return (
         <>
-            <BrewDetailHeader title={brew.name} background={background}>
+            <BrewDetailHeader title={brew.name} background={background} foreground={foreground}>
                 <View className="mb-12 mt-0">
-                    <Text className="text-center text-9xl font-bold text-brown-100">{brew.getDaysLeft()}</Text>
-                    <Text className="text-center text-white text-lg -mt-4">days remaining</Text>
+                    <Text
+                        className="text-center text-9xl font-bold"
+                        style={{color: foreground}}
+                    >
+                        {brew.getDaysLeft()}
+                    </Text>
+                    <Text
+                        className="text-center  text-lg -mt-4"
+                        style={{color: foreground}}
+                    >
+                        days remaining
+                    </Text>
                 </View>
             </BrewDetailHeader>
 
@@ -88,10 +99,11 @@ export default BrewDetail
 interface BrewDetailHeaderProps {
     title: string
     background: string
+    foreground: string
     children?: React.ReactNode
 }
 
-const BrewDetailHeader: React.FC<BrewDetailHeaderProps> = ({title, background, children}) => {
+const BrewDetailHeader: React.FC<BrewDetailHeaderProps> = ({title, background, foreground, children}) => {
     const insets = useSafeAreaInsets()
     const router = useRouter();
 
@@ -106,11 +118,18 @@ const BrewDetailHeader: React.FC<BrewDetailHeaderProps> = ({title, background, c
                     <View className="flex-row items-center mt-4 mb-8">
                         <TouchableOpacity activeOpacity={0.8} onPress={handleBack}>
                             <View
-                                className="w-12 h-12 rounded-full border border-brown-100 justify-center items-center">
-                                <Ionicons name="chevron-back" size={20} color={NativeWindColors.brown[100]}/>
+                                className="w-12 h-12 rounded-full border border justify-center items-center"
+                                style={{borderColor: foreground}}
+                            >
+                                <Ionicons name="chevron-back" size={20} color={foreground}/>
                             </View>
                         </TouchableOpacity>
-                        <Text className="text-brown-100 text-2xl font-semibold ml-4">{title}</Text>
+                        <Text
+                            className=" text-2xl font- ml-4"
+                            style={{color: foreground}}
+                        >
+                            {title}
+                        </Text>
                     </View>
 
                     {children}

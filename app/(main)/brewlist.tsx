@@ -1,6 +1,6 @@
 import {Brew} from "@/models/brew";
 import {BrewService} from "@/services/brew-service";
-import BrewStateColor from "@/ui/brewstate-color";
+import {BrewStateColor, BrewStateLabelColor} from "@/ui/brewstate-color";
 import {NativeWindColors} from "@/ui/nativewind";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import {Link} from "expo-router";
@@ -42,7 +42,12 @@ const BrewListItem = ({brew}: BrewListItemProps) =>
                             }}
                         >
                             {(brew.state === 'F1' || brew.state === 'F2') && (
-                                <Text className="text-3xl text-white">{brew.state}</Text>
+                                <Text
+                                    className="text-3xl"
+                                    style={{color: BrewStateLabelColor[brew.state]}}
+                                >
+                                    {brew.state}
+                                </Text>
                             )}
                             {brew.state === 'Failed' && (
                                 <Ionicons name="warning-sharp" size={45} color="white"/>
@@ -62,8 +67,7 @@ const BrewListItem = ({brew}: BrewListItemProps) =>
                             radius={32}
                             activeStrokeWidth={16}
                             inActiveStrokeWidth={16}
-                            activeStrokeColor={brew.isCurrentFermentationComplete() ? NativeWindColors.green[500] : NativeWindColors.brown[600]}
-                            activeStrokeSecondaryColor={brew.isCurrentFermentationComplete() ? NativeWindColors.green[500] : NativeWindColors.brown[700]}
+                            activeStrokeColor={brew.isCurrentFermentationComplete() ? NativeWindColors.green[500] : BrewStateColor[brew.state]}
                             inActiveStrokeColor={NativeWindColors.gray[200]}
                             value={brew.getDaysSinceStart() || 0}
                             maxValue={brew.getCurrentFermentationDuration()}
@@ -71,6 +75,7 @@ const BrewListItem = ({brew}: BrewListItemProps) =>
                             <Text className="text-2xl font-light m-0 p-0 text-brown-700">
                                 {brew.getDaysLeft() > 0 ? brew.getDaysLeft() : ''}
                             </Text>
+
                         </CircularProgressBase>
                     </View>
                 </View>

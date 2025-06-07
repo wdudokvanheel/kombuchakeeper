@@ -8,4 +8,11 @@ const BrewStateColor: Record<BrewState, string> = {
     [BrewState.Failed]: NativeWindColors.gray[400],
 }
 
-export default BrewStateColor
+const BrewStateLabelColor: Record<BrewState, string> = {
+    [BrewState.F1]: NativeWindColors.brown[800],
+    [BrewState.F2]: NativeWindColors.white,
+    [BrewState.Bottled]: NativeWindColors.white,
+    [BrewState.Failed]: NativeWindColors.white,
+}
+
+export {BrewStateColor, BrewStateLabelColor}
