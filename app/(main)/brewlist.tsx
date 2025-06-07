@@ -1,5 +1,6 @@
 import {Brew} from "@/models/brew";
 import {BrewService} from "@/services/brew-service";
+import BrewStateColor from "@/ui/brewstate-color";
 import {NativeWindColors} from "@/ui/nativewind";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import {Link} from "expo-router";
@@ -28,13 +29,6 @@ const BrewList = () => {
 
 export default BrewList;
 
-const stateLabelBackgroundColor: Record<string, string> = {
-    F1: 'bg-yellow-500',
-    F2: 'bg-orange-400',
-    Bottled: 'bg-gray-300',
-    Failed: 'bg-gray-300',
-};
-
 const BrewListItem = ({brew}: BrewListItemProps) =>
     <Link href={`/brew/${brew.id}`} asChild>
         <Pressable>
@@ -42,7 +36,10 @@ const BrewListItem = ({brew}: BrewListItemProps) =>
                 <View className="flex-row">
                     <View className="w-1/4 p-2">
                         <View
-                            className={`items-center justify-center rounded-3xl flex-1 ${stateLabelBackgroundColor[brew.state]}`}
+                            className={`items-center justify-center rounded-3xl flex-1`}
+                            style={{
+                                backgroundColor: BrewStateColor[brew.state]
+                            }}
                         >
                             {(brew.state === 'F1' || brew.state === 'F2') && (
                                 <Text className="text-3xl text-white">{brew.state}</Text>

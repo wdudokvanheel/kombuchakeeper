@@ -1,23 +1,16 @@
 import FermentationPanel from "@/app/brew/[id]/fermentation-panel"
-import {Brew, BrewState} from '@/models/brew'
+import {Brew} from '@/models/brew'
 import {BrewService} from '@/services/brew-service'
-import AdaptiveProgressCircle from '@/ui/components/adaptive-progress-circle'
+import BrewStateColor from "@/ui/brewstate-color";
 import {NativeWindColors} from '@/ui/nativewind'
 import Ionicons from '@expo/vector-icons/Ionicons'
-import {Link, Stack, useLocalSearchParams, useRouter} from 'expo-router'
+import {useLocalSearchParams, useRouter} from 'expo-router'
 import React, {useEffect, useState} from 'react'
 import {ActivityIndicator, Text, TouchableOpacity, View} from 'react-native'
 import {useSafeAreaInsets} from "react-native-safe-area-context"
 import Svg, {Path} from 'react-native-svg'
 
 const BrewDetail: React.FC = () => {
-    const brewStateColors: Record<BrewState, string> = {
-        [BrewState.F1]: NativeWindColors.yellow[500],
-        [BrewState.F2]: NativeWindColors.orange[400],
-        [BrewState.Bottled]: NativeWindColors.green[400],
-        [BrewState.Failed]: NativeWindColors.gray[400],
-    }
-
     const {id} = useLocalSearchParams()
 
     const [brew, setBrew] = useState<Brew | null>(null)
@@ -53,7 +46,7 @@ const BrewDetail: React.FC = () => {
         )
     }
 
-    const background = brewStateColors[brew.state] ?? NativeWindColors.gray[200]
+    const background = BrewStateColor[brew.state] ?? NativeWindColors.gray[200]
 
     return (
         <>
