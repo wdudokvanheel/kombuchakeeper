@@ -21,7 +21,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({
                       borderBottomRightRadius: radius,
                   },
               ]}>
-            <Text className="text-brown-100 text-3xl font-extrabold text-center p-0 mb-4 uppercase">
+            <Text className="text-brown-100 text-3xl text-center p-0 mb-4 uppercase">
                 Kombucha Keeper
             </Text>
         </View>

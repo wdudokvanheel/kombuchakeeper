@@ -61,7 +61,7 @@ const BrewListItem = ({brew}: BrewListItemProps) => {
                         </View>
 
                         <View className="w-2/4 items-start ps-2 pt-2">
-                            <Text className="text-2xl text-brown-800">
+                            <Text className="text-xl font-medium text-brown-800">
                                 {brew.name}
                             </Text>
                         </View>

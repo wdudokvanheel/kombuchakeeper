@@ -32,7 +32,7 @@ const NewBrew: React.FC = () => {
 
             <View className="flex-1 justify-between px-4 pt-4">
                 <View className="flex-1">
-                    <Text className="text-lg font-semibold text-brown-900 mb-2">
+                    <Text className="text-xl font-semibold text-brown-900 mb-2">
                         Brew name
                     </Text>
 
@@ -42,7 +42,7 @@ const NewBrew: React.FC = () => {
                         placeholder="Unnamed brew"
                     />
 
-                    <Text className="text-lg font-semibold text-gray-700 mb-2">
+                    <Text className="text-xl font-semibold text-gray-700 mb-2">
                         First fermentation duration
                     </Text>
                     <ThemedTextInput

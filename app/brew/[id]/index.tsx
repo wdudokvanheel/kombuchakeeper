@@ -61,7 +61,7 @@ const BrewDetail: React.FC = () => {
                         {brew.getDaysLeft()}
                     </Text>
                     <Text
-                        className="text-center  text-lg -mt-4"
+                        className="text-center  text-xl -mt-4"
                         style={{color: foreground}}
                     >
                         days remaining
@@ -70,7 +70,7 @@ const BrewDetail: React.FC = () => {
             </BrewDetailHeader>
 
             <View className="flex-1 px-4">
-                <Text className="my-4 font-semibold text-brown-800">Fermentation</Text>
+                <Text className="my-4 text-lg font-semibold text-brown-800">Fermentation</Text>
                 <View className="flex-row gap-8">
                     <FermentationPanel
                         title="First"

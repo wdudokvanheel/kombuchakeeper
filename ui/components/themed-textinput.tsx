@@ -31,12 +31,12 @@ const ThemedTextInput: React.FC<ThemedTextInputProps> = ({
                 maxLength={15}
                 value={value}
                 onChangeText={onChangeText}
-                className="bg-white font-semibold text-purple-600 rounded-[64px] p-4 border border-white focus:border-brown-800"
+                className="bg-white font-semibold rounded-[64px] p-4 border border-white focus:border-brown-800"
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}
                 style={[
                     {
-                        fontSize: 16,
+                        fontSize: 18,
                         color: NativeWindColors.gray[800],
                     }
                 ]}
