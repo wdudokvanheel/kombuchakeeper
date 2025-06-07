@@ -69,10 +69,11 @@ const BrewDetail: React.FC = () => {
             </BrewDetailHeader>
 
             <View className="flex-1 px-4">
-                <Text className="my-4 font-semibold text-brown-900">Fermentation</Text>
+                <Text className="my-4 font-semibold text-brown-800">Fermentation</Text>
                 <View className="flex-row gap-8">
                     <FermentationPanel
-                        title={"First"}
+                        title="First"
+                        icon="bottle-tonic"
                         color={NativeWindColors.yellow[400]}
                         labelColor={NativeWindColors.brown[800]}
                         start={brew.createdAt}
@@ -81,7 +82,8 @@ const BrewDetail: React.FC = () => {
                     />
 
                     <FermentationPanel
-                        title={"Second"}
+                        title="Second"
+                        icon="bottle-soda-classic"
                         color={NativeWindColors.orange[400]}
                         labelColor={NativeWindColors.brown[800]}
                         start={brew.firstFermentationEnd}

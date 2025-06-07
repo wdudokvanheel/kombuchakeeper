@@ -33,10 +33,11 @@ class MockBrewService implements BrewServiceInterface {
             }),
             new Brew({
                 id: 2,
-                name: 'Today’s F1 Target',
-                createdAt: d(-10),
-                state: BrewState.F1,
-                firstFermentationEnd: d(0)
+                name: 'Today’s F2 Target',
+                createdAt: d(-18),
+                state: BrewState.F2,
+                firstFermentationEnd: d(-6),
+                secondFermentationEnd: d(0)
             }),
             new Brew({
                 id: 3,
@@ -48,6 +49,13 @@ class MockBrewService implements BrewServiceInterface {
             }),
             new Brew({
                 id: 4,
+                name: 'Today’s F1 Target',
+                createdAt: d(-10),
+                state: BrewState.F1,
+                firstFermentationEnd: d(0)
+            }),
+            new Brew({
+                id: 5,
                 name: 'Completed Batch',
                 createdAt: d(-15),
                 state: BrewState.Bottled,
@@ -56,7 +64,7 @@ class MockBrewService implements BrewServiceInterface {
                 notes: 'Tastes great—bottled 5 days ago and stored cold.'
             }),
             new Brew({
-                id: 5,
+                id: 6,
                 name: 'Failed Attempt',
                 createdAt: d(-10),
                 state: BrewState.Failed,

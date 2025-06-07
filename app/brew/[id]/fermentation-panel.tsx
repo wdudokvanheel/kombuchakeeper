@@ -1,10 +1,12 @@
 import AdaptiveProgressCircle from "@/ui/components/adaptive-progress-circle"
 import {NativeWindColors} from "@/ui/nativewind"
+import MatIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import React from "react"
 import {Text, View} from "react-native"
 
 interface FermentationPanelProps {
     title: string
+    icon: string
     started: boolean
     color: string
     labelColor: string
@@ -12,7 +14,7 @@ interface FermentationPanelProps {
     end?: Date
 }
 
-const FermentationPanel: React.FC<FermentationPanelProps> = ({title, started, color, labelColor, start, end}) => {
+const FermentationPanel: React.FC<FermentationPanelProps> = ({title, icon, started, color, labelColor, start, end}) => {
     const msPerDay = 86_400_000
 
     const today = React.useMemo(() => {
@@ -73,21 +75,25 @@ const FermentationPanel: React.FC<FermentationPanelProps> = ({title, started, co
     }
 
     return (
-        <View className={`flex-1 bg-brown-100 rounded-[2rem] p-4${!started ? ' opacity-50' : ''}`}>
-            <Text className="text-brown-900 text-lg font-bold">{title}</Text>
+        <View className={`flex-1 bg-brown-100 rounded-[2rem] {!started ? ' opacity-50' : ''}`}>
+            <View className="flex-row px-4 pt-4">
+                <Text className="text-brown-800 text-xl font-bold flex-1">{title}</Text>
+                <MatIcons name={icon} className="" size={24} color={NativeWindColors.brown[800]}/>
+            </View>
 
-            <View className="p-6">
+            <View className="px-6 pb-6 pt-4">
                 <AdaptiveProgressCircle
-                    activeStrokeWidth={24}
-                    inActiveStrokeWidth={24}
+                    activeStrokeWidth={32}
+                    inActiveStrokeWidth={32}
                     activeStrokeColor={strokeColor}
                     inActiveStrokeColor={NativeWindColors.gray[200]}
                     value={value}
-                    maxValue={maxValue}
+                    maxValue={maxValue }
                     className="aspect-square"
                 >
-                    <Text className="text-2xl font-medium text-center" style={{color: computedLabelColor}}
-                          numberOfLines={2}>{label}</Text>
+                    <Text className="text-3xl font-semibold text-center text-brown-800">
+                        {label}
+                    </Text>
                 </AdaptiveProgressCircle>
             </View>
         </View>

@@ -30,15 +30,12 @@ const BrewList = () => {
 export default BrewList;
 
 const BrewListItem = ({brew}: BrewListItemProps) => {
-    const isHighlighted = brew.isCurrentFermentationComplete() && !brew.hasEnded()
-
     return (
         <Link href={`/brew/${brew.id}`} asChild>
             <Pressable>
-                <View
-                    className={`shadow-[0_6px_8px_rgba(0,0,0,0.05)] rounded-[38px] p-4 mt-4 ${isHighlighted ? 'bg-green-400' : 'bg-white'}`}>
-                    <View className="flex-row">
-                        <View className="w-1/4 p-2">
+                <View className="shadow-[0_6px_8px_rgba(0,0,0,0.05)] rounded-[38px] p-4 mt-4 bg-white">
+                    <View className=" flex-row">
+                        <View className=" w-1/4 p-2">
                             <View
                                 className={`items-center justify-center rounded-3xl flex-1`}
                                 style={{
@@ -62,11 +59,8 @@ const BrewListItem = ({brew}: BrewListItemProps) => {
                             </View>
                         </View>
 
-                        <View
-                            className="w-2/4 items-start ps-2 pt-1">
-                            <Text
-                                className={`text-xl ${isHighlighted ? 'text-white font-medium' : 'text-brown-800'}`}
-                            >
+                        <View className="w-2/4 items-start ps-2 pt-1">
+                            <Text className="text-xl text-brown-800">
                                 {brew.name}
                             </Text>
                         </View>
