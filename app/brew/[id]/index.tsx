@@ -1,8 +1,8 @@
 import FermentationPanel from "@/app/brew/[id]/fermentation-panel"
 import {Brew} from '@/models/brew'
 import {BrewService} from '@/services/brew-service'
-import {BrewStateColor, BrewStateLabelColor} from "@/ui/brewstate-color";
-import Text from "@/ui/components/text";
+import {BrewStateColor, BrewStateLabelColor} from "@/ui/brewstate-color"
+import Text from "@/ui/components/text"
 import {NativeWindColors} from '@/ui/nativewind'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import {useLocalSearchParams, useRouter} from 'expo-router'
@@ -16,6 +16,11 @@ const BrewDetail: React.FC = () => {
 
     const [brew, setBrew] = useState<Brew | null>(null)
     const [loading, setLoading] = useState(true)
+    const router = useRouter()
+
+    const onEdit = () => {
+        router.push(`/brew/${brew.id}/edit-fermentation`)
+    }
 
     useEffect(() => {
         if (!id) {
@@ -47,12 +52,11 @@ const BrewDetail: React.FC = () => {
         )
     }
 
-    const background = BrewStateColor[brew.state] ?? NativeWindColors.gray[200]
     const foreground = BrewStateLabelColor[brew.state] ?? NativeWindColors.gray[900]
 
     return (
         <>
-            <BrewDetailHeader title={brew.name} background={background} foreground={foreground}>
+            <BrewDetailHeader brew={brew} onEdit={onEdit}>
                 <View className="mb-12 mt-0">
                     <Text
                         className="text-center text-9xl font-bold"
@@ -100,23 +104,28 @@ const BrewDetail: React.FC = () => {
 export default BrewDetail
 
 interface BrewDetailHeaderProps {
-    title: string
-    background: string
-    foreground: string
+    brew: Brew
+    onEdit: () => void
     children?: React.ReactNode
 }
 
-const BrewDetailHeader: React.FC<BrewDetailHeaderProps> = ({title, background, foreground, children}) => {
+const BrewDetailHeader: React.FC<BrewDetailHeaderProps> = ({brew, onEdit, children}) => {
+    const title = brew.name
+    const background = BrewStateColor[brew.state] ?? NativeWindColors.gray[200]
+    const foreground = BrewStateLabelColor[brew.state] ?? NativeWindColors.gray[900]
     const insets = useSafeAreaInsets()
-    const router = useRouter();
+    const router = useRouter()
 
     const handleBack = () => {
-        router.back();
-    };
+        router.back()
+    }
 
     return (
         <>
-            <View style={{paddingTop: insets.top, backgroundColor: background}} className="relative">
+            <View
+                className="relative pb-6"
+                style={{paddingTop: insets.top, backgroundColor: background}}
+            >
                 <View className="px-4">
                     <View className="flex-row items-center mt-4 mb-8">
                         <TouchableOpacity activeOpacity={0.8} onPress={handleBack}>
@@ -128,7 +137,7 @@ const BrewDetailHeader: React.FC<BrewDetailHeaderProps> = ({title, background, f
                             </View>
                         </TouchableOpacity>
                         <Text
-                            className=" text-2xl font- ml-4"
+                            className=" text-2xl ml-4"
                             style={{color: foreground}}
                         >
                             {title}
@@ -138,9 +147,32 @@ const BrewDetailHeader: React.FC<BrewDetailHeaderProps> = ({title, background, f
                     {children}
                 </View>
             </View>
-            <Svg width="100%" height={40} viewBox="0 0 100 100" preserveAspectRatio="none">
-                <Path d="M0 0 H100 V100 Q50 -100 0 100 Z" fill={background}/>
-            </Svg>
+
+            <View className="relative items-center" style={{height: 40}}>
+                <Svg width="100%" height={40} viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <Path d="M0 0 H100 V100 Q50 -100 0 100 Z" fill={background}/>
+                </Svg>
+
+                {(!brew.hasEnded()) && (
+                    <TouchableOpacity
+                        activeOpacity={0.8}
+                        onPress={onEdit}
+                        className={`absolute items-center justify-center shadow-md ${brew.isCurrentFermentationComplete() ? 'bg-green-500 shadow-green-500' : 'bg-brown-800 shadow-black/50'}`}
+                        style={
+                            {
+                                marginTop: -32,
+                                width: 64,
+                                height: 64,
+                                borderRadius: 32,
+                                elevation: 10,
+                            }
+                        }
+                    >
+                        <Ionicons name={brew.isCurrentFermentationComplete() ? 'checkmark' : 'pencil'} size={32}
+                                  color={NativeWindColors.brown[100]}/>
+                    </TouchableOpacity>
+                )}
+            </View>
 
             {/* Decorative circles */}
             <View className="absolute inset-0 pointer-events-none">

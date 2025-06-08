@@ -1,7 +1,7 @@
 import AdaptiveProgressCircle from "@/ui/components/adaptive-progress-circle"
-import Text from "@/ui/components/text";
+import Text from "@/ui/components/text"
 import {NativeWindColors} from "@/ui/nativewind"
-import MatIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import MatIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import React from "react"
 import {View} from "react-native"
 
