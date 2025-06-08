@@ -23,7 +23,7 @@ const EditFermentationModal: React.FC = () => {
             </TouchableOpacity>
 
             <Text className="text-brown-800 mt-8 mb-2 text-4xl font-extrabold">
-                Edit fermentation
+                Brew actions
             </Text>
 
             <View className="bg-white flex-row rounded-3xl">
@@ -56,7 +56,7 @@ const EditFermentationModal: React.FC = () => {
                         Extend fermentation
                     </Text>
 
-                    <Text className="text-xl">
+                    <Text className="text-xl font-light">
                         Lorem ipsum lorem ipsum loremipsum loremipsum loremipsum lorem
                     </Text>
                 </View>
@@ -76,7 +76,7 @@ const EditFermentationModal: React.FC = () => {
                         Delete this brew
                     </Text>
 
-                    <Text className="text-xl">
+                    <Text className="text-xl font-light">
                         Lorem ipsum lorem ipsum loremipsum loremipsum loremipsum lorem
                     </Text>
                 </View>

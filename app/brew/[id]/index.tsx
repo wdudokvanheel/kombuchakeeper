@@ -55,7 +55,7 @@ const BrewDetail: React.FC = () => {
     const foreground = BrewStateLabelColor[brew.state] ?? NativeWindColors.gray[900]
 
     return (
-        <>
+        <View className="flex-1 bg-white">
             <BrewDetailHeader brew={brew} onEdit={onEdit}>
                 <View className="mb-12 mt-0">
                     <Text
@@ -97,7 +97,7 @@ const BrewDetail: React.FC = () => {
                     />
                 </View>
             </View>
-        </>
+        </View>
     )
 }
 
