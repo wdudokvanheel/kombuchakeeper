@@ -13,14 +13,16 @@ const AppHeader: React.FC<AppHeaderProps> = ({
     const insets = useSafeAreaInsets();
 
     return (
-        <View className="p-0 px-8 m-0 bg-brown-800 overflow-hidden w-full z-50" edges={['top']}
-              style={[
-                  {
-                      paddingTop: insets.top,
-                      borderBottomLeftRadius: radius,
-                      borderBottomRightRadius: radius,
-                  },
-              ]}>
+        <View
+            className="p-0 px-8 m-0 bg-brown-800 overflow-hidden w-full z-50"
+            style={[
+                {
+                    paddingTop: insets.top,
+                    borderBottomLeftRadius: radius,
+                    borderBottomRightRadius: radius,
+                },
+            ]}
+        >
             <Text className="text-brown-100 text-3xl text-center p-0 mb-4 uppercase">
                 Kombucha Keeper
             </Text>
