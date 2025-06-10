@@ -1,30 +1,31 @@
 import {Brew} from "@/models/brew"
 import {BrewService} from "@/services/brew-service"
-import Text from "@/ui/components/text";
+import Text from "@/ui/components/text"
 import ThemedTextInput from "@/ui/components/themed-textinput"
-import Ionicons from "@expo/vector-icons/Ionicons";
+import NumberSelector from "@/ui/components/wheel-picker"
+import Ionicons from "@expo/vector-icons/Ionicons"
 import {useRouter} from "expo-router"
 import React, {useState} from "react"
 import {TouchableOpacity, View} from "react-native"
-import {useSafeAreaInsets} from "react-native-safe-area-context";
+import {useSafeAreaInsets} from "react-native-safe-area-context"
 
 const NewBrew: React.FC = () => {
-    const [name, setName] = useState("");
-    const [days, setDays] = useState("");
-    const router = useRouter();
+    const [name, setName] = useState("")
+    const router = useRouter()
+    const [duration, setDuration] = React.useState(10)
 
     const saveBrew = () => {
-        const parsedDays = parseInt(days, 10) || 10
+        const parsedDays = duration
         const firstFermentationEnd = new Date()
         firstFermentationEnd.setDate(firstFermentationEnd.getDate() + parsedDays)
 
         let brew = new Brew({
             name: name,
             firstFermentationEnd: firstFermentationEnd
-        });
+        })
 
         BrewService.addBrew(brew).then(() => router.push("/"))
-    };
+    }
 
     return (
         <>
@@ -43,13 +44,12 @@ const NewBrew: React.FC = () => {
                     />
 
                     <Text className="text-xl font-semibold text-gray-700 mb-2">
-                        First fermentation duration
+                        First fermentation duration in days
                     </Text>
-                    <ThemedTextInput
-                        value={days}
-                        onChangeText={setDays}
-                        placeholder="Number of days"
-                    />
+
+                    <View className="w-full items-center">
+                        <NumberSelector value={duration} onChange={setDuration}/>
+                    </View>
                 </View>
 
                 <View>
@@ -64,18 +64,18 @@ const NewBrew: React.FC = () => {
             </View>
 
         </>
-    );
-};
+    )
+}
 
-export default NewBrew;
+export default NewBrew
 
 const NewBrewHeader: React.FC = () => {
-    const insets = useSafeAreaInsets();
-    const router = useRouter();
+    const insets = useSafeAreaInsets()
+    const router = useRouter()
 
     const handleBack = () => {
-        router.back();
-    };
+        router.back()
+    }
 
     return (
         <View
@@ -103,5 +103,5 @@ const NewBrewHeader: React.FC = () => {
                 <Text className="text-5xl font-bold text-brown-100">Start new brew</Text>
             </View>
         </View>
-    );
-};
+    )
+}
