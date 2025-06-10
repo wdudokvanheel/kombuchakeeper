@@ -37,6 +37,7 @@ const NumberSelector = ({
             <WheelPicker
                 data={data}
                 value={value}
+                overScrollMode={'never'}
                 itemHeight={128}
                 renderItem={renderItem}
                 style={{marginVertical: -150}}
