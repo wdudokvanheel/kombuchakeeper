@@ -6,9 +6,12 @@ const BrewLayout = () => {
     const insets = useSafeAreaInsets();
 
     return (
-        <View className="flex-1" style={[{
-            paddingBottom: insets.bottom,
-        }]}>
+        <View
+            className="flex-1"
+            style={[{
+                paddingBottom: Math.max(insets.bottom, 16),
+            }]}
+        >
             <Slot/>
         </View>
     )

@@ -19,7 +19,9 @@ const BrewDetail: React.FC = () => {
     const router = useRouter()
 
     const onEdit = () => {
-        router.push(`/brew/${brew.id}/edit-fermentation`)
+        if (brew) {
+            router.push(`/brew/${brew.id}/edit-fermentation`)
+        }
     }
 
     useEffect(() => {

@@ -43,7 +43,7 @@ const NewBrew: React.FC = () => {
                         placeholder="Unnamed brew"
                     />
 
-                    <Text className="text-xl font-semibold text-gray-700 mb-2">
+                    <Text className="text-xl font-semibold text-brown-900 mb-2">
                         First fermentation duration in days
                     </Text>
 

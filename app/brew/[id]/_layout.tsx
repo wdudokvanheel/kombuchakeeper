@@ -8,7 +8,9 @@ export default function BrewLayout() {
     return (
         <View
             className="flex-1 bg-white"
-            style={{paddingBottom: Math.max(insets.bottom, 16)}}
+            style={{
+                paddingBottom: Math.max(insets.bottom, 16)
+            }}
         >
             <Stack screenOptions={{headerShown: false}}>
                 <Stack.Screen

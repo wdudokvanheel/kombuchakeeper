@@ -1,11 +1,11 @@
-import {NativeWindColors} from "@/ui/nativewind";
-import React, {useState} from "react";
-import {TextInput, View} from "react-native";
+import {NativeWindColors} from "@/ui/nativewind"
+import React, {useState} from "react"
+import {TextInput, View} from "react-native"
 
 interface ThemedTextInputProps {
-    value: string;
-    onChangeText: (text: string) => void;
-    placeholder?: string;
+    value: string
+    onChangeText: (text: string) => void
+    placeholder?: string
 }
 
 const ThemedTextInput: React.FC<ThemedTextInputProps> = ({
@@ -13,7 +13,7 @@ const ThemedTextInput: React.FC<ThemedTextInputProps> = ({
                                                              onChangeText,
                                                              placeholder,
                                                          }) => {
-    const [focused, setFocused] = useState(false);
+    const [focused, setFocused] = useState(false)
 
     return (
         <View
@@ -42,7 +42,7 @@ const ThemedTextInput: React.FC<ThemedTextInputProps> = ({
                 ]}
             />
         </View>
-    );
-};
+    )
+}
 
-export default ThemedTextInput;
+export default ThemedTextInput
