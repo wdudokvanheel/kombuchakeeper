@@ -15,78 +15,71 @@ const EditFermentationModal: React.FC = () => {
     return (
         <View className="flex-col gap-4 p-4">
             <TouchableOpacity activeOpacity={0.8} onPress={handleBack}>
-                <View
-                    className="w-12 h-12 rounded-full border border-b-brown-800 justify-center items-center"
-                >
+                <View className="w-12 h-12 rounded-full border border-b-brown-800 justify-center items-center">
                     <Ionicons name="chevron-down" size={20} color={NativeWindColors.brown[800]}/>
                 </View>
             </TouchableOpacity>
 
             <Text className="text-brown-800 mt-8 mb-2 text-4xl font-extrabold">
-                Brew actions
+                Batch actions
             </Text>
 
-            <View className="bg-white flex-row rounded-3xl">
-                <View className="w-5/6 gap-2 p-4">
-                    <View className="rounded-full bg-green-500 p-2 self-start mb-4">
-                        <Ionicons name="checkmark" size={32} color={NativeWindColors.green[100]}/>
-                    </View>
+            <BrewActionCard
+                title="End second fermentation"
+                description="Mark this batch complete"
+                icon="checkmark"
+                colorCircle={NativeWindColors.green[500]}
+                colorIcon={NativeWindColors.green[100]}
+            />
 
-                    <Text className="font-bold text-2xl text-brown-800">
-                        End fermentation
-                    </Text>
+            <BrewActionCard
+                title="Extend fermentation"
+                description="Add one or more days to the fermentation timer"
+                icon="timer-outline"
+                colorCircle={NativeWindColors.orange[400]}
+                colorIcon={NativeWindColors.orange[100]}
+            />
 
-                    <Text className="text-xl font-light">
-                        Lorem ipsum lorem ipsum loremipsum loremipsum loremipsum lorem
-                    </Text>
-                </View>
+            <BrewActionCard
+                title="Mark brew as failed"
+                description="Archive this batch as failed in your history"
+                icon="close-outline"
+                colorCircle={NativeWindColors.purple[500]}
+                colorIcon={NativeWindColors.purple[100]}
+            />
 
-                <View className="flex-1 justify-center items-end">
-                    <Ionicons name="chevron-forward" size={32} color={NativeWindColors.brown[800]}/>
-                </View>
-            </View>
-
-            <View className="bg-white flex-row rounded-3xl ">
-                <View className="w-5/6 gap-2 p-4">
-                    <View className="rounded-full bg-orange-400 p-2 self-start mb-4">
-                        <Ionicons name="timer-outline" size={32} color={NativeWindColors.green[100]}/>
-                    </View>
-
-                    <Text className="font-bold text-2xl text-brown-800">
-                        Extend fermentation
-                    </Text>
-
-                    <Text className="text-xl font-light">
-                        Lorem ipsum lorem ipsum loremipsum loremipsum loremipsum lorem
-                    </Text>
-                </View>
-
-                <View className="flex-1 justify-center items-end">
-                    <Ionicons name="chevron-forward" size={32} color={NativeWindColors.brown[800]}/>
-                </View>
-            </View>
-
-            <View className="bg-white flex-row rounded-3xl ">
-                <View className="w-5/6 gap-2 p-4">
-                    <View className="rounded-full bg-purple-500 p-2 self-start mb-4">
-                        <Ionicons name="trash" size={32} color={NativeWindColors.green[100]}/>
-                    </View>
-
-                    <Text className="font-bold text-2xl text-brown-800">
-                        Delete this brew
-                    </Text>
-
-                    <Text className="text-xl font-light">
-                        Lorem ipsum lorem ipsum loremipsum loremipsum loremipsum lorem
-                    </Text>
-                </View>
-
-                <View className="flex-1 justify-center items-end">
-                    <Ionicons name="chevron-forward" size={32} color={NativeWindColors.brown[800]}/>
-                </View>
-            </View>
         </View>
     )
 }
 
 export default EditFermentationModal
+
+type BrewActionCardProps = {
+    title: string
+    description: string
+    icon: string
+    colorCircle: string
+    colorIcon: string
+    target: string
+}
+
+const BrewActionCard = ({title, description, icon, colorCircle, colorIcon, target}: BrewActionCardProps) => {
+    return (
+        <View className="bg-white flex-row rounded-3xl">
+            <View className="w-5/6 gap-2 p-4">
+                <View className="rounded-full p-2 self-start mb-4" style={{backgroundColor: colorCircle}}>
+                    <Ionicons name={icon} size={32} color={colorIcon}/>
+                </View>
+                <Text className="font-bold text-2xl text-brown-800">
+                    {title}
+                </Text>
+                <Text className="text-xl font-light">
+                    {description}
+                </Text>
+            </View>
+            <View className="flex-1 justify-center items-end">
+                <Ionicons name="chevron-forward" size={32} color={NativeWindColors.brown[800]}/>
+            </View>
+        </View>
+    )
+}
