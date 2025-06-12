@@ -1,5 +1,5 @@
-import {Brew} from "@/models/brew"
-import {BrewService} from "@/services/brew-service"
+import {Batch} from "@/models/batch"
+import {BatchService} from "@/services/batch-service"
 import Text from "@/ui/components/text"
 import ThemedTextInput from "@/ui/components/themed-textinput"
 import NumberSelector from "@/ui/components/wheel-picker"
@@ -9,38 +9,38 @@ import React, {useState} from "react"
 import {TouchableOpacity, View} from "react-native"
 import {useSafeAreaInsets} from "react-native-safe-area-context"
 
-const NewBrew: React.FC = () => {
+const NewBatch: React.FC = () => {
     const [name, setName] = useState("")
     const router = useRouter()
     const [duration, setDuration] = React.useState(10)
 
-    const saveBrew = () => {
+    const saveBatch = () => {
         const parsedDays = duration
         const firstFermentationEnd = new Date()
         firstFermentationEnd.setDate(firstFermentationEnd.getDate() + parsedDays)
 
-        let brew = new Brew({
+        let batch = new Batch({
             name: name,
             firstFermentationEnd: firstFermentationEnd
         })
 
-        BrewService.addBrew(brew).then(() => router.push("/"))
+        BatchService.addBatch(batch).then(() => router.push("/"))
     }
 
     return (
         <>
-            <NewBrewHeader/>
+            <NewBatchHeader/>
 
             <View className="flex-1 justify-between px-4 pt-4">
                 <View className="flex-1">
                     <Text className="text-xl font-semibold text-brown-900 mb-2">
-                        Brew name
+                        Batch name
                     </Text>
 
                     <ThemedTextInput
                         value={name}
                         onChangeText={setName}
-                        placeholder="Unnamed brew"
+                        placeholder="Unnamed batch"
                     />
 
                     <Text className="text-xl font-semibold text-brown-900 mb-2">
@@ -54,22 +54,21 @@ const NewBrew: React.FC = () => {
 
                 <View>
                     <TouchableOpacity
-                        onPress={saveBrew}
+                        onPress={saveBatch}
                         className="bg-brown-800 rounded-[64px] py-4 px-6 flex-row items-center justify-center"
                     >
-                        <Text className="text-white text-xl font-semibold">Add brew</Text>
-                        <Ionicons name="add" size={24} color="white" className="ml-2"/>
+                        <Text className="text-white text-2xl font-semibold">Add batch</Text>
+                        <Ionicons name="add" size={28} color="white" className="ml-2"/>
                     </TouchableOpacity>
                 </View>
             </View>
-
         </>
     )
 }
 
-export default NewBrew
+export default NewBatch
 
-const NewBrewHeader: React.FC = () => {
+const NewBatchHeader: React.FC = () => {
     const insets = useSafeAreaInsets()
     const router = useRouter()
 
@@ -100,7 +99,7 @@ const NewBrewHeader: React.FC = () => {
                     </View>
                 </TouchableOpacity>
 
-                <Text className="text-5xl font-bold text-brown-100">Start new brew</Text>
+                <Text className="text-5xl font-bold text-brown-100">Start new batch</Text>
             </View>
         </View>
     )

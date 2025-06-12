@@ -1,6 +1,6 @@
-import {Brew} from "@/models/brew";
-import {BrewService} from "@/services/brew-service";
-import {BrewStateColor, BrewStateLabelColor} from "@/ui/brewstate-color";
+import {Batch, BatchState} from "@/models/batch";
+import {BatchService} from "@/services/batch-service";
+import {BatchStateColor, BatchStateLabelColor} from "@/ui/batch-state-color";
 import Text from "@/ui/components/text";
 import {NativeWindColors} from "@/ui/nativewind";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -9,30 +9,30 @@ import React from 'react';
 import {FlatList, Pressable, View} from "react-native";
 import {CircularProgressBase} from "react-native-circular-progress-indicator";
 
-type BrewListItemProps = {
-    brew: Brew
+type BatchListItemProps = {
+    batch: Batch
 };
 
-const BrewList = () => {
-    const {data: brews = []} = BrewService.allBrews()
+const BatchList = () => {
+    const {data: batches = []} = BatchService.allBatches()
 
     return (
         <FlatList
             alwaysBounceVertical={false}
             className="overflow-visible z-0 mb-12 px-4"
-            data={brews}
+            data={batches}
             keyExtractor={item => String(item.id || 0)}
-            renderItem={({item}) => <BrewListItem brew={item}/>}
+            renderItem={({item}) => <BatchListItem batch={item}/>}
             scrollEnabled={true}
         />
     );
 }
 
-export default BrewList;
+export default BatchList;
 
-const BrewListItem = ({brew}: BrewListItemProps) => {
+const BatchListItem = ({batch}: BatchListItemProps) => {
     return (
-        <Link href={`/brew/${brew.id}`} asChild>
+        <Link href={`/batch/${batch.id}`} asChild>
             <Pressable>
                 <View className="shadow-[0_6px_8px_rgba(0,0,0,0.05)] rounded-[38px] p-4 mt-4 bg-white">
                     <View className=" flex-row">
@@ -40,21 +40,21 @@ const BrewListItem = ({brew}: BrewListItemProps) => {
                             <View
                                 className={`items-center justify-center rounded-3xl flex-1`}
                                 style={{
-                                    backgroundColor: BrewStateColor[brew.state]
+                                    backgroundColor: BatchStateColor[batch.state]
                                 }}
                             >
-                                {(brew.state === 'F1' || brew.state === 'F2') && (
+                                {(batch.state === BatchState.F1 || batch.state === BatchState.F2) && (
                                     <Text
                                         className="text-3xl font-bold"
-                                        style={{color: BrewStateLabelColor[brew.state]}}
+                                        style={{color: BatchStateLabelColor[batch.state]}}
                                     >
-                                        {brew.state}
+                                        {batch.state}
                                     </Text>
                                 )}
-                                {brew.state === 'Failed' && (
+                                {batch.state === BatchState.Failed && (
                                     <Ionicons name="warning-sharp" size={45} color="white"/>
                                 )}
-                                {brew.state === 'Bottled' && (
+                                {batch.state === BatchState.Bottled && (
                                     <Ionicons name="checkmark-outline" size={45} color="white"/>
                                 )}
                             </View>
@@ -62,7 +62,7 @@ const BrewListItem = ({brew}: BrewListItemProps) => {
 
                         <View className="w-2/4 items-start ps-2 pt-2">
                             <Text className="text-xl font-medium text-brown-800">
-                                {brew.name}
+                                {batch.name}
                             </Text>
                         </View>
 
@@ -71,15 +71,15 @@ const BrewListItem = ({brew}: BrewListItemProps) => {
                                 radius={32}
                                 activeStrokeWidth={16}
                                 inActiveStrokeWidth={16}
-                                activeStrokeColor={brew.isCurrentFermentationComplete() ? NativeWindColors.green[600] : BrewStateColor[brew.state]}
+                                activeStrokeColor={batch.isCurrentFermentationComplete() ? NativeWindColors.green[600] : BatchStateColor[batch.state]}
                                 inActiveStrokeColor={NativeWindColors.gray[200]}
-                                value={brew.getDaysSinceStart() || 0}
-                                maxValue={brew.getCurrentFermentationDuration()}
+                                value={batch.getDaysSinceStart() || 0}
+                                maxValue={batch.getCurrentFermentationDuration()}
                             >
-                                {(brew.state === 'F1' || brew.state === 'F2') && (
-                                    !brew.isCurrentFermentationComplete() ?
+                                {(batch.state === BatchState.F1 || batch.state === BatchState.F2) && (
+                                    !batch.isCurrentFermentationComplete() ?
                                         <Text className="text-xl font-extrabold m-0 p-0 text-brown-700">
-                                            {brew.getDaysLeft() > 0 ? brew.getDaysLeft() : ''}
+                                            {batch.getDaysLeft() > 0 ? batch.getDaysLeft() : ''}
                                         </Text>
                                         :
                                         <Ionicons name="checkmark-outline" size={28}

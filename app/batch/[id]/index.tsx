@@ -1,7 +1,7 @@
-import FermentationPanel from "@/app/brew/[id]/fermentation-panel"
-import {Brew} from '@/models/brew'
-import {BrewService} from '@/services/brew-service'
-import {BrewStateColor, BrewStateLabelColor} from "@/ui/brewstate-color"
+import FermentationPanel from "@/app/batch/[id]/fermentation-panel"
+import {Batch} from '@/models/batch'
+import {BatchService} from '@/services/batch-service'
+import {BatchStateColor, BatchStateLabelColor} from "@/ui/batch-state-color"
 import Text from "@/ui/components/text"
 import {NativeWindColors} from '@/ui/nativewind'
 import Ionicons from '@expo/vector-icons/Ionicons'
@@ -11,16 +11,16 @@ import {ActivityIndicator, TouchableOpacity, View} from 'react-native'
 import {useSafeAreaInsets} from "react-native-safe-area-context"
 import Svg, {Path} from 'react-native-svg'
 
-const BrewDetail: React.FC = () => {
+const BatchDetail: React.FC = () => {
     const {id} = useLocalSearchParams()
 
-    const [brew, setBrew] = useState<Brew | null>(null)
+    const [batch, setBatch] = useState<Batch | null>(null)
     const [loading, setLoading] = useState(true)
     const router = useRouter()
 
     const onEdit = () => {
-        if (brew) {
-            router.push(`/brew/${brew.id}/edit-fermentation`)
+        if (batch) {
+            router.push(`/batch/${batch.id}/batch-action`)
         }
     }
 
@@ -29,10 +29,10 @@ const BrewDetail: React.FC = () => {
             return
         }
 
-        BrewService
-            .getBrewById(Number(id))
-            .then(brew => {
-                setBrew(brew)
+        BatchService
+            .getBatchById(Number(id))
+            .then(batch => {
+                setBatch(batch)
                 setLoading(false)
             })
 
@@ -46,25 +46,25 @@ const BrewDetail: React.FC = () => {
         )
     }
 
-    if (!brew) {
+    if (!batch) {
         return (
             <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                <Text>Brewing batch not found.</Text>
+                <Text>Batch not found.</Text>
             </View>
         )
     }
 
-    const foreground = BrewStateLabelColor[brew.state] ?? NativeWindColors.gray[900]
+    const foreground = BatchStateLabelColor[batch.state] ?? NativeWindColors.gray[900]
 
     return (
         <View className="flex-1 bg-white">
-            <BrewDetailHeader brew={brew} onEdit={onEdit}>
+            <BatchDetailHeader batch={batch} onEdit={onEdit}>
                 <View className="mb-12 mt-0">
                     <Text
                         className="text-center text-9xl font-bold"
                         style={{color: foreground}}
                     >
-                        {brew.getDaysLeft()}
+                        {batch.getDaysLeft()}
                     </Text>
                     <Text
                         className="text-center  text-xl -mt-4"
@@ -73,7 +73,7 @@ const BrewDetail: React.FC = () => {
                         days remaining
                     </Text>
                 </View>
-            </BrewDetailHeader>
+            </BatchDetailHeader>
 
             <View className="flex-1 px-4">
                 <Text className="my-4 text-lg font-semibold text-brown-800">Fermentation</Text>
@@ -83,9 +83,9 @@ const BrewDetail: React.FC = () => {
                         icon="bottle-tonic"
                         color={NativeWindColors.yellow[400]}
                         labelColor={NativeWindColors.brown[800]}
-                        start={brew.createdAt}
+                        start={batch.createdAt}
                         started={true}
-                        end={brew.firstFermentationEnd}
+                        end={batch.firstFermentationEnd}
                     />
 
                     <FermentationPanel
@@ -93,9 +93,9 @@ const BrewDetail: React.FC = () => {
                         icon="bottle-soda-classic"
                         color={NativeWindColors.orange[400]}
                         labelColor={NativeWindColors.brown[800]}
-                        start={brew.firstFermentationEnd}
-                        started={brew.hasFirstFermentationEnded()}
-                        end={brew.secondFermentationEnd}
+                        start={batch.firstFermentationEnd}
+                        started={batch.hasFirstFermentationEnded()}
+                        end={batch.secondFermentationEnd}
                     />
                 </View>
             </View>
@@ -103,18 +103,18 @@ const BrewDetail: React.FC = () => {
     )
 }
 
-export default BrewDetail
+export default BatchDetail
 
-interface BrewDetailHeaderProps {
-    brew: Brew
+interface BatchDetailHeaderProps {
+    batch: Batch
     onEdit: () => void
     children?: React.ReactNode
 }
 
-const BrewDetailHeader: React.FC<BrewDetailHeaderProps> = ({brew, onEdit, children}) => {
-    const title = brew.name
-    const background = BrewStateColor[brew.state] ?? NativeWindColors.gray[200]
-    const foreground = BrewStateLabelColor[brew.state] ?? NativeWindColors.gray[900]
+const BatchDetailHeader: React.FC<BatchDetailHeaderProps> = ({batch, onEdit, children}) => {
+    const title = batch.name
+    const background = BatchStateColor[batch.state] ?? NativeWindColors.gray[200]
+    const foreground = BatchStateLabelColor[batch.state] ?? NativeWindColors.gray[900]
     const insets = useSafeAreaInsets()
     const router = useRouter()
 
@@ -155,11 +155,11 @@ const BrewDetailHeader: React.FC<BrewDetailHeaderProps> = ({brew, onEdit, childr
                     <Path d="M0 0 H100 V100 Q50 -100 0 100 Z" fill={background}/>
                 </Svg>
 
-                {(!brew.hasEnded()) && (
+                {(!batch.hasEnded()) && (
                     <TouchableOpacity
                         activeOpacity={0.8}
                         onPress={onEdit}
-                        className={`absolute items-center justify-center shadow-md ${brew.isCurrentFermentationComplete() ? 'bg-green-500 shadow-green-500' : 'bg-brown-800 shadow-black/50'}`}
+                        className={`absolute items-center justify-center shadow-md ${batch.isCurrentFermentationComplete() ? 'bg-green-500 shadow-green-500' : 'bg-brown-800 shadow-black/50'}`}
                         style={
                             {
                                 marginTop: -32,
@@ -170,7 +170,7 @@ const BrewDetailHeader: React.FC<BrewDetailHeaderProps> = ({brew, onEdit, childr
                             }
                         }
                     >
-                        <Ionicons name={brew.isCurrentFermentationComplete() ? 'checkmark' : 'pencil'} size={32}
+                        <Ionicons name={batch.isCurrentFermentationComplete() ? 'checkmark' : 'pencil'} size={32}
                                   color={NativeWindColors.brown[100]}/>
                     </TouchableOpacity>
                 )}

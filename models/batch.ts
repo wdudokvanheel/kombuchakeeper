@@ -1,24 +1,24 @@
-export enum BrewState {
+export enum BatchState {
     F1 = 'F1',
     F2 = 'F2',
     Bottled = 'Bottled',
     Failed = 'Failed',
 }
 
-export class Brew {
+export class Batch {
     id?: number;
     createdAt: Date;
-    state: BrewState;
+    state: BatchState;
     name: string;
     firstFermentationEnd?: Date;
     secondFermentationEnd?: Date;
     notes?: string;
 
-    constructor(overrides: Partial<Brew> = {}) {
+    constructor(overrides: Partial<Batch> = {}) {
         this.id = overrides.id;
         this.name = overrides.name ?? 'Unnamed';
         this.createdAt = overrides.createdAt ?? new Date();
-        this.state = overrides.state ?? BrewState.F1;
+        this.state = overrides.state ?? BatchState.F1;
         this.firstFermentationEnd = overrides.firstFermentationEnd;
         this.secondFermentationEnd = overrides.secondFermentationEnd;
         this.notes = overrides.notes;
@@ -30,14 +30,14 @@ export class Brew {
         let endDate: Date | undefined;
 
         switch (this.state) {
-            case BrewState.F1:
+            case BatchState.F1:
                 endDate = this.firstFermentationEnd;
                 break;
-            case BrewState.F2:
+            case BatchState.F2:
                 endDate = this.secondFermentationEnd;
                 break;
-            case BrewState.Bottled:
-            case BrewState.Failed:
+            case BatchState.Bottled:
+            case BatchState.Failed:
                 return 0;
         }
 
@@ -54,14 +54,14 @@ export class Brew {
         let startDate: Date | undefined;
 
         switch (this.state) {
-            case BrewState.F1:
+            case BatchState.F1:
                 startDate = this.createdAt;
                 break;
-            case BrewState.F2:
+            case BatchState.F2:
                 startDate = this.firstFermentationEnd;
                 break;
-            case BrewState.Bottled:
-            case BrewState.Failed:
+            case BatchState.Bottled:
+            case BatchState.Failed:
                 return undefined;
         }
 
@@ -78,16 +78,16 @@ export class Brew {
         let endDate: Date | undefined;
 
         switch (this.state) {
-            case BrewState.F1:
+            case BatchState.F1:
                 startDate = this.createdAt;
                 endDate = this.firstFermentationEnd;
                 break;
-            case BrewState.F2:
+            case BatchState.F2:
                 startDate = this.firstFermentationEnd;
                 endDate = this.secondFermentationEnd;
                 break;
-            case BrewState.Bottled:
-            case BrewState.Failed:
+            case BatchState.Bottled:
+            case BatchState.Failed:
                 return undefined;
         }
 
@@ -103,32 +103,32 @@ export class Brew {
         const now = new Date();
 
         switch (this.state) {
-            case BrewState.F1: {
+            case BatchState.F1: {
                 const endDate = this.firstFermentationEnd;
                 if (!endDate) return false;
                 const endDay = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate());
                 const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
                 return endDay <= today;
             }
-            case BrewState.F2: {
+            case BatchState.F2: {
                 const endDate = this.secondFermentationEnd;
                 if (!endDate) return false;
                 const endDay = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate());
                 const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
                 return endDay <= today;
             }
-            case BrewState.Bottled:
-            case BrewState.Failed:
+            case BatchState.Bottled:
+            case BatchState.Failed:
                 return true;
         }
     }
 
     hasEnded(): boolean {
-        return this.state === BrewState.Bottled || this.state === BrewState.Failed;
+        return this.state === BatchState.Bottled || this.state === BatchState.Failed;
     }
 
     hasFirstFermentationEnded(): boolean {
-        return this.secondFermentationEnd != undefined && this.state != BrewState.F1
+        return this.secondFermentationEnd != undefined && this.state != BatchState.F1
     }
 
     getFirstFermentationLength(): number | undefined {

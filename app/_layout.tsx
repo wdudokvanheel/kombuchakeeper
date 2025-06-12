@@ -25,7 +25,7 @@ const RootLayout = () => {
                         <Stack.Screen name="(main)"/>
 
                         <Stack.Screen
-                            name="brew/[id]"
+                            name="batch/[id]"
                             options={{
                                 animation: Platform.OS === 'android' ? 'slide_from_right' : 'default',
                                 animationDuration: 350,
@@ -33,7 +33,7 @@ const RootLayout = () => {
                         />
 
                         <Stack.Screen
-                            name="brew/new"
+                            name="batch/new"
                             options={{
                                 animation: 'slide_from_bottom',
                                 animationDuration: 350

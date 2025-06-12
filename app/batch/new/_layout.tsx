@@ -2,7 +2,7 @@ import {Slot} from "expo-router";
 import {View} from "react-native";
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
-const BrewLayout = () => {
+const BatchLayout = () => {
     const insets = useSafeAreaInsets();
 
     return (
@@ -17,4 +17,4 @@ const BrewLayout = () => {
     )
 }
 
-export default BrewLayout;
+export default BatchLayout;

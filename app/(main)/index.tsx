@@ -1,8 +1,8 @@
 import React from 'react';
-import BrewList from "./brewlist";
+import BatchList from "./batchList";
 
 const Index = () =>
     <>
-        <BrewList/>
+        <BatchList/>
     </>
 export default Index;

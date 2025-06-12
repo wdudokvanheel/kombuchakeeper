@@ -2,7 +2,7 @@ import {Stack} from "expo-router"
 import {View} from "react-native"
 import {useSafeAreaInsets} from "react-native-safe-area-context"
 
-export default function BrewLayout() {
+export default function BatchLayout() {
     const insets = useSafeAreaInsets()
 
     return (
@@ -17,7 +17,7 @@ export default function BrewLayout() {
                     name="index"
                 />
                 <Stack.Screen
-                    name="edit-fermentation"
+                    name="batch-action"
                     options={{presentation: 'modal'}}
                 />
             </Stack>

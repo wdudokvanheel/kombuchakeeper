@@ -19,7 +19,7 @@ const MainLayout = () => {
                     height={100}
                     dipWidth={160}
                     cornerRadius={80}
-                    onPress={() => router.push("/brew/new")}
+                    onPress={() => router.push("/batch/new")}
                 />
             </View>
         </>

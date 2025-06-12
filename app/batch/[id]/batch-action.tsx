@@ -5,7 +5,7 @@ import {useRouter} from "expo-router"
 import React from "react"
 import {TouchableOpacity, View} from "react-native"
 
-const EditFermentationModal: React.FC = () => {
+const BatchActionModal: React.FC = () => {
     const router = useRouter()
 
     const handleBack = () => {
@@ -24,7 +24,7 @@ const EditFermentationModal: React.FC = () => {
                 Batch actions
             </Text>
 
-            <BrewActionCard
+            <BatchActionCard
                 title="End second fermentation"
                 description="Mark this batch complete"
                 icon="checkmark"
@@ -32,7 +32,7 @@ const EditFermentationModal: React.FC = () => {
                 colorIcon={NativeWindColors.green[100]}
             />
 
-            <BrewActionCard
+            <BatchActionCard
                 title="Extend fermentation"
                 description="Add one or more days to the fermentation timer"
                 icon="timer-outline"
@@ -40,8 +40,8 @@ const EditFermentationModal: React.FC = () => {
                 colorIcon={NativeWindColors.orange[100]}
             />
 
-            <BrewActionCard
-                title="Mark brew as failed"
+            <BatchActionCard
+                title="Mark batch as failed"
                 description="Archive this batch as failed in your history"
                 icon="close-outline"
                 colorCircle={NativeWindColors.purple[500]}
@@ -52,9 +52,9 @@ const EditFermentationModal: React.FC = () => {
     )
 }
 
-export default EditFermentationModal
+export default BatchActionModal
 
-type BrewActionCardProps = {
+type BatchActionCardProps = {
     title: string
     description: string
     icon: string
@@ -63,7 +63,7 @@ type BrewActionCardProps = {
     target: string
 }
 
-const BrewActionCard = ({title, description, icon, colorCircle, colorIcon, target}: BrewActionCardProps) => {
+const BatchActionCard = ({title, description, icon, colorCircle, colorIcon, target}: BatchActionCardProps) => {
     return (
         <View className="bg-white flex-row rounded-3xl">
             <View className="w-5/6 gap-2 p-4">
