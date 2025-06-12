@@ -7,7 +7,6 @@ import {useRouter} from "expo-router"
 import React from "react"
 import {TouchableOpacity, View} from "react-native"
 
-
 const BatchActionModal: React.FC = () => {
     const router = useRouter()
     const batch = useBatch()

@@ -1,9 +1,9 @@
-import Text from "@/ui/components/text";
-import {NativeWindColors} from "@/ui/nativewind";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import {useRouter} from "expo-router";
-import React from "react";
-import {TouchableOpacity, View} from "react-native";
+import Text from "@/ui/components/text"
+import {NativeWindColors} from "@/ui/nativewind"
+import Ionicons from "@expo/vector-icons/Ionicons"
+import {useRouter} from "expo-router"
+import React from "react"
+import {TouchableOpacity, View} from "react-native"
 
 const ExtendFermentation: React.FC = () => {
     const router = useRouter()

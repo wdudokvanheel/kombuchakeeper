@@ -1,4 +1,4 @@
-import ActionBody from "@/app/batch/[id]/actions/components/action-body";
+import ActionBody from "@/app/batch/[id]/actions/components/action-body"
 import {useBatch} from "@/app/batch/[id]/batch-context"
 import {BatchState} from "@/models/batch"
 import {BatchService} from "@/services/batch-service"
