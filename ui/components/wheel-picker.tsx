@@ -26,6 +26,7 @@ const NumberSelector = ({
                             onChange,
                             data = fallbackData,
                             width = 200,
+                            itemHeight = 128,
                         }: NumberSelectorProps) => {
     const renderItem: RenderItem<PickerItem<number>> = useCallback(
         props => <Item {...props} />,
@@ -38,7 +39,7 @@ const NumberSelector = ({
                 data={data}
                 value={value}
                 overScrollMode={'never'}
-                itemHeight={128}
+                itemHeight={itemHeight}
                 renderItem={renderItem}
                 style={{marginVertical: -150}}
                 itemTextStyle={{fontSize: 72, fontWeight: 'bold'}}
