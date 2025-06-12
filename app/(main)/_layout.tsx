@@ -1,6 +1,7 @@
-import AppHeader from "@/app/(main)/header"
 import MenuBar from "@/app/(main)/menubar"
+import Header from "@/ui/components/header"
 import Text from "@/ui/components/text";
+import {NativeWindColors} from "@/ui/nativewind";
 import {Slot, useRouter} from "expo-router";
 import React from "react";
 import {View} from "react-native";
@@ -10,11 +11,11 @@ const MainLayout = () => {
 
     return (
         <>
-            <AppHeader radius={50}>
+            <Header background={NativeWindColors.brown[800]}>
                 <Text className="text-brown-100 text-3xl text-center p-0 mb-4 uppercase">
                     Kombucha Keeper
                 </Text>
-            </AppHeader>
+            </Header>
 
             <View className="flex-1">
                 <Slot/>
