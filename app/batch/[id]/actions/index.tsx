@@ -1,37 +1,16 @@
-import {Batch, BatchState} from "@/models/batch";
-import {BatchService} from "@/services/batch-service";
+import {useBatch} from "@/app/batch/[id]/batch-context"
+import {BatchState} from "@/models/batch"
 import Text from "@/ui/components/text"
 import {NativeWindColors} from "@/ui/nativewind"
 import Ionicons from "@expo/vector-icons/Ionicons"
-import {useLocalSearchParams, useRouter} from "expo-router"
-import React, {useEffect, useState} from "react"
+import {useRouter} from "expo-router"
+import React from "react"
 import {TouchableOpacity, View} from "react-native"
 
 
 const BatchActionModal: React.FC = () => {
-    const {id} = useLocalSearchParams()
-
     const router = useRouter()
-    const [batch, setBatch] = useState<Batch | null>(null)
-
-    useEffect(() => {
-        if (!id) {
-            return
-        }
-
-        BatchService
-            .getBatchById(Number(id))
-            .then(batch => setBatch(batch))
-
-    }, [id])
-
-    if (!batch) {
-        return (
-            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                <Text>Batch not found.</Text>
-            </View>
-        )
-    }
+    const batch = useBatch()
 
     const handlePress = (target: string) => router.push(`/batch/${batch.id}/actions/${target}`)
     const handleBack = () => router.back()
@@ -87,7 +66,6 @@ const BatchActionModal: React.FC = () => {
                 colorIcon={NativeWindColors.purple[100]}
                 onPress={() => handlePress("fail")}
             />
-
         </View>
     )
 }

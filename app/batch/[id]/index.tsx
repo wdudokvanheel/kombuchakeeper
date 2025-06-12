@@ -1,57 +1,24 @@
+import {useBatch} from "@/app/batch/[id]/batch-context";
 import FermentationPanel from "@/app/batch/[id]/fermentation-panel"
 import {Batch} from '@/models/batch'
-import {BatchService} from '@/services/batch-service'
 import {BatchStateColor, BatchStateLabelColor} from "@/ui/batch-state-color"
 import Text from "@/ui/components/text"
 import {NativeWindColors} from '@/ui/nativewind'
 import Ionicons from '@expo/vector-icons/Ionicons'
-import {useLocalSearchParams, useRouter} from 'expo-router'
-import React, {useEffect, useState} from 'react'
-import {ActivityIndicator, TouchableOpacity, View} from 'react-native'
+import {useRouter} from 'expo-router'
+import React from 'react'
+import {TouchableOpacity, View} from 'react-native'
 import {useSafeAreaInsets} from "react-native-safe-area-context"
 import Svg, {Path} from 'react-native-svg'
 
 const BatchDetail: React.FC = () => {
-    const {id} = useLocalSearchParams()
-
-    const [batch, setBatch] = useState<Batch | null>(null)
-    const [loading, setLoading] = useState(true)
     const router = useRouter()
+    const batch = useBatch()
 
     const onEdit = () => {
         if (batch) {
             router.push(`/batch/${batch.id}/actions`)
         }
-    }
-
-    useEffect(() => {
-        if (!id) {
-            return
-        }
-
-        BatchService
-            .getBatchById(Number(id))
-            .then(batch => {
-                setBatch(batch)
-                setLoading(false)
-            })
-
-    }, [id])
-
-    if (loading) {
-        return (
-            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                <ActivityIndicator size="large"/>
-            </View>
-        )
-    }
-
-    if (!batch) {
-        return (
-            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                <Text>Batch not found.</Text>
-            </View>
-        )
     }
 
     const foreground = BatchStateLabelColor[batch.state] ?? NativeWindColors.gray[900]
