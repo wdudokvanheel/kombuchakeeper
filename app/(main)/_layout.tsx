@@ -1,6 +1,6 @@
 import MenuBar from "@/app/(main)/menubar"
-import Header from "@/ui/components/header"
 import Text from "@/ui/components/text";
+import ThemedHeader from "@/ui/components/themed-header"
 import {NativeWindColors} from "@/ui/nativewind";
 import {Slot, useRouter} from "expo-router";
 import React from "react";
@@ -11,11 +11,11 @@ const MainLayout = () => {
 
     return (
         <>
-            <Header background={NativeWindColors.brown[800]}>
+            <ThemedHeader background={NativeWindColors.brown[800]} useSafeArea={true}>
                 <Text className="text-brown-100 text-3xl text-center p-0 mb-4 uppercase">
                     Kombucha Keeper
                 </Text>
-            </Header>
+            </ThemedHeader>
 
             <View className="flex-1">
                 <Slot/>
