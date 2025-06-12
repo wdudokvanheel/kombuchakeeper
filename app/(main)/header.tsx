@@ -1,14 +1,15 @@
-import Text from "@/ui/components/text";
 import React from 'react';
 import {View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
-interface AppHeaderProps {
-    radius?: number;
+type AppHeaderProps = {
+    radius?: number
+    children: React.ReactNode
 }
 
 const AppHeader: React.FC<AppHeaderProps> = ({
                                                  radius = 40,
+                                                 children,
                                              }) => {
     const insets = useSafeAreaInsets();
 
@@ -23,9 +24,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({
                 },
             ]}
         >
-            <Text className="text-brown-100 text-3xl text-center p-0 mb-4 uppercase">
-                Kombucha Keeper
-            </Text>
+            {children}
         </View>
     );
 };

@@ -2,7 +2,7 @@ import {NativeWindColors} from "@/ui/nativewind"
 import React, {useState} from "react"
 import {TextInput, View} from "react-native"
 
-interface ThemedTextInputProps {
+type ThemedTextInputProps = {
     value: string
     onChangeText: (text: string) => void
     placeholder?: string

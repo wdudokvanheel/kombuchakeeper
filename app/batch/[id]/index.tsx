@@ -105,7 +105,7 @@ const BatchDetail: React.FC = () => {
 
 export default BatchDetail
 
-interface BatchDetailHeaderProps {
+type BatchDetailHeaderProps = {
     batch: Batch
     onEdit: () => void
     children?: React.ReactNode

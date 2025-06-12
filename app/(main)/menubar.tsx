@@ -4,7 +4,7 @@ import React, {useCallback, useState} from "react";
 import {LayoutChangeEvent, TouchableOpacity, View} from "react-native";
 import Svg, {Defs, FeDropShadow, Filter} from "react-native-svg";
 
-export interface MenuBarWithButtonProps {
+type MenuBarWithButtonProps = {
     /** Explicit width. Leave undefined to make it fill its parent */
     width?: number;
     /** Fixed height (stays constant even when width changes) */
@@ -89,6 +89,8 @@ const MenuBar: React.FC<MenuBarWithButtonProps> = ({
         </View>
     );
 };
+
+export default MenuBar;
 
 type ShapeProps = {
     /** Explicit width. Leave undefined to make it fill its parent */
@@ -181,6 +183,3 @@ const MenuBarShape: React.FC<ShapeProps> = ({
         </View>
     );
 };
-
-
-export default MenuBar;
