@@ -20,7 +20,7 @@ const BatchDetail: React.FC = () => {
 
     const onEdit = () => {
         if (batch) {
-            router.push(`/batch/${batch.id}/batch-action`)
+            router.push(`/batch/${batch.id}/actions`)
         }
     }
 

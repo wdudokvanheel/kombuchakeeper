@@ -72,7 +72,7 @@ const FermentationPanel: React.FC<FermentationPanelProps> = ({title, icon, start
         <View className={`flex-1 bg-brown-100 rounded-[2rem] {!started ? ' opacity-50' : ''}`}>
             <View className="flex-row px-4 pt-4">
                 <Text className="text-brown-800 text-xl font-bold flex-1">{title}</Text>
-                <MatIcons name={icon} className="" size={24} color={NativeWindColors.brown[800]}/>
+                <MatIcons name={icon} size={24} color={NativeWindColors.brown[800]}/>
             </View>
 
             <View className="px-6 pb-6 pt-4">

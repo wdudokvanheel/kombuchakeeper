@@ -17,7 +17,7 @@ export default function BatchLayout() {
                     name="index"
                 />
                 <Stack.Screen
-                    name="batch-action"
+                    name="actions"
                     options={{presentation: 'modal'}}
                 />
             </Stack>
