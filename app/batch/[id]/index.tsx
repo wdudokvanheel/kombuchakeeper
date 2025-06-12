@@ -1,5 +1,5 @@
-import {useBatch} from "@/app/batch/[id]/batch-context";
 import FermentationPanel from "@/app/batch/[id]/fermentation-panel"
+import {useBatch} from "@/contexts/batch-context"
 import {Batch} from '@/models/batch'
 import {BatchStateColor, BatchStateLabelColor} from "@/ui/batch-state-color"
 import Text from "@/ui/components/text"

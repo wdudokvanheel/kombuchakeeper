@@ -1,5 +1,5 @@
 import ActionBody from "@/app/batch/[id]/actions/components/action-body"
-import {useBatch} from "@/app/batch/[id]/batch-context"
+import {useBatch} from "@/contexts/batch-context"
 import {BatchState} from "@/models/batch"
 import {BatchService} from "@/services/batch-service"
 import SimpleHeader from "@/ui/components/simple-header"

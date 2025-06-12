@@ -1,9 +1,9 @@
-import {BatchProvider} from "@/app/batch/[id]/batch-context";
-import {Batch} from "@/models/batch";
-import {BatchService} from "@/services/batch-service";
+import {BatchProvider} from "@/contexts/batch-context"
+import {Batch} from "@/models/batch"
+import {BatchService} from "@/services/batch-service"
 import Text from "@/ui/components/text"
 import {Stack, useLocalSearchParams} from "expo-router"
-import {useEffect, useState} from "react";
+import {useEffect, useState} from "react"
 import {ActivityIndicator, View} from "react-native"
 import {useSafeAreaInsets} from "react-native-safe-area-context"
 
