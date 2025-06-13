@@ -69,7 +69,7 @@ const FermentationPanel = ({title, icon, started, color, labelColor, start, end}
     }
 
     return (
-        <View className={`flex-1 bg-brown-100 rounded-[2rem] {!started ? ' opacity-50' : ''}`}>
+        <View className={`flex-1 bg-brown-100 rounded-[2rem] ${!started ? ' opacity-50' : ''}`}>
             <View className="flex-row px-4 pt-4">
                 <Text className="text-brown-800 text-xl font-bold flex-1">{title}</Text>
                 <MatIcons name={icon} size={24} color={NativeWindColors.brown[800]}/>
