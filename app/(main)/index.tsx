@@ -1,5 +1,5 @@
 import React from 'react'
-import BatchList from "./batchList"
+import BatchList from './batch-list'
 
 const Index = () =>
     <>
