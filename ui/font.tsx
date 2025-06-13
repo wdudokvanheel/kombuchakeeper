@@ -1,5 +1,5 @@
-import * as U from "@expo-google-fonts/urbanist";
-import {useFonts} from "expo-font";
+import * as U from "@expo-google-fonts/urbanist"
+import {useFonts} from "expo-font"
 
 /**
  * Load the Urbanist font and patch the Text element to automatically add the font-family to each instance of Text

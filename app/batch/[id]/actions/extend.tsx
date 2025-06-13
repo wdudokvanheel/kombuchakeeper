@@ -30,7 +30,7 @@ const ExtendFermentation: React.FC = () => {
             case "F2": {
                 const endDate = batch.secondFermentationEnd || new Date()
                 endDate.setDate(endDate.getDate() + duration)
-                batch.firstFermentationEnd = endDate
+                batch.secondFermentationEnd = endDate
                 BatchService.updateBatch(batch)
                 break
             }

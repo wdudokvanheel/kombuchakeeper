@@ -1,5 +1,5 @@
-import {BatchState} from "@/models/batch";
-import {NativeWindColors} from "@/ui/nativewind";
+import {BatchState} from "@/models/batch"
+import {NativeWindColors} from "@/ui/nativewind"
 
 const BatchStateColor: Record<BatchState, string> = {
     [BatchState.F1]: NativeWindColors.yellow[400],

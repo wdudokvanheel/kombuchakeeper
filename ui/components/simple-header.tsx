@@ -1,17 +1,17 @@
-import Text from "@/ui/components/text";
-import {NativeWindColors} from "@/ui/nativewind";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import {useRouter} from "expo-router";
-import React from 'react';
-import {TouchableOpacity, View} from 'react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import Text from "@/ui/components/text"
+import {NativeWindColors} from "@/ui/nativewind"
+import Ionicons from "@expo/vector-icons/Ionicons"
+import {useRouter} from "expo-router"
+import React from 'react'
+import {TouchableOpacity, View} from 'react-native'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
 
 type SimpleHeaderProps = {
     title: string
     useSafeArea?: boolean
 }
 
-const SimpleHeader: React.FC<SimpleHeaderProps> = ({title, useSafeArea = false}: HeaderProps) => {
+const SimpleHeader: React.FC<SimpleHeaderProps> = ({title, useSafeArea = false}: SimpleHeaderProps) => {
     const insets = useSafeAreaInsets()
     const router = useRouter()
 

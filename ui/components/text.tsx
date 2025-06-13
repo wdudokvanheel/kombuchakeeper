@@ -1,7 +1,7 @@
 import React, {forwardRef} from 'react'
 import {Platform, StyleProp, Text as RNText, TextProps as RNTextProps, TextStyle} from 'react-native'
 
-type Props = RNTextProps & {
+type TextProps = RNTextProps & {
     className?: string
 }
 
@@ -19,7 +19,7 @@ const WEIGHT_CLASS_TO_SUFFIX: Record<string, string> = {
     'font-black': '900Black'
 }
 
-const Text = forwardRef<React.ComponentRef<typeof RNText>, Props>(
+const Text = forwardRef<React.ComponentRef<typeof RNText>, TextProps>(
     ({className, style, ...rest}, ref) => {
         let combined = BASE_CLASS
         if (className) {

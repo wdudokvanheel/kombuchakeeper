@@ -1,4 +1,4 @@
-import {Batch} from "@/models/batch";
+import {Batch} from "@/models/batch"
 import {createContext, ReactNode, useContext} from 'react'
 
 const BatchContext = createContext<Batch | undefined>(undefined)
