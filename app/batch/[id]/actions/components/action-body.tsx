@@ -13,7 +13,7 @@ const ActionBody = ({children}: ActionBodyProps) => {
         <View
             className="flex-1 p-4 pt-8 items-center"
             style={{
-                paddingBottom: insets.bottom + 16
+                paddingBottom: Math.max(insets.bottom, 16)
             }}
         >
             {children}

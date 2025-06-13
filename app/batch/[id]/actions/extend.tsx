@@ -17,7 +17,7 @@ const ExtendFermentation = () => {
     const [duration, setDuration] = React.useState(10)
 
     const handleExtend = () => {
-        console.log(`Extending batch ${batch.id}[${batch.state}] by ${duration} days`)
+        console.log(`Extending batch #${batch.id}[${batch.state}] by ${duration} days`)
 
         switch (batch.state) {
             case BatchState.F1: {
