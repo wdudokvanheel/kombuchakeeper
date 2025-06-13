@@ -1,8 +1,8 @@
 import {queryClient} from '@/services/query-client'
-import useUrbanistFont from "@/ui/font";
+import useUrbanistFont from "@/ui/font"
 import {QueryClientProvider} from '@tanstack/react-query'
-import {Stack} from "expo-router";
-import {Platform, View} from "react-native";
+import {Stack} from "expo-router"
+import {Platform, View} from "react-native"
 import {initialWindowMetrics, SafeAreaProvider} from 'react-native-safe-area-context'
 
 import "./tailwind.css"
@@ -47,4 +47,5 @@ const RootLayout = () => {
     )
 }
 
-export default RootLayout;
+export default RootLayout
+

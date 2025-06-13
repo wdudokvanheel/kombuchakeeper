@@ -1,10 +1,10 @@
 import MenuBar from "@/app/(main)/menubar"
-import Text from "@/ui/components/text";
+import Text from "@/ui/components/text"
 import ThemedHeader from "@/ui/components/themed-header"
-import {NativeWindColors} from "@/ui/nativewind";
-import {Slot, useRouter} from "expo-router";
-import React from "react";
-import {View} from "react-native";
+import {NativeWindColors} from "@/ui/nativewind"
+import {Slot, useRouter} from "expo-router"
+import React from "react"
+import {View} from "react-native"
 
 const MainLayout = () => {
     const router = useRouter()
@@ -33,4 +33,5 @@ const MainLayout = () => {
     )
 }
 
-export default MainLayout;
+export default MainLayout
+

@@ -1,14 +1,14 @@
-import React from 'react';
-import {View} from 'react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import React from 'react'
+import {View} from 'react-native'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
 
-type HeaderProps = {
+type ThemedHeaderProps = {
     background: string
     useSafeArea?: boolean
     children: React.ReactNode
 }
 
-const ThemedHeader: React.FC<HeaderProps> = ({background, children, useSafeArea = false}: HeaderProps) => {
+const ThemedHeader: React.FC<ThemedHeaderProps> = ({background, children, useSafeArea = false}: ThemedHeaderProps) => {
     const insets = useSafeAreaInsets()
 
     return (

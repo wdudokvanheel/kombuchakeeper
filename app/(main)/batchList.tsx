@@ -1,17 +1,17 @@
-import {Batch, BatchState} from "@/models/batch";
-import {BatchService} from "@/services/batch-service";
-import {BatchStateColor, BatchStateLabelColor} from "@/ui/batch-state-color";
-import Text from "@/ui/components/text";
-import {NativeWindColors} from "@/ui/nativewind";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import {Link} from "expo-router";
-import React from 'react';
-import {FlatList, Pressable, View} from "react-native";
-import {CircularProgressBase} from "react-native-circular-progress-indicator";
+import {Batch, BatchState} from "@/models/batch"
+import {BatchService} from "@/services/batch-service"
+import {BatchStateColor, BatchStateLabelColor} from "@/ui/batch-state-color"
+import Text from "@/ui/components/text"
+import {NativeWindColors} from "@/ui/nativewind"
+import Ionicons from "@expo/vector-icons/Ionicons"
+import {Link} from "expo-router"
+import React from 'react'
+import {FlatList, Pressable, View} from "react-native"
+import {CircularProgressBase} from "react-native-circular-progress-indicator"
 
 type BatchListItemProps = {
     batch: Batch
-};
+}
 
 const BatchList = () => {
     const {data: batches = []} = BatchService.allBatches()
@@ -25,10 +25,10 @@ const BatchList = () => {
             renderItem={({item}) => <BatchListItem batch={item}/>}
             scrollEnabled={true}
         />
-    );
+    )
 }
 
-export default BatchList;
+export default BatchList
 
 const BatchListItem = ({batch}: BatchListItemProps) => {
     return (
@@ -93,3 +93,4 @@ const BatchListItem = ({batch}: BatchListItemProps) => {
         </Link>
     )
 }
+

@@ -1,8 +1,9 @@
-import React from 'react';
-import BatchList from "./batchList";
+import React from 'react'
+import BatchList from "./batchList"
 
 const Index = () =>
     <>
         <BatchList/>
     </>
-export default Index;
+export default Index
+

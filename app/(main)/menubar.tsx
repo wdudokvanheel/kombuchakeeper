@@ -1,23 +1,23 @@
-import {StyledPath} from "@/ui/svg";
-import Ionicons from '@expo/vector-icons/Ionicons';
-import React, {useCallback, useState} from "react";
-import {LayoutChangeEvent, TouchableOpacity, View} from "react-native";
-import Svg, {Defs, FeDropShadow, Filter} from "react-native-svg";
+import {StyledPath} from "@/ui/svg"
+import Ionicons from '@expo/vector-icons/Ionicons'
+import React, {useCallback, useState} from "react"
+import {LayoutChangeEvent, TouchableOpacity, View} from "react-native"
+import Svg, {Defs, FeDropShadow, Filter} from "react-native-svg"
 
 type MenuBarWithButtonProps = {
     /** Explicit width. Leave undefined to make it fill its parent */
-    width?: number;
+    width?: number
     /** Fixed height (stays constant even when width changes) */
-    height?: number;
-    cornerRadius?: number;
+    height?: number
+    cornerRadius?: number
     /** Depth of the dip measured from the top‑edge downwards */
-    dipDepth?: number;
+    dipDepth?: number
     /** Width of the dip (can be >50% of overall width) */
-    dipWidth?: number;
+    dipWidth?: number
     /** Callback for button press */
-    onPress?: () => void;
+    onPress?: () => void
     /** Optional additional button styling */
-    buttonStyle?: object;
+    buttonStyle?: object
 }
 
 const MenuBar: React.FC<MenuBarWithButtonProps> = ({
@@ -29,31 +29,31 @@ const MenuBar: React.FC<MenuBarWithButtonProps> = ({
                                                        onPress,
                                                        buttonStyle,
                                                    }) => {
-    const [measuredWidth, setMeasuredWidth] = useState<number | undefined>(width);
+    const [measuredWidth, setMeasuredWidth] = useState<number | undefined>(width)
 
     const onLayout = useCallback(
         (e: LayoutChangeEvent) => {
             if (width === undefined) {
-                const w = Math.ceil(e.nativeEvent.layout.width);
+                const w = Math.ceil(e.nativeEvent.layout.width)
                 if (w !== measuredWidth) {
                     setMeasuredWidth(w)
                 }
             }
         },
         [width, measuredWidth]
-    );
+    )
 
     if (measuredWidth === undefined) {
-        return <View onLayout={onLayout}/>;
+        return <View onLayout={onLayout}/>
     }
 
     /* Calculate button geometry */
-    const effectiveDipWidth = Math.min(dipWidth, measuredWidth);
-    const buttonDiameter = effectiveDipWidth * 0.375;
-    const buttonRadius = buttonDiameter / 2;
+    const effectiveDipWidth = Math.min(dipWidth, measuredWidth)
+    const buttonDiameter = effectiveDipWidth * 0.375
+    const buttonRadius = buttonDiameter / 2
 
-    const buttonLeft = (measuredWidth - buttonDiameter) / 2;
-    const buttonTop = -buttonDiameter / 2;
+    const buttonLeft = (measuredWidth - buttonDiameter) / 2
+    const buttonTop = -buttonDiameter / 2
 
     return (
         <View
@@ -87,22 +87,22 @@ const MenuBar: React.FC<MenuBarWithButtonProps> = ({
                 <Ionicons name="add-outline" size={40} color="white"/>
             </TouchableOpacity>
         </View>
-    );
-};
+    )
+}
 
-export default MenuBar;
+export default MenuBar
 
 type ShapeProps = {
     /** Explicit width. Leave undefined to make it fill its parent */
-    width?: number;
+    width?: number
     /** Fixed height (stays constant even when width changes) */
-    height?: number;
-    cornerRadius?: number;
+    height?: number
+    cornerRadius?: number
     /** Depth of the dip measured from the top-edge downwards */
-    dipDepth?: number;
+    dipDepth?: number
     /** Width of the dip (can be >50 % of overall width) */
-    dipWidth?: number;
-};
+    dipWidth?: number
+}
 
 const MenuBarShape: React.FC<ShapeProps> = ({
                                                 width,
@@ -116,27 +116,27 @@ const MenuBarShape: React.FC<ShapeProps> = ({
     const onLayout = useCallback(
         (e: LayoutChangeEvent) => {
             if (width === undefined) {
-                const w = Math.ceil(e.nativeEvent.layout.width);
+                const w = Math.ceil(e.nativeEvent.layout.width)
                 if (w !== measuredWidth) {
                     setMeasuredWidth(w)
                 }
             }
         },
         [width, measuredWidth],
-    );
+    )
 
     if (measuredWidth === undefined) {
-        return <View onLayout={onLayout}/>;
+        return <View onLayout={onLayout}/>
     }
 
-    const w = measuredWidth;
-    const h = height;
-    const r = Math.min(cornerRadius, h / 2);
-    const dw = Math.min(dipWidth, w - 2 * r);
+    const w = measuredWidth
+    const h = height
+    const r = Math.min(cornerRadius, h / 2)
+    const dw = Math.min(dipWidth, w - 2 * r)
 
-    const leftFlatEnd = w / 2 - dw / 2;
-    const rightFlatStart = w / 2 + dw / 2;
-    const cp = dw * 0.25;
+    const leftFlatEnd = w / 2 - dw / 2
+    const rightFlatStart = w / 2 + dw / 2
+    const cp = dw * 0.25
     const pathData = `
         M ${r} 10
         H ${leftFlatEnd}
@@ -149,7 +149,7 @@ const MenuBarShape: React.FC<ShapeProps> = ({
         V ${r}
         A ${r} ${r} 0 0 1 ${r} 10
         Z
-  `;
+  `
 
     return (
         <View onLayout={onLayout} className="overflow-visible">
@@ -181,5 +181,6 @@ const MenuBarShape: React.FC<ShapeProps> = ({
                 />
             </Svg>
         </View>
-    );
-};
+    )
+}
+

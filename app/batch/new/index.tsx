@@ -104,3 +104,4 @@ const NewBatchHeader: React.FC = () => {
         </View>
     )
 }
+

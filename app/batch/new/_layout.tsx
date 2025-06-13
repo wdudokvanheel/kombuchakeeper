@@ -1,9 +1,9 @@
-import {Slot} from "expo-router";
-import {View} from "react-native";
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {Slot} from "expo-router"
+import {View} from "react-native"
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
 
 const BatchLayout = () => {
-    const insets = useSafeAreaInsets();
+    const insets = useSafeAreaInsets()
 
     return (
         <View
@@ -17,4 +17,5 @@ const BatchLayout = () => {
     )
 }
 
-export default BatchLayout;
+export default BatchLayout
+
