@@ -8,11 +8,11 @@ type ThemedTextInputProps = {
     placeholder?: string
 }
 
-const ThemedTextInput: React.FC<ThemedTextInputProps> = ({
-                                                             value,
-                                                             onChangeText,
-                                                             placeholder,
-                                                         }) => {
+const ThemedTextInput = ({
+                             value,
+                             onChangeText,
+                             placeholder,
+                         }: ThemedTextInputProps) => {
     const [focused, setFocused] = useState(false)
 
     return (

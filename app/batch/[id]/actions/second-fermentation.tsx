@@ -5,7 +5,7 @@ import {useRouter} from "expo-router"
 import React from "react"
 import {TouchableOpacity, View} from "react-native"
 
-const SecondFermentation: React.FC = () => {
+const SecondFermentation = () => {
     const router = useRouter()
     const handleBack = () => router.back()
 

@@ -8,7 +8,7 @@ type ThemedHeaderProps = {
     children: React.ReactNode
 }
 
-const ThemedHeader: React.FC<ThemedHeaderProps> = ({background, children, useSafeArea = false}: ThemedHeaderProps) => {
+const ThemedHeader = ({background, children, useSafeArea = false}: ThemedHeaderProps) => {
     const insets = useSafeAreaInsets()
 
     return (

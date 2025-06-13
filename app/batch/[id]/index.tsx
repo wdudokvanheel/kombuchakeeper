@@ -11,7 +11,7 @@ import {TouchableOpacity, View} from 'react-native'
 import {useSafeAreaInsets} from "react-native-safe-area-context"
 import Svg, {Path} from 'react-native-svg'
 
-const BatchDetail: React.FC = () => {
+const BatchDetail = () => {
     const router = useRouter()
     const batch = useBatch()
 
@@ -78,7 +78,7 @@ type BatchDetailHeaderProps = {
     children?: React.ReactNode
 }
 
-const BatchDetailHeader: React.FC<BatchDetailHeaderProps> = ({batch, onEdit, children}) => {
+const BatchDetailHeader = ({batch, onEdit, children}: BatchDetailHeaderProps) => {
     const title = batch.name
     const background = BatchStateColor[batch.state] ?? NativeWindColors.gray[200]
     const foreground = BatchStateLabelColor[batch.state] ?? NativeWindColors.gray[900]

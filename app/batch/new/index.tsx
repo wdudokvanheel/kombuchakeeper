@@ -9,7 +9,7 @@ import React, {useState} from "react"
 import {TouchableOpacity, View} from "react-native"
 import {useSafeAreaInsets} from "react-native-safe-area-context"
 
-const NewBatch: React.FC = () => {
+const NewBatch = () => {
     const [name, setName] = useState("")
     const router = useRouter()
     const [duration, setDuration] = React.useState(10)
@@ -68,7 +68,7 @@ const NewBatch: React.FC = () => {
 
 export default NewBatch
 
-const NewBatchHeader: React.FC = () => {
+const NewBatchHeader = () => {
     const insets = useSafeAreaInsets()
     const router = useRouter()
 

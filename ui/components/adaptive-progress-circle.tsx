@@ -7,12 +7,12 @@ type AdaptiveProgressCircle = Omit<React.ComponentProps<typeof CircularProgressB
     className?: string
 }
 
-export default function AdaptiveProgressCircle({
-                                                   style,
-                                                   className,
-                                                   children,
-                                                   ...restProps
-                                               }: AdaptiveProgressCircle) {
+const AdaptiveProgressCircle = ({
+                                   style,
+                                   className,
+                                   children,
+                                   ...restProps
+                               }: AdaptiveProgressCircle) => {
     const [radius, setRadius] = useState<number>(0)
 
     const onLayout = (event: LayoutChangeEvent) => {
@@ -32,3 +32,5 @@ export default function AdaptiveProgressCircle({
         </View>
     )
 }
+
+export default AdaptiveProgressCircle

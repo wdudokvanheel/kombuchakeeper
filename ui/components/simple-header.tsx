@@ -11,7 +11,7 @@ type SimpleHeaderProps = {
     useSafeArea?: boolean
 }
 
-const SimpleHeader: React.FC<SimpleHeaderProps> = ({title, useSafeArea = false}: SimpleHeaderProps) => {
+const SimpleHeader = ({title, useSafeArea = false}: SimpleHeaderProps) => {
     const insets = useSafeAreaInsets()
     const router = useRouter()
 

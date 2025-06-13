@@ -10,7 +10,7 @@ import {useRouter} from "expo-router"
 import React from "react"
 import {TouchableOpacity, View} from "react-native"
 
-const ExtendFermentation: React.FC = () => {
+const ExtendFermentation = () => {
     const router = useRouter()
     const batch = useBatch()
 

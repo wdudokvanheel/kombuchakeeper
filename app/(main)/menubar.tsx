@@ -20,7 +20,7 @@ type MenuBarWithButtonProps = {
     buttonStyle?: object
 }
 
-const MenuBar: React.FC<MenuBarWithButtonProps> = ({
+const MenuBar = ({
                                                        width,
                                                        height = 80,
                                                        cornerRadius = 120,
@@ -28,7 +28,7 @@ const MenuBar: React.FC<MenuBarWithButtonProps> = ({
                                                        dipWidth = 120,
                                                        onPress,
                                                        buttonStyle,
-                                                   }) => {
+                                                   }: MenuBarWithButtonProps) => {
     const [measuredWidth, setMeasuredWidth] = useState<number | undefined>(width)
 
     const onLayout = useCallback(
@@ -104,13 +104,13 @@ type ShapeProps = {
     dipWidth?: number
 }
 
-const MenuBarShape: React.FC<ShapeProps> = ({
-                                                width,
-                                                height = 100,
-                                                cornerRadius = 40,
-                                                dipDepth = 38,
-                                                dipWidth = 120,
-                                            }) => {
+const MenuBarShape = ({
+                           width,
+                           height = 100,
+                           cornerRadius = 40,
+                           dipDepth = 38,
+                           dipWidth = 120,
+                       }: ShapeProps) => {
     const [measuredWidth, setMeasuredWidth] = useState<number | undefined>(width)
 
     const onLayout = useCallback(

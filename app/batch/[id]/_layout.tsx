@@ -7,7 +7,7 @@ import {useEffect, useState} from "react"
 import {ActivityIndicator, View} from "react-native"
 import {useSafeAreaInsets} from "react-native-safe-area-context"
 
-export default function BatchLayout() {
+const BatchLayout = () => {
     const insets = useSafeAreaInsets()
 
     const {id} = useLocalSearchParams()
@@ -65,3 +65,5 @@ export default function BatchLayout() {
         </BatchProvider>
     )
 }
+
+export default BatchLayout

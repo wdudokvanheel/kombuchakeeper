@@ -15,7 +15,7 @@ interface FermentationPanelProps {
     end?: Date
 }
 
-const FermentationPanel: React.FC<FermentationPanelProps> = ({title, icon, started, color, labelColor, start, end}) => {
+const FermentationPanel = ({title, icon, started, color, labelColor, start, end}: FermentationPanelProps) => {
     const msPerDay = 86_400_000
 
     const today = React.useMemo(() => {
