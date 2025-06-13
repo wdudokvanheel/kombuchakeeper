@@ -1,13 +1,14 @@
 import FermentationPanel from "@/app/batch/[id]/fermentation-panel"
 import {useBatch} from "@/contexts/batch-context"
 import {Batch} from '@/models/batch'
+import {BatchService} from "@/services/batch-service"
 import {BatchStateColor, BatchStateLabelColor} from "@/ui/batch-state-color"
 import Text from "@/ui/components/text"
 import {NativeWindColors} from '@/ui/nativewind'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import {useRouter} from 'expo-router'
 import React from 'react'
-import {TouchableOpacity, View} from 'react-native'
+import {Alert, TouchableOpacity, View} from 'react-native'
 import {useSafeAreaInsets} from "react-native-safe-area-context"
 import Svg, {Path} from 'react-native-svg'
 
@@ -15,9 +16,32 @@ const BatchDetail = () => {
     const router = useRouter()
     const batch = useBatch()
 
-    const onEdit = () => {
+    const handleEdit = () => {
         if (batch) {
             router.push(`/batch/${batch.id}/actions`)
+        }
+    }
+
+    const handleDelete = () => {
+        if (batch.id) {
+            Alert.alert(
+                'Delete batch',
+                'Are you sure you want to delete this batch?',
+                [
+                    {
+                        text: 'Cancel',
+                        style: 'cancel',
+                    },
+                    {
+                        text: 'Delete',
+                        style: 'destructive',
+                        onPress: () => {
+                            BatchService.deleteBatch(batch.id)
+                            router.back()
+                        },
+                    },
+                ],
+            )
         }
     }
 
@@ -25,7 +49,7 @@ const BatchDetail = () => {
 
     return (
         <View className="flex-1 bg-white">
-            <BatchDetailHeader batch={batch} onEdit={onEdit}>
+            <BatchDetailHeader batch={batch} onEdit={handleEdit} onDelete={handleDelete}>
                 <View className="mb-12 mt-0">
                     <Text
                         className="text-center text-9xl font-bold"
@@ -75,10 +99,11 @@ export default BatchDetail
 type BatchDetailHeaderProps = {
     batch: Batch
     onEdit: () => void
+    onDelete: () => void
     children?: React.ReactNode
 }
 
-const BatchDetailHeader = ({batch, onEdit, children}: BatchDetailHeaderProps) => {
+const BatchDetailHeader = ({batch, onEdit, onDelete, children}: BatchDetailHeaderProps) => {
     const title = batch.name
     const background = BatchStateColor[batch.state] ?? NativeWindColors.gray[200]
     const foreground = BatchStateLabelColor[batch.state] ?? NativeWindColors.gray[900]
@@ -99,18 +124,22 @@ const BatchDetailHeader = ({batch, onEdit, children}: BatchDetailHeaderProps) =>
                     <View className="flex-row items-center mt-4 mb-8">
                         <TouchableOpacity activeOpacity={0.8} onPress={handleBack}>
                             <View
-                                className="w-12 h-12 rounded-full border border justify-center items-center"
+                                className="w-12 h-12 rounded-full border justify-center items-center"
                                 style={{borderColor: foreground}}
                             >
                                 <Ionicons name="chevron-back" size={20} color={foreground}/>
                             </View>
                         </TouchableOpacity>
                         <Text
-                            className=" text-2xl ml-4"
+                            className=" text-2xl ml-4 flex-1"
                             style={{color: foreground}}
                         >
                             {title}
                         </Text>
+
+                        <TouchableOpacity onPress={onDelete}>
+                            <Ionicons size={24} name="trash" className="pe-4 opacity-80" color={foreground}/>
+                        </TouchableOpacity>
                     </View>
 
                     {children}

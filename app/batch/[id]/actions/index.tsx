@@ -22,7 +22,7 @@ const BatchActionModal = () => {
                 </View>
             </TouchableOpacity>
 
-            <Text className="text-brown-800 mt-8 mb-2 text-4xl font-extrabold">
+            <Text className="text-brown-800 mt-4 mb-6 text-4xl font-extrabold">
                 Batch actions
             </Text>
 
