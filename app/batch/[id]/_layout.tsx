@@ -46,22 +46,15 @@ const BatchLayout = () => {
     }
     return (
         <BatchProvider batch={batch}>
-            <View
-                className="flex-1 bg-white"
-                style={{
-                    paddingBottom: Math.max(insets.bottom, 16)
-                }}
-            >
-                <Stack screenOptions={{headerShown: false}}>
-                    <Stack.Screen
-                        name="index"
-                    />
-                    <Stack.Screen
-                        name="actions"
-                        options={{presentation: 'modal'}}
-                    />
-                </Stack>
-            </View>
+            <Stack screenOptions={{headerShown: false}}>
+                <Stack.Screen
+                    name="index"
+                />
+                <Stack.Screen
+                    name="actions"
+                    options={{presentation: 'modal'}}
+                />
+            </Stack>
         </BatchProvider>
     )
 }
