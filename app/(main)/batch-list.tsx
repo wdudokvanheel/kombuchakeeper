@@ -68,6 +68,7 @@ const BatchListItem = ({batch}: BatchListItemProps) => {
 
                         <View className="w-1/4 items-end py-2 px-2">
                             <CircularProgressBase
+                                key={`${batch.id}-${batch.getDaysSinceStart()}-${batch.getCurrentFermentationDuration()}`}
                                 radius={32}
                                 activeStrokeWidth={16}
                                 inActiveStrokeWidth={16}

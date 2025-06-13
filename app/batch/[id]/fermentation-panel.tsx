@@ -77,6 +77,7 @@ const FermentationPanel = ({title, icon, started, color, labelColor, start, end}
 
             <View className="px-6 pb-6 pt-4">
                 <AdaptiveProgressCircle
+                    key={`${title}-${value}-${maxValue}`}
                     activeStrokeWidth={32}
                     inActiveStrokeWidth={32}
                     activeStrokeColor={strokeColor}
