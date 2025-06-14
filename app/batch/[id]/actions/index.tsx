@@ -71,10 +71,12 @@ const BatchActionModal = () => {
 
 export default BatchActionModal
 
+type IonIconName = React.ComponentProps<typeof Ionicons>['name']
+
 type BatchActionCardProps = {
     title: string
     description: string
-    icon: string
+    icon: IonIconName
     colorCircle: string
     colorIcon: string
     onPress: () => void

@@ -5,9 +5,11 @@ import MatIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import React from "react"
 import {View} from "react-native"
 
-interface FermentationPanelProps {
+type MatIconName = React.ComponentProps<typeof MatIcons>['name']
+
+type FermentationPanelProps = {
     title: string
-    icon: string
+    icon: MatIconName
     started: boolean
     color: string
     labelColor: string
