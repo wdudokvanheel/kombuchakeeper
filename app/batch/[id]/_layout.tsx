@@ -51,6 +51,10 @@ const BatchLayout = () => {
                     name="index"
                 />
                 <Stack.Screen
+                    name="notes"
+                    options={{presentation: 'modal'}}
+                />
+                <Stack.Screen
                     name="actions"
                     options={{presentation: 'modal'}}
                 />

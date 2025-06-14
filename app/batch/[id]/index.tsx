@@ -1,4 +1,5 @@
-import FermentationPanel from "@/app/batch/[id]/fermentation-panel"
+import FermentationPanel from "@/app/batch/[id]/components/fermentation-panel"
+import NotesPanel from "@/app/batch/[id]/components/notes-panel"
 import {useBatch} from "@/contexts/batch-context"
 import {Batch} from '@/models/batch'
 import {BatchService} from "@/services/batch-service"
@@ -15,10 +16,17 @@ import Svg, {Path} from 'react-native-svg'
 const BatchDetail = () => {
     const router = useRouter()
     const batch = useBatch()
+    const insets = useSafeAreaInsets()
 
     const handleEdit = () => {
         if (batch) {
             router.push(`/batch/${batch.id}/actions`)
+        }
+    }
+
+    const handleNotes = () => {
+        if (batch) {
+            router.push(`/batch/${batch.id}/notes`)
         }
     }
 
@@ -36,7 +44,7 @@ const BatchDetail = () => {
                         text: 'Delete',
                         style: 'destructive',
                         onPress: () => {
-                            BatchService.deleteBatch(batch.id)
+                            BatchService.deleteBatch(batch.id!)
                             router.back()
                         },
                     },
@@ -49,45 +57,57 @@ const BatchDetail = () => {
 
     return (
         <View className="flex-1 bg-white">
-            <BatchDetailHeader batch={batch} onEdit={handleEdit} onDelete={handleDelete}>
-                <View className="mb-12 mt-0">
-                    <Text
-                        className="text-center text-9xl font-bold"
-                        style={{color: foreground}}
-                    >
-                        {batch.getDaysLeft()}
-                    </Text>
-                    <Text
-                        className="text-center  text-xl -mt-4"
-                        style={{color: foreground}}
-                    >
-                        days remaining
-                    </Text>
-                </View>
-            </BatchDetailHeader>
+            <View className="flex-1" style={{
+                marginBottom: Math.max(insets.bottom, 16)
+            }}>
+                <BatchDetailHeader batch={batch} onEdit={handleEdit} onDelete={handleDelete}>
 
-            <View className="flex-1 px-4">
-                <Text className="my-4 text-lg font-semibold text-brown-800">Fermentation</Text>
-                <View className="flex-row gap-8">
-                    <FermentationPanel
-                        title="First"
-                        icon="bottle-tonic"
-                        color={NativeWindColors.yellow[400]}
-                        labelColor={NativeWindColors.brown[800]}
-                        start={batch.createdAt}
-                        started={true}
-                        end={batch.firstFermentationEnd}
-                    />
+                    {(!batch.hasEnded()) &&
+                        <View className="mb-12 mt-0">
+                            <Text
+                                className="text-center text-9xl font-bold"
+                                style={{color: foreground}}
+                            >
+                                {batch.getDaysLeft()}
+                            </Text>
+                            <Text
+                                className="text-center  text-xl -mt-4"
+                                style={{color: foreground}}
+                            >
+                                days remaining
+                            </Text>
+                        </View>
+                    }
+                </BatchDetailHeader>
 
-                    <FermentationPanel
-                        title="Second"
-                        icon="bottle-soda-classic"
-                        color={NativeWindColors.orange[400]}
-                        labelColor={NativeWindColors.brown[800]}
-                        start={batch.firstFermentationEnd}
-                        started={batch.hasFirstFermentationEnded()}
-                        end={batch.secondFermentationEnd}
-                    />
+                <View className="px-4 flex-1">
+                    <Text className="my-4 text-lg font-semibold text-brown-800">Fermentation</Text>
+
+                    <View className="flex-row gap-8">
+                        <FermentationPanel
+                            title="First"
+                            icon="bottle-tonic"
+                            color={NativeWindColors.yellow[400]}
+                            labelColor={NativeWindColors.brown[800]}
+                            start={batch.createdAt}
+                            started={true}
+                            end={batch.firstFermentationEnd}
+                        />
+
+                        <FermentationPanel
+                            title="Second"
+                            icon="bottle-soda-classic"
+                            color={NativeWindColors.orange[400]}
+                            labelColor={NativeWindColors.brown[800]}
+                            start={batch.firstFermentationEnd}
+                            started={batch.hasFirstFermentationEnded()}
+                            end={batch.secondFermentationEnd}
+                        />
+                    </View>
+
+                    <Text className="my-4 text-lg font-semibold text-brown-800">Notes</Text>
+
+                    <NotesPanel batch={batch} onEdit={handleNotes}/>
                 </View>
             </View>
         </View>
@@ -172,7 +192,8 @@ const BatchDetailHeader = ({batch, onEdit, onDelete, children}: BatchDetailHeade
                 )}
             </View>
 
-            {/* Decorative circles */}
+            {/* Decorative circles */
+            }
             <View className="absolute inset-0 pointer-events-none">
                 <View className="absolute -top-[140px] -right-[50px] w-56 h-56 rounded-full bg-white/15"/>
                 <View className="absolute top-24 right-16 w-20 h-20 rounded-full bg-white/15"/>

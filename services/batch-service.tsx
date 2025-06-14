@@ -29,7 +29,8 @@ class MockBatchService implements BatchServiceInterface {
                 name: 'Already Started',
                 createdAt: d(-5),
                 state: BatchState.F1,
-                firstFermentationEnd: d(14)
+                firstFermentationEnd: d(14),
+                notes: "This is my first batch, I'm still learning but I think I did put some tea and sugar in a pot. Hopefully the Kombucha will magically appear. I've added 24 bottles of store bought Kombucha just to be sure there is some Kombucha culture inside."
             }),
             new Batch({
                 id: 2,
