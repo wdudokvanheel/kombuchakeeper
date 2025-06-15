@@ -1,5 +1,4 @@
 import {Batch, BatchState} from "@/models/batch"
-import {BatchService} from "@/services/batch-service"
 import {BatchStateColor, BatchStateLabelColor} from "@/ui/batch-state-color"
 import Text from "@/ui/components/text"
 import {NativeWindColors} from "@/ui/nativewind"
@@ -16,18 +15,18 @@ const BatchStateDarkColor: Record<BatchState, string> = {
     [BatchState.Failed]: NativeWindColors.gray[800],
 }
 
-type BatchListItemProps = {
-    batch: Batch
+type BatchListProps = {
+    data: Batch[]
 }
 
-const BatchList = () => {
-    const {data: batches = []} = BatchService.allBatches()
+const BatchList = ({data}: BatchListProps) => {
+    // const {data: batches = []} = BatchService.allBatches()
 
     return (
         <FlatList
             alwaysBounceVertical={false}
             className="overflow-visible z-0 mb-12 px-4"
-            data={batches}
+            data={data}
             keyExtractor={item => String(item.id || 0)}
             renderItem={({item}) => <BatchListItem batch={item}/>}
             scrollEnabled={true}
@@ -36,6 +35,10 @@ const BatchList = () => {
 }
 
 export default BatchList
+
+type BatchListItemProps = {
+    batch: Batch
+}
 
 const BatchListItem = ({batch}: BatchListItemProps) => {
     return (

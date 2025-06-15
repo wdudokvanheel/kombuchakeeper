@@ -23,9 +23,9 @@ const MainLayout = () => {
 
             <View className="mx-0">
                 <MenuBar
-                    height={100}
+                    height={115}
                     dipWidth={160}
-                    cornerRadius={80}
+                    cornerRadius={100}
                     onPress={() => router.push("/batch/new")}
                 />
             </View>

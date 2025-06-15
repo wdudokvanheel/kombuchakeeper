@@ -1,3 +1,6 @@
+import {useMenu} from "@/contexts/menubar-context"
+import {IonIconName} from "@/ui/icons"
+import {NativeWindColors} from "@/ui/nativewind"
 import {StyledPath} from "@/ui/svg"
 import Ionicons from '@expo/vector-icons/Ionicons'
 import React, {useCallback, useState} from "react"
@@ -21,14 +24,15 @@ type MenuBarWithButtonProps = {
 }
 
 const MenuBar = ({
-                                                       width,
-                                                       height = 80,
-                                                       cornerRadius = 120,
-                                                       dipDepth = 38,
-                                                       dipWidth = 120,
-                                                       onPress,
-                                                       buttonStyle,
-                                                   }: MenuBarWithButtonProps) => {
+                     width,
+                     height = 80,
+                     cornerRadius = 120,
+                     dipDepth = 45,
+                     dipWidth = 120,
+                     onPress,
+                     buttonStyle,
+                 }: MenuBarWithButtonProps) => {
+    const {page, setPage} = useMenu()
     const [measuredWidth, setMeasuredWidth] = useState<number | undefined>(width)
 
     const onLayout = useCallback(
@@ -55,6 +59,10 @@ const MenuBar = ({
     const buttonLeft = (measuredWidth - buttonDiameter) / 2
     const buttonTop = -buttonDiameter / 2
 
+    const handleButton = (name: string) => {
+        setPage(name)
+    }
+
     return (
         <View
             onLayout={onLayout}
@@ -67,6 +75,14 @@ const MenuBar = ({
                 dipDepth={dipDepth}
                 dipWidth={dipWidth}
             />
+
+            <View className="absolute inset-0 items-start px-6 py-9 justify-between flex-row ">
+                <MenuBarButton name="home" icon="home" onPress={handleButton}/>
+                <MenuBarButton name="archive" icon="archive" onPress={handleButton}/>
+                <View className="w-1/5"/>
+                <View className="w-1/5"/>
+                <MenuBarButton name="settings" icon="settings"/>
+            </View>
 
             <TouchableOpacity
                 onPress={onPress}
@@ -92,6 +108,44 @@ const MenuBar = ({
 
 export default MenuBar
 
+type MenuBarButtonProps = {
+    icon: IonIconName
+    name: string
+    onPress?: (name: string) => void
+}
+
+const MenuBarButton = ({icon, name, onPress}: MenuBarButtonProps) => {
+    const {page} = useMenu()
+
+    const handlePress = () => {
+        if (onPress) {
+            onPress(name)
+        }
+    }
+
+    const active = page === name
+
+    return (
+        <TouchableOpacity
+            onPress={handlePress}
+            activeOpacity={0.8}
+            className={`rounded-full p-3 items-center justify-center w-1/5 ${active ? 'bg-brown-100' : ''}`}
+            style={{
+                width: 60,
+                height: 60,
+                borderRadius: 30,
+                elevation: 10
+            }}
+        >
+            <Ionicons
+                name={icon}
+                size={28}
+                color={active ? NativeWindColors.brown[800] : NativeWindColors.gray[300]}
+            />
+        </TouchableOpacity>
+    )
+}
+
 type ShapeProps = {
     /** Explicit width. Leave undefined to make it fill its parent */
     width?: number
@@ -105,12 +159,12 @@ type ShapeProps = {
 }
 
 const MenuBarShape = ({
-                           width,
-                           height = 100,
-                           cornerRadius = 40,
-                           dipDepth = 38,
-                           dipWidth = 120,
-                       }: ShapeProps) => {
+                          width,
+                          height = 100,
+                          cornerRadius = 40,
+                          dipDepth = 38,
+                          dipWidth = 120,
+                      }: ShapeProps) => {
     const [measuredWidth, setMeasuredWidth] = useState<number | undefined>(width)
 
     const onLayout = useCallback(

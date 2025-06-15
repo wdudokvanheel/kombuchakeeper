@@ -1,11 +1,10 @@
 import AdaptiveProgressCircle from "@/ui/components/adaptive-progress-circle"
 import Text from "@/ui/components/text"
+import {MatIconName} from "@/ui/icons"
 import {NativeWindColors} from "@/ui/nativewind"
 import MatIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import React from "react"
 import {View} from "react-native"
-
-type MatIconName = React.ComponentProps<typeof MatIcons>['name']
 
 type FermentationPanelProps = {
     title: string

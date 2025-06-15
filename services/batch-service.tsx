@@ -1,11 +1,17 @@
 import {Batch, BatchState} from '@/models/batch'
 import {queryClient} from '@/services/query-client'
-import {QueryKey, useQuery} from '@tanstack/react-query'
+import {QueryKey, useQuery, UseQueryOptions, UseQueryResult} from '@tanstack/react-query'
 
 export const BATCHES_QUERY_KEY: QueryKey = ['batches']
 
+type QueryOptions = Partial<UseQueryOptions<Batch[], Error, Batch[], QueryKey>>
+
 export interface BatchServiceInterface {
-    allBatches(): ReturnType<typeof useQuery<Batch[]>>
+    allBatches(options?: QueryOptions): UseQueryResult<Batch[], Error>
+
+    activeBatches(options?: QueryOptions): UseQueryResult<Batch[], Error>
+
+    archivedBatches(options?: QueryOptions): UseQueryResult<Batch[], Error>
 
     getBatchById(id: number): Promise<Batch | null>
 
@@ -115,10 +121,29 @@ class MockBatchService implements BatchServiceInterface {
         this.updateBatches()
     }
 
-    allBatches() {
-        return useQuery({
+    allBatches(options?: QueryOptions) {
+        return useQuery<Batch[], Error>({
             queryKey: BATCHES_QUERY_KEY,
             queryFn: () => this.fetchBatches(),
+            ...options,
+        })
+    }
+
+    activeBatches(options?: QueryOptions) {
+        return useQuery<Batch[], Error>({
+            queryKey: [...BATCHES_QUERY_KEY, 'active'],
+            queryFn: async () =>
+                (await this.fetchBatches()).filter(b => !b.hasEnded()),
+            ...options,
+        })
+    }
+
+    archivedBatches(options?: QueryOptions) {
+        return useQuery<Batch[], Error>({
+            queryKey: [...BATCHES_QUERY_KEY, 'archived'],
+            queryFn: async () =>
+                (await this.fetchBatches()).filter(b => b.hasEnded()),
+            ...options,
         })
     }
 }

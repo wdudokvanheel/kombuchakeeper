@@ -1,3 +1,4 @@
+import {MenuBarProvider} from "@/contexts/menubar-context"
 import {queryClient} from '@/services/query-client'
 import useUrbanistFont from "@/ui/font"
 import {QueryClientProvider} from '@tanstack/react-query'
@@ -15,33 +16,33 @@ const RootLayout = () => {
     return (
         <SafeAreaProvider initialMetrics={initialWindowMetrics}>
             <QueryClientProvider client={queryClient}>
+                <MenuBarProvider>
+                    <View className="flex-1 bg-brown-100">
+                        <Stack screenOptions={{
+                            headerShown: false,
+                            animation: 'slide_from_right',
+                        }}
+                        >
+                            <Stack.Screen name="(main)"/>
 
-                <View className="flex-1 bg-brown-100">
-                    <Stack screenOptions={{
-                        headerShown: false,
-                        animation: 'slide_from_right',
-                    }}
-                    >
-                        <Stack.Screen name="(main)"/>
+                            <Stack.Screen
+                                name="batch/[id]"
+                                options={{
+                                    animation: Platform.OS === 'android' ? 'slide_from_right' : 'default',
+                                    animationDuration: 350,
+                                }}
+                            />
 
-                        <Stack.Screen
-                            name="batch/[id]"
-                            options={{
-                                animation: Platform.OS === 'android' ? 'slide_from_right' : 'default',
-                                animationDuration: 350,
-                            }}
-                        />
-
-                        <Stack.Screen
-                            name="batch/new"
-                            options={{
-                                animation: 'slide_from_bottom',
-                                animationDuration: 350
-                            }}
-                        />
-                    </Stack>
-                </View>
-
+                            <Stack.Screen
+                                name="batch/new"
+                                options={{
+                                    animation: 'slide_from_bottom',
+                                    animationDuration: 350
+                                }}
+                            />
+                        </Stack>
+                    </View>
+                </MenuBarProvider>
             </QueryClientProvider>
         </SafeAreaProvider>
     )

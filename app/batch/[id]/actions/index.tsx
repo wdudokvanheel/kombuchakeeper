@@ -1,6 +1,7 @@
 import {useBatch} from "@/contexts/batch-context"
 import {BatchState} from "@/models/batch"
 import Text from "@/ui/components/text"
+import {IonIconName} from "@/ui/icons"
 import {NativeWindColors} from "@/ui/nativewind"
 import Ionicons from "@expo/vector-icons/Ionicons"
 import {useRouter} from "expo-router"
@@ -70,8 +71,6 @@ const BatchActionModal = () => {
 }
 
 export default BatchActionModal
-
-type IonIconName = React.ComponentProps<typeof Ionicons>['name']
 
 type BatchActionCardProps = {
     title: string
