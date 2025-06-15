@@ -9,6 +9,13 @@ import React from 'react'
 import {FlatList, Pressable, View} from "react-native"
 import {CircularProgressBase} from "react-native-circular-progress-indicator"
 
+const BatchStateDarkColor: Record<BatchState, string> = {
+    [BatchState.F1]: NativeWindColors.yellow[500],
+    [BatchState.F2]: NativeWindColors.orange[500],
+    [BatchState.Bottled]: NativeWindColors.green[800],
+    [BatchState.Failed]: NativeWindColors.gray[800],
+}
+
 type BatchListItemProps = {
     batch: Batch
 }
@@ -79,7 +86,12 @@ const BatchListItem = ({batch}: BatchListItemProps) => {
                             >
                                 {(batch.state === BatchState.F1 || batch.state === BatchState.F2) && (
                                     !batch.isCurrentFermentationComplete() ?
-                                        <Text className="text-xl font-extrabold m-0 p-0 text-brown-700">
+                                        <Text
+                                            className="text-xl font-extrabold m-0 p-0 "
+                                            style={{
+                                                color: BatchStateDarkColor[batch.state]
+                                            }}
+                                        >
                                             {batch.getDaysLeft() > 0 ? batch.getDaysLeft() : ''}
                                         </Text>
                                         :
