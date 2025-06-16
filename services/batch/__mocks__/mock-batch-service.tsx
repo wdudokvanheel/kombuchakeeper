@@ -1,28 +1,9 @@
 import {Batch, BatchState} from '@/models/batch'
+import {BATCHES_QUERY_KEY, BatchQueryOptions, BatchServiceInterface} from "@/services/batch/batch-service"
 import {queryClient} from '@/services/query-client'
-import {QueryKey, useQuery, UseQueryOptions, UseQueryResult} from '@tanstack/react-query'
+import {useQuery} from '@tanstack/react-query'
 
-export const BATCHES_QUERY_KEY: QueryKey = ['batches']
-
-type QueryOptions = Partial<UseQueryOptions<Batch[], Error, Batch[], QueryKey>>
-
-export interface BatchServiceInterface {
-    allBatches(options?: QueryOptions): UseQueryResult<Batch[], Error>
-
-    activeBatches(options?: QueryOptions): UseQueryResult<Batch[], Error>
-
-    archivedBatches(options?: QueryOptions): UseQueryResult<Batch[], Error>
-
-    getBatchById(id: number): Promise<Batch | null>
-
-    addBatch(batch: Batch): Promise<void>
-
-    updateBatch(batch: Batch): Promise<void>
-
-    deleteBatch(id: number): Promise<void>
-}
-
-export class MockBatchService implements BatchServiceInterface {
+export default class MockBatchService implements BatchServiceInterface {
     private batches: Batch[] = []
 
     constructor() {
@@ -121,7 +102,7 @@ export class MockBatchService implements BatchServiceInterface {
         this.updateBatches()
     }
 
-    allBatches(options?: QueryOptions) {
+    allBatches(options?: BatchQueryOptions) {
         return useQuery<Batch[], Error>({
             queryKey: BATCHES_QUERY_KEY,
             queryFn: () => this.fetchBatches(),
@@ -129,7 +110,7 @@ export class MockBatchService implements BatchServiceInterface {
         })
     }
 
-    activeBatches(options?: QueryOptions) {
+    activeBatches(options?: BatchQueryOptions) {
         return useQuery<Batch[], Error>({
             queryKey: [...BATCHES_QUERY_KEY, 'active'],
             queryFn: async () =>
@@ -138,7 +119,7 @@ export class MockBatchService implements BatchServiceInterface {
         })
     }
 
-    archivedBatches(options?: QueryOptions) {
+    archivedBatches(options?: BatchQueryOptions) {
         return useQuery<Batch[], Error>({
             queryKey: [...BATCHES_QUERY_KEY, 'archived'],
             queryFn: async () =>

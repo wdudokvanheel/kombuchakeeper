@@ -41,9 +41,13 @@ export class Batch {
                 return 0
         }
 
-        if (!endDate) return undefined
+        if (!endDate) {
+            return undefined
+        }
         const diffMs = endDate.getTime() - now.getTime()
-        if (diffMs <= 0) return 0
+        if (diffMs <= 0) {
+            return 0
+        }
         const msPerDay = 1000 * 60 * 60 * 24
         return Math.ceil(diffMs / msPerDay)
     }
@@ -101,18 +105,21 @@ export class Batch {
     // Check if the current fermentation is complete (end day is today or earlier)
     isCurrentFermentationComplete(): boolean {
         const now = new Date()
-
         switch (this.state) {
             case BatchState.F1: {
                 const endDate = this.firstFermentationEnd
-                if (!endDate) return false
+                if (!endDate) {
+                    return false
+                }
                 const endDay = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate())
                 const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
                 return endDay <= today
             }
             case BatchState.F2: {
                 const endDate = this.secondFermentationEnd
-                if (!endDate) return false
+                if (!endDate) {
+                    return false
+                }
                 const endDay = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate())
                 const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
                 return endDay <= today

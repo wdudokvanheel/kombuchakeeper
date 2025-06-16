@@ -1,6 +1,6 @@
 import {BatchServiceProvider} from "@/contexts/batch-service-context"
 import {MenuBarProvider} from "@/contexts/menubar-context"
-import {MockBatchService} from "@/services/batch-service"
+import AsyncStorageBatchService from "@/services/batch/async-batch-service"
 import {queryClient} from '@/services/query-client'
 import useUrbanistFont from "@/ui/font"
 import {QueryClientProvider} from '@tanstack/react-query'
@@ -11,7 +11,7 @@ import {initialWindowMetrics, SafeAreaProvider} from 'react-native-safe-area-con
 import "./tailwind.css"
 
 const RootLayout = () => {
-    let batchService = new MockBatchService()
+    let batchService = new AsyncStorageBatchService()
 
     if (!useUrbanistFont()) {
         return null

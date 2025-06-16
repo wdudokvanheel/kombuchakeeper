@@ -1,4 +1,4 @@
-import {BatchServiceInterface} from "@/services/batch-service"
+import {BatchServiceInterface} from "@/services/batch/batch-service"
 import React, {createContext, useContext} from 'react'
 
 const BatchServiceContext = createContext<BatchServiceInterface | null>(null)
