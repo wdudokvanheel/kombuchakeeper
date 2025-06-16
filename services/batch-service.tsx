@@ -32,7 +32,7 @@ class MockBatchService implements BatchServiceInterface {
         this.batches = [
             new Batch({
                 id: 1,
-                name: 'Already Started',
+                name: 'Experimental batch',
                 createdAt: d(-5),
                 state: BatchState.F1,
                 firstFermentationEnd: d(14),
@@ -40,7 +40,7 @@ class MockBatchService implements BatchServiceInterface {
             }),
             new Batch({
                 id: 2,
-                name: 'Today’s F2 Target',
+                name: 'My first batch',
                 createdAt: d(-18),
                 state: BatchState.F2,
                 firstFermentationEnd: d(-6),
@@ -48,7 +48,7 @@ class MockBatchService implements BatchServiceInterface {
             }),
             new Batch({
                 id: 3,
-                name: 'F2 In Progress',
+                name: 'Big jug',
                 createdAt: d(-10),
                 state: BatchState.F2,
                 firstFermentationEnd: d(-5),
@@ -56,7 +56,7 @@ class MockBatchService implements BatchServiceInterface {
             }),
             new Batch({
                 id: 4,
-                name: 'Today’s F1 Target',
+                name: 'Small storebought batch',
                 createdAt: d(-10),
                 state: BatchState.F1,
                 firstFermentationEnd: d(0)
@@ -87,7 +87,7 @@ class MockBatchService implements BatchServiceInterface {
     }
 
     private createNextId() {
-        return this.batches.length ? Math.max(...this.batches.map(b => b.id)) + 1 : 1
+        return this.batches.length ? Math.max(...this.batches.map(b => b.id || 0)) + 1 : 1
     }
 
     async fetchBatches(): Promise<Batch[]> {
