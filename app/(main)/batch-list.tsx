@@ -5,7 +5,7 @@ import {NativeWindColors} from "@/ui/nativewind"
 import Ionicons from "@expo/vector-icons/Ionicons"
 import {Link} from "expo-router"
 import React from 'react'
-import {FlatList, Pressable, View} from "react-native"
+import {FlatList, TouchableOpacity, View} from "react-native"
 import {CircularProgressBase} from "react-native-circular-progress-indicator"
 
 const BatchStateDarkColor: Record<BatchState, string> = {
@@ -39,9 +39,14 @@ type BatchListItemProps = {
 }
 
 const BatchListItem = ({batch}: BatchListItemProps) => {
+    const formattedDate = new Intl.DateTimeFormat(undefined, {
+        day: '2-digit',
+        month: '2-digit'
+    }).format(new Date(batch.createdAt))
+
     return (
         <Link href={`/batch/${batch.id}`} asChild>
-            <Pressable>
+            <TouchableOpacity activeOpacity={0.5}>
                 <View className="shadow-[0_6px_8px_rgba(0,0,0,0.05)] rounded-[38px] p-4 mt-4 bg-white">
                     <View className=" flex-row">
                         <View className=" w-1/4 p-2">
@@ -68,10 +73,20 @@ const BatchListItem = ({batch}: BatchListItemProps) => {
                             </View>
                         </View>
 
-                        <View className="w-2/4 items-start ps-2 pt-2">
-                            <Text className="text-xl font-medium text-brown-800">
+                        <View className="w-2/4 items-start ps-2 pt-2 pb-2 justify-between">
+                            <Text className="text-xl font-medium text-brown-800" numberOfLines={1}>
                                 {batch.name}
                             </Text>
+                            {batch.getDaysLeft() == 0 &&
+                                <Text className="text-lg font-medium text-brown-800/65" numberOfLines={1}>
+                                    {batch.state == BatchState.F1 ? 'Ready for F2' : 'Ready to be bottled'}
+                                </Text>
+                            }
+                            {batch.getDaysLeft() != 0 &&
+                                <Text className="text-lg font-medium text-brown-800/65" numberOfLines={1}>
+                                    Started on {formattedDate}
+                                </Text>
+                            }
                         </View>
 
                         <View className="w-1/4 items-end py-2 px-2">
@@ -103,7 +118,7 @@ const BatchListItem = ({batch}: BatchListItemProps) => {
                         </View>
                     </View>
                 </View>
-            </Pressable>
+            </TouchableOpacity>
         </Link>
     )
 }
