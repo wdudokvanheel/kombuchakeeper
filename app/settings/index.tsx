@@ -1,3 +1,4 @@
+import AboutPanel from "@/app/settings/about-panel"
 import Text from "@/ui/components/text"
 import Ionicons from "@expo/vector-icons/Ionicons"
 import {useRouter} from "expo-router"
@@ -6,10 +7,19 @@ import {TouchableOpacity, View} from "react-native"
 import {useSafeAreaInsets} from "react-native-safe-area-context"
 
 const Settings = () => {
-
     return (
         <>
             <SettingsHeader/>
+
+            <View className="justify-between flex-1 p-4">
+                <View>
+
+                </View>
+                <View className="">
+                    <Text className="my-4 text-xl font-semibold text-brown-800">About</Text>
+                    <AboutPanel/>
+                </View>
+            </View>
         </>
     )
 }
