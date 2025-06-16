@@ -40,6 +40,10 @@ const RootLayout = () => {
                                     animationDuration: 350
                                 }}
                             />
+
+                            <Stack.Screen
+                                name="settings"
+                            />
                         </Stack>
                     </View>
                 </MenuBarProvider>

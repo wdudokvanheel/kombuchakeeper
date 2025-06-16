@@ -3,6 +3,7 @@ import {IonIconName} from "@/ui/icons"
 import {NativeWindColors} from "@/ui/nativewind"
 import {StyledPath} from "@/ui/svg"
 import Ionicons from '@expo/vector-icons/Ionicons'
+import {useRouter} from "expo-router"
 import React, {useCallback, useState} from "react"
 import {LayoutChangeEvent, TouchableOpacity, View} from "react-native"
 import Svg, {Defs, FeDropShadow, Filter} from "react-native-svg"
@@ -32,8 +33,18 @@ const MenuBar = ({
                      onPress,
                      buttonStyle,
                  }: MenuBarWithButtonProps) => {
-    const {page, setPage} = useMenu()
+    const router = useRouter()
+    const {setPage} = useMenu()
+
     const [measuredWidth, setMeasuredWidth] = useState<number | undefined>(width)
+    
+    // TODO: Move navigation logic to parent component
+    const handleBatchListButton = (name: string) => {
+        setPage(name)
+    }
+    const handleSettingsButton = (name: string) => {
+        router.navigate("/settings")
+    }
 
     const onLayout = useCallback(
         (e: LayoutChangeEvent) => {
@@ -59,10 +70,6 @@ const MenuBar = ({
     const buttonLeft = (measuredWidth - buttonDiameter) / 2
     const buttonTop = -buttonDiameter / 2
 
-    const handleButton = (name: string) => {
-        setPage(name)
-    }
-
     return (
         <View
             onLayout={onLayout}
@@ -77,11 +84,11 @@ const MenuBar = ({
             />
 
             <View className="absolute inset-0 items-start px-6 py-9 justify-between flex-row ">
-                <MenuBarButton name="home" icon="home" onPress={handleButton}/>
-                <MenuBarButton name="archive" icon="archive" onPress={handleButton}/>
+                <MenuBarButton name="home" icon="home" onPress={handleBatchListButton}/>
+                <MenuBarButton name="archive" icon="archive" onPress={handleBatchListButton}/>
                 <View className="w-1/5"/>
                 <View className="w-1/5"/>
-                <MenuBarButton name="settings" icon="settings"/>
+                <MenuBarButton name="settings" icon="settings" onPress={handleSettingsButton}/>
             </View>
 
             <TouchableOpacity
