@@ -195,10 +195,10 @@ const BatchDetailHeader = ({batch, onEdit, onDelete, children}: BatchDetailHeade
             {/* Decorative circles */
             }
             <View className="absolute inset-0 pointer-events-none">
-                <View className="absolute -top-[140px] -right-[50px] w-56 h-56 rounded-full bg-white/15"/>
+                <View className="absolute -top-[140px] -right-[50px] w-56 h-56 rounded-full bg-white/20"/>
                 <View className="absolute top-24 right-16 w-20 h-20 rounded-full bg-white/15"/>
-                <View className="absolute top-[160px] right-[-60px] w-40 h-40 rounded-full bg-white/15"/>
-                <View className="absolute top-[180px] left-[-40px] w-20 h-20 rounded-full bg-white/15"/>
+                <View className="absolute top-[160px] right-[-60px] w-40 h-40 rounded-full bg-white/20"/>
+                <View className="absolute top-[180px] left-[-40px] w-20 h-20 rounded-full bg-white/25"/>
                 <View className="absolute top-[140px] left-[75px] w-10 h-10 rounded-full bg-white/15"/>
             </View>
         </>
