@@ -73,16 +73,19 @@ const BatchListItem = ({batch}: BatchListItemProps) => {
                             </View>
                         </View>
 
-                        <View className="w-2/4 items-start ps-2 pt-2 pb-2 justify-between">
-                            <Text className="text-xl font-medium text-brown-800" numberOfLines={1}>
+                        <View className="w-2/4 items-start ps-2 pt-2 pb-2 justify-between gap-0">
+                            <Text className="text-xl font-medium" numberOfLines={1}
+                                  style={{color: batch.isCurrentFermentationComplete() && !batch.hasEnded() ? NativeWindColors.green[800] : NativeWindColors.brown[800]}}>
                                 {batch.name}
                             </Text>
-                            {batch.getDaysLeft() == 0 &&
-                                <Text className="text-lg font-medium text-brown-800/65" numberOfLines={1}>
+
+                            {batch.getDaysLeft() == 0 && !batch.hasEnded() &&
+                                <Text className="text-lg font-bold text-white rounded-full bg-green-600 py-0 px-2"
+                                      numberOfLines={1}>
                                     {batch.state == BatchState.F1 ? 'Ready for F2' : 'Ready to be bottled'}
                                 </Text>
                             }
-                            {batch.getDaysLeft() != 0 &&
+                            {(batch.getDaysLeft() != 0 || batch.hasEnded()) &&
                                 <Text className="text-lg font-medium text-brown-800/65" numberOfLines={1}>
                                     Started on {formattedDate}
                                 </Text>
@@ -108,7 +111,7 @@ const BatchListItem = ({batch}: BatchListItemProps) => {
                                                 color: BatchStateDarkColor[batch.state]
                                             }}
                                         >
-                                            {batch.getDaysLeft() > 0 ? batch.getDaysLeft() : ''}
+                                            {(batch.getDaysLeft() || 0) > 0 ? batch.getDaysLeft() : ''}
                                         </Text>
                                         :
                                         <Ionicons name="checkmark-outline" size={28}
