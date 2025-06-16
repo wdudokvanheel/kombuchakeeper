@@ -1,7 +1,7 @@
 import ActionBody from "@/app/batch/[id]/actions/components/action-body"
 import {useBatch} from "@/contexts/batch-context"
+import {useBatchService} from "@/contexts/batch-service-context"
 import {BatchState} from "@/models/batch"
-import {BatchService} from "@/services/batch-service"
 import SimpleHeader from "@/ui/components/simple-header"
 import Text from "@/ui/components/text"
 import Ionicons from "@expo/vector-icons/Ionicons"
@@ -11,13 +11,14 @@ import {TouchableOpacity, View} from "react-native"
 
 const FailBatch = () => {
     const router = useRouter()
+    const batchService = useBatchService()
     const batch = useBatch()
 
     const handleFail = () => {
         console.log(`Failing batch #${batch.id}[${batch.state}]`)
 
         batch.state = BatchState.Failed
-        BatchService.updateBatch(batch)
+        batchService.updateBatch(batch)
 
         // TODO Handle this is a less hacky way?
         router.back()

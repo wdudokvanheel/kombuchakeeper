@@ -1,5 +1,5 @@
+import {useBatchService} from "@/contexts/batch-service-context"
 import {Batch} from "@/models/batch"
-import {BatchService} from "@/services/batch-service"
 import Text from "@/ui/components/text"
 import ThemedTextInput from "@/ui/components/themed-textinput"
 import NumberSelector from "@/ui/components/wheel-picker"
@@ -12,6 +12,8 @@ import {useSafeAreaInsets} from "react-native-safe-area-context"
 const NewBatch = () => {
     const [name, setName] = useState("")
     const router = useRouter()
+    const batchService = useBatchService()
+
     const [duration, setDuration] = React.useState(10)
 
     const saveBatch = () => {
@@ -24,7 +26,7 @@ const NewBatch = () => {
             firstFermentationEnd: firstFermentationEnd
         })
 
-        BatchService.addBatch(batch).then(() => router.push("/"))
+        batchService.addBatch(batch).then(() => router.push("/"))
     }
 
     return (

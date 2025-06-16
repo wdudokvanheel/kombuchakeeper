@@ -1,7 +1,7 @@
 import ActionBody from "@/app/batch/[id]/actions/components/action-body"
 import {useBatch} from "@/contexts/batch-context"
+import {useBatchService} from "@/contexts/batch-service-context"
 import {BatchState} from "@/models/batch"
-import {BatchService} from "@/services/batch-service"
 import SimpleHeader from "@/ui/components/simple-header"
 import Text from "@/ui/components/text"
 import NumberSelector from "@/ui/components/wheel-picker"
@@ -12,6 +12,7 @@ import {TouchableOpacity, View} from "react-native"
 
 const ExtendFermentation = () => {
     const router = useRouter()
+    const batchService = useBatchService()
     const batch = useBatch()
 
     const [duration, setDuration] = React.useState(10)
@@ -24,14 +25,14 @@ const ExtendFermentation = () => {
                 const endDate = batch.firstFermentationEnd || new Date()
                 endDate.setDate(endDate.getDate() + duration)
                 batch.firstFermentationEnd = endDate
-                BatchService.updateBatch(batch)
+                batchService.updateBatch(batch)
                 break
             }
             case "F2": {
                 const endDate = batch.secondFermentationEnd || new Date()
                 endDate.setDate(endDate.getDate() + duration)
                 batch.secondFermentationEnd = endDate
-                BatchService.updateBatch(batch)
+                batchService.updateBatch(batch)
                 break
             }
             default:

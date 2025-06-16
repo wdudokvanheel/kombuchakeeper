@@ -1,5 +1,5 @@
 import {useBatch} from '@/contexts/batch-context'
-import {BatchService} from "@/services/batch-service"
+import {useBatchService} from "@/contexts/batch-service-context"
 import Text from '@/ui/components/text'
 import Textarea from '@/ui/components/textarea'
 import {NativeWindColors} from '@/ui/nativewind'
@@ -11,6 +11,8 @@ import {Keyboard, KeyboardAvoidingView, Platform, TouchableOpacity, TouchableWit
 const NotesModal = () => {
     const router = useRouter()
     const batch = useBatch()
+    const batchService = useBatchService()
+
     const [notes, setNotes] = useState(batch.notes || '')
 
     const handleBack = () => {
@@ -19,7 +21,7 @@ const NotesModal = () => {
 
     const handleSave = () => {
         batch.notes = notes
-        BatchService.updateBatch(batch)
+        batchService.updateBatch(batch)
         router.back()
     }
 

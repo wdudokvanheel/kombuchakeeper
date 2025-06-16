@@ -22,7 +22,7 @@ export interface BatchServiceInterface {
     deleteBatch(id: number): Promise<void>
 }
 
-class MockBatchService implements BatchServiceInterface {
+export class MockBatchService implements BatchServiceInterface {
     private batches: Batch[] = []
 
     constructor() {
@@ -147,5 +147,3 @@ class MockBatchService implements BatchServiceInterface {
         })
     }
 }
-
-export const BatchService: BatchServiceInterface = new MockBatchService()

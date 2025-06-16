@@ -1,8 +1,8 @@
 import FermentationPanel from "@/app/batch/[id]/components/fermentation-panel"
 import NotesPanel from "@/app/batch/[id]/components/notes-panel"
 import {useBatch} from "@/contexts/batch-context"
+import {useBatchService} from "@/contexts/batch-service-context"
 import {Batch} from '@/models/batch'
-import {BatchService} from "@/services/batch-service"
 import {BatchStateColor, BatchStateLabelColor} from "@/ui/batch-state-color"
 import Text from "@/ui/components/text"
 import {NativeWindColors} from '@/ui/nativewind'
@@ -14,9 +14,10 @@ import {useSafeAreaInsets} from "react-native-safe-area-context"
 import Svg, {Path} from 'react-native-svg'
 
 const BatchDetail = () => {
+    const insets = useSafeAreaInsets()
     const router = useRouter()
     const batch = useBatch()
-    const insets = useSafeAreaInsets()
+    const batchService = useBatchService()
 
     const handleEdit = () => {
         if (batch) {
@@ -44,7 +45,7 @@ const BatchDetail = () => {
                         text: 'Delete',
                         style: 'destructive',
                         onPress: () => {
-                            BatchService.deleteBatch(batch.id!)
+                            batchService.deleteBatch(batch.id!)
                             router.back()
                         },
                     },

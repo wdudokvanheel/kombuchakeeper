@@ -1,16 +1,17 @@
+import {useBatchService} from "@/contexts/batch-service-context"
 import {useMenu} from "@/contexts/menubar-context"
-import {BatchService} from "@/services/batch-service"
 import Text from "@/ui/components/text"
 import React from 'react'
 import BatchList from './batch-list'
 
 const Index = () => {
     const {page} = useMenu()
+    const batchService = useBatchService()
 
     const archive = page === 'archive'
 
-    const {data: active = []} = BatchService.activeBatches({enabled: !archive})
-    const {data: archived = []} = BatchService.archivedBatches({enabled: archive})
+    const {data: active = []} = batchService.activeBatches({enabled: !archive})
+    const {data: archived = []} = batchService.archivedBatches({enabled: archive})
 
     if (archive) {
         return (
@@ -18,7 +19,7 @@ const Index = () => {
                 <Text className="text-3xl font-semibold text-brown-900">
                     No archived batches found
                 </Text>
-                <Text className="text-xl font-medium text-brown-800 text-center" >
+                <Text className="text-xl font-medium text-brown-800 text-center">
                     Batches that have ended will show up here
                 </Text>
             </BatchList>

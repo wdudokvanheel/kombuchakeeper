@@ -1,7 +1,7 @@
 import ActionBody from "@/app/batch/[id]/actions/components/action-body"
 import {useBatch} from "@/contexts/batch-context"
+import {useBatchService} from "@/contexts/batch-service-context"
 import {BatchState} from "@/models/batch"
-import {BatchService} from "@/services/batch-service"
 import SimpleHeader from "@/ui/components/simple-header"
 import Text from "@/ui/components/text"
 import NumberSelector from "@/ui/components/wheel-picker"
@@ -13,6 +13,7 @@ import {TouchableOpacity, View} from "react-native"
 const SecondFermentation = () => {
     const router = useRouter()
     const batch = useBatch()
+    const batchService = useBatchService()
 
     const [duration, setDuration] = React.useState(10)
 
@@ -30,7 +31,7 @@ const SecondFermentation = () => {
         batch.firstFermentationEnd = new Date()
         batch.secondFermentationEnd = endDate
 
-        BatchService.updateBatch(batch)
+        batchService.updateBatch(batch)
 
         // TODO Handle this is a less hacky way?
         router.back()

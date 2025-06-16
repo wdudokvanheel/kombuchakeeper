@@ -1,14 +1,13 @@
 import {BatchProvider} from "@/contexts/batch-context"
+import {useBatchService} from "@/contexts/batch-service-context"
 import {Batch} from "@/models/batch"
-import {BatchService} from "@/services/batch-service"
 import Text from "@/ui/components/text"
 import {Stack, useLocalSearchParams} from "expo-router"
 import {useEffect, useState} from "react"
 import {ActivityIndicator, View} from "react-native"
-import {useSafeAreaInsets} from "react-native-safe-area-context"
 
 const BatchLayout = () => {
-    const insets = useSafeAreaInsets()
+    const batchService = useBatchService()
 
     const {id} = useLocalSearchParams()
     const [batch, setBatch] = useState<Batch | null>(null)
@@ -19,7 +18,7 @@ const BatchLayout = () => {
             return
         }
 
-        BatchService.getBatchById(Number(id))
+        batchService.getBatchById(Number(id))
             .then(b => {
                 setBatch(b)
                 setLoading(false)
