@@ -13,7 +13,7 @@ const MainLayout = () => {
         <>
             <View className="flex-1 bg-brown-100">
                 <ThemedHeader background={NativeWindColors.brown[800]} useSafeArea={true}>
-                    <Text className="text-brown-100 text-3xl text-center p-0 mb-4 uppercase">
+                    <Text className="text-brown-100 text-3xl text-center p-0 mb-4 uppercase tracking-widest">
                         Kombucha Keeper
                     </Text>
                 </ThemedHeader>

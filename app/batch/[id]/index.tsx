@@ -87,7 +87,7 @@ const BatchDetail = () => {
                         <FermentationPanel
                             title="First"
                             icon="bottle-tonic"
-                            color={NativeWindColors.yellow[400]}
+                            color={BatchStateColor.F1}
                             labelColor={NativeWindColors.brown[800]}
                             start={batch.createdAt}
                             started={true}
@@ -97,7 +97,7 @@ const BatchDetail = () => {
                         <FermentationPanel
                             title="Second"
                             icon="bottle-soda-classic"
-                            color={NativeWindColors.orange[400]}
+                            color={BatchStateColor.F2}
                             labelColor={NativeWindColors.brown[800]}
                             start={batch.firstFermentationEnd}
                             started={batch.hasFirstFermentationEnded()}

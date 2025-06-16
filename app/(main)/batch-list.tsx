@@ -9,8 +9,8 @@ import {FlatList, Pressable, View} from "react-native"
 import {CircularProgressBase} from "react-native-circular-progress-indicator"
 
 const BatchStateDarkColor: Record<BatchState, string> = {
-    [BatchState.F1]: NativeWindColors.yellow[500],
-    [BatchState.F2]: NativeWindColors.orange[500],
+    [BatchState.F1]: NativeWindColors.yellow[600],
+    [BatchState.F2]: NativeWindColors.orange[600],
     [BatchState.Bottled]: NativeWindColors.green[800],
     [BatchState.Failed]: NativeWindColors.gray[800],
 }
@@ -20,8 +20,6 @@ type BatchListProps = {
 }
 
 const BatchList = ({data}: BatchListProps) => {
-    // const {data: batches = []} = BatchService.allBatches()
-
     return (
         <FlatList
             alwaysBounceVertical={false}
