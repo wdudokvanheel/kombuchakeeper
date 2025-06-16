@@ -42,3 +42,6 @@ android/
 
 # IntelliJ
 .idea/
+
+# vim
+*.swp
