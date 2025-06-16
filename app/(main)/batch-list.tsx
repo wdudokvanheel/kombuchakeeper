@@ -16,10 +16,20 @@ const BatchStateDarkColor: Record<BatchState, string> = {
 }
 
 type BatchListProps = {
-    data: Batch[]
+    data: Batch[],
+    children: React.ReactNode
 }
 
-const BatchList = ({data}: BatchListProps) => {
+const BatchList = ({data, children}: BatchListProps) => {
+    if (data.length === 0) {
+        return (
+            <View className="flex-1 p-4">
+                <View className="items-center my-auto">
+                    {children}
+                </View>
+            </View>
+        )
+    }
     return (
         <FlatList
             alwaysBounceVertical={false}
