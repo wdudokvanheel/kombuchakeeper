@@ -1,7 +1,11 @@
+import {SmileyVariant} from "@/ui/graphics/smiley"
+
+export type Rating = SmileyVariant | undefined
+
 export enum BatchState {
     F1 = 'F1',
     F2 = 'F2',
-    Bottled = 'Bottled',
+    Complete = 'Complete',
     Failed = 'Failed',
 }
 
@@ -13,6 +17,7 @@ export class Batch {
     firstFermentationEnd?: Date
     secondFermentationEnd?: Date
     notes?: string
+    rating?: SmileyVariant
 
     constructor(overrides: Partial<Batch> = {}) {
         this.id = overrides.id
@@ -22,6 +27,7 @@ export class Batch {
         this.firstFermentationEnd = overrides.firstFermentationEnd
         this.secondFermentationEnd = overrides.secondFermentationEnd
         this.notes = overrides.notes
+        this.rating = overrides.rating
     }
 
     // Days left in current fermentation
@@ -36,7 +42,7 @@ export class Batch {
             case BatchState.F2:
                 endDate = this.secondFermentationEnd
                 break
-            case BatchState.Bottled:
+            case BatchState.Complete:
             case BatchState.Failed:
                 return 0
         }
@@ -64,7 +70,7 @@ export class Batch {
             case BatchState.F2:
                 startDate = this.firstFermentationEnd
                 break
-            case BatchState.Bottled:
+            case BatchState.Complete:
             case BatchState.Failed:
                 return undefined
         }
@@ -90,7 +96,7 @@ export class Batch {
                 startDate = this.firstFermentationEnd
                 endDate = this.secondFermentationEnd
                 break
-            case BatchState.Bottled:
+            case BatchState.Complete:
             case BatchState.Failed:
                 return undefined
         }
@@ -124,14 +130,14 @@ export class Batch {
                 const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
                 return endDay <= today
             }
-            case BatchState.Bottled:
+            case BatchState.Complete:
             case BatchState.Failed:
                 return true
         }
     }
 
     hasEnded(): boolean {
-        return this.state === BatchState.Bottled || this.state === BatchState.Failed
+        return this.state === BatchState.Complete || this.state === BatchState.Failed
     }
 
     hasFirstFermentationEnded(): boolean {

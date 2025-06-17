@@ -46,7 +46,7 @@ export default class MockBatchService implements BatchServiceInterface {
                 id: 5,
                 name: 'Completed Batch',
                 createdAt: d(-15),
-                state: BatchState.Bottled,
+                state: BatchState.Complete,
                 firstFermentationEnd: d(-10),
                 secondFermentationEnd: d(-5),
                 notes: 'Tastes great—bottled 5 days ago and stored cold.'

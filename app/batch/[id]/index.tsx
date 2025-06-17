@@ -1,8 +1,9 @@
 import FermentationPanel from "@/app/batch/[id]/components/fermentation-panel"
 import NotesPanel from "@/app/batch/[id]/components/notes-panel"
+import RatingsPanel from "@/app/batch/[id]/components/ratings-panel"
 import {useBatch} from "@/contexts/batch-context"
 import {useBatchService} from "@/contexts/batch-service-context"
-import {Batch} from '@/models/batch'
+import {Batch, BatchState, Rating} from '@/models/batch'
 import {BatchStateColor, BatchStateLabelColor} from "@/ui/batch-state-color"
 import Text from "@/ui/components/text"
 import {NativeWindColors} from '@/ui/nativewind'
@@ -29,6 +30,10 @@ const BatchDetail = () => {
         if (batch) {
             router.push(`/batch/${batch.id}/notes`)
         }
+    }
+
+    const handleRate = (rating: Rating) => {
+        batch.rating = rating
     }
 
     const handleDelete = () => {
@@ -106,9 +111,17 @@ const BatchDetail = () => {
                         />
                     </View>
 
-                    <Text className="my-4 text-lg font-semibold text-brown-800">Notes</Text>
+                    {(batch.state === BatchState.Completed) &&
+                        <>
+                            <Text className="my-4 text-lg font-semibold text-brown-800">Rating</Text>
+                            <RatingsPanel onChange={handleRate} rating={batch.rating}/>
+                        </>
+                    }
 
-                    <NotesPanel batch={batch} onEdit={handleNotes}/>
+                    <>
+                        <Text className="my-4 text-lg font-semibold text-brown-800">Notes</Text>
+                        <NotesPanel batch={batch} onEdit={handleNotes}/>
+                    </>
                 </View>
             </View>
         </View>

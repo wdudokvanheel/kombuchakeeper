@@ -3,10 +3,12 @@ import {useBatch} from "@/contexts/batch-context"
 import {useBatchService} from "@/contexts/batch-service-context"
 import {BatchState} from "@/models/batch"
 import SimpleHeader from "@/ui/components/simple-header"
+import SmileyButton from "@/ui/components/smiley-button"
 import Text from "@/ui/components/text"
+import {SmileyVariant} from "@/ui/graphics/smiley"
 import Ionicons from "@expo/vector-icons/Ionicons"
 import {useRouter} from "expo-router"
-import React from "react"
+import React, {useState} from "react"
 import {TouchableOpacity, View} from "react-native"
 
 const CompleteBatch = () => {
@@ -14,10 +16,13 @@ const CompleteBatch = () => {
     const batchService = useBatchService()
     const batch = useBatch()
 
+    const [rating, setRating] = useState<SmileyVariant | undefined>(undefined)
+
     const handleComplete = () => {
         console.log(`Completing batch #${batch.id}[${batch.state}]`)
 
-        batch.state = BatchState.Bottled
+        batch.state = BatchState.Complete
+        batch.rating = rating
         batchService.updateBatch(batch)
 
         // TODO Handle this is a less hacky way?
@@ -27,12 +32,27 @@ const CompleteBatch = () => {
 
     return (
         <>
-            <SimpleHeader title="Batch complete" />
+            <SimpleHeader title="Batch complete"/>
 
             <ActionBody>
                 <View className="flex-1 justify-between">
-                    <Text className="text-4xl text-brown-800 font-extrabold mb-8 text-center">
+                    <Text className="text-4xl text-brown-800 font-extrabold text-center">
+                        How would you rate this batch?
                     </Text>
+
+                    <View className="flex-1 flex-row justify-between items-center p-4">
+                        {Object
+                            .values(SmileyVariant)
+                            .map(v =>
+                                <SmileyButton
+                                    key={v}
+                                    variant={v}
+                                    selected={rating === v}
+                                    onSelect={setRating}
+                                />
+                            )
+                        }
+                    </View>
 
                     <View>
                         <TouchableOpacity

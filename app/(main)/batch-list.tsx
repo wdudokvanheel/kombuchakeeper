@@ -11,7 +11,7 @@ import {FlatList, TouchableOpacity, View} from "react-native"
 const BatchStateDarkColor: Record<BatchState, string> = {
     [BatchState.F1]: NativeWindColors.yellow[600],
     [BatchState.F2]: NativeWindColors.orange[600],
-    [BatchState.Bottled]: NativeWindColors.green[800],
+    [BatchState.Complete]: NativeWindColors.green[800],
     [BatchState.Failed]: NativeWindColors.gray[800],
 }
 
@@ -77,7 +77,7 @@ const BatchListItem = ({batch}: BatchListItemProps) => {
                                 {batch.state === BatchState.Failed && (
                                     <Ionicons name="warning-sharp" size={45} color="white"/>
                                 )}
-                                {batch.state === BatchState.Bottled && (
+                                {batch.state === BatchState.Complete && (
                                     <Ionicons name="checkmark-outline" size={45} color="white"/>
                                 )}
                             </View>
@@ -106,8 +106,8 @@ const BatchListItem = ({batch}: BatchListItemProps) => {
                             <View className="p-0 w-1/4">
                                 <AdaptiveProgressCircle
                                     className="aspect-square"
-                                    activeStrokeWidth={16}
-                                    inActiveStrokeWidth={16}
+                                    activeStrokeWidth={24}
+                                    inActiveStrokeWidth={24}
                                     activeStrokeColor={batch.isCurrentFermentationComplete() ? NativeWindColors.green[600] : BatchStateColor[batch.state]}
                                     inActiveStrokeColor={NativeWindColors.gray[200]}
                                     value={batch.getDaysSinceStart() || 0}
