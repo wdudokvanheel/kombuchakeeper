@@ -15,7 +15,7 @@ const SecondFermentation = () => {
     const batch = useBatch()
     const batchService = useBatchService()
 
-    const [duration, setDuration] = React.useState(1)
+    const [duration, setDuration] = React.useState(3)
 
     const handleStartNextFermentation = () => {
         console.log(`Starting F2 on batch #${batch.id}[${batch.state}] with a duration of ${duration} days`)

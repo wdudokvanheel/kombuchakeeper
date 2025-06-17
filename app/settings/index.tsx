@@ -16,7 +16,7 @@ const Settings = () => {
 
                 </View>
                 <View className="">
-                    <Text className="my-4 text-xl font-semibold text-brown-800">About</Text>
+                    <Text className="my-4 text-xl font-semibold text-gray-800">About</Text>
                     <AboutPanel/>
                 </View>
             </View>

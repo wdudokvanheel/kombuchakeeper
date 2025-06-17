@@ -55,7 +55,6 @@ const CompleteBatch = () => {
                         }
                     </View>
 
-
                     <View>
                         <TouchableOpacity
                             onPress={handleComplete}
