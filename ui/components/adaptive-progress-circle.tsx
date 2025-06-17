@@ -5,14 +5,18 @@ import {CircularProgressBase} from 'react-native-circular-progress-indicator'
 type AdaptiveProgressCircle = Omit<React.ComponentProps<typeof CircularProgressBase>, 'radius'> & {
     style?: ViewStyle
     className?: string
+    value: number
+    maxValue: number
 }
 
 const AdaptiveProgressCircle = ({
-                                   style,
-                                   className,
-                                   children,
-                                   ...restProps
-                               }: AdaptiveProgressCircle) => {
+                                    style,
+                                    className,
+                                    children,
+                                    value,
+                                    maxValue,
+                                    ...restProps
+                                }: AdaptiveProgressCircle) => {
     const [radius, setRadius] = useState<number>(0)
 
     const onLayout = (event: LayoutChangeEvent) => {
@@ -25,7 +29,7 @@ const AdaptiveProgressCircle = ({
     return (
         <View onLayout={onLayout} style={style} className={className + ' w-full'}>
             {radius > 0 && (
-                <CircularProgressBase radius={radius} {...restProps}>
+                <CircularProgressBase value={maxValue == 0 ? 0 : value + 0.1} maxValue={maxValue + 0.1} radius={radius} {...restProps}>
                     {children}
                 </CircularProgressBase>
             )}
