@@ -2,9 +2,9 @@ import ActionBody from "@/app/batch/[id]/actions/components/action-body"
 import {useBatch} from "@/contexts/batch-context"
 import {useBatchService} from "@/contexts/batch-service-context"
 import {BatchState} from "@/models/batch"
+import NumberPicker from "@/ui/components/number-picker"
 import SimpleHeader from "@/ui/components/simple-header"
 import Text from "@/ui/components/text"
-import NumberSelector from "@/ui/components/wheel-picker"
 import Ionicons from "@expo/vector-icons/Ionicons"
 import {useRouter} from "expo-router"
 import React from "react"
@@ -15,7 +15,7 @@ const SecondFermentation = () => {
     const batch = useBatch()
     const batchService = useBatchService()
 
-    const [duration, setDuration] = React.useState(10)
+    const [duration, setDuration] = React.useState(1)
 
     const handleStartNextFermentation = () => {
         console.log(`Starting F2 on batch #${batch.id}[${batch.state}] with a duration of ${duration} days`)
@@ -47,7 +47,7 @@ const SecondFermentation = () => {
                     How long will the second fermentation last?
                 </Text>
 
-                <NumberSelector onChange={setDuration} value={duration} itemHeight={150} width={220}/>
+                <NumberPicker start={1} end={10} onChange={setDuration} value={duration} itemHeight={150} width={220}/>
 
                 <View>
                     <TouchableOpacity

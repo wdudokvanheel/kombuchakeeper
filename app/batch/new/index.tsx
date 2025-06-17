@@ -1,8 +1,8 @@
 import {useBatchService} from "@/contexts/batch-service-context"
 import {Batch} from "@/models/batch"
+import NumberPicker from "@/ui/components/number-picker"
 import Text from "@/ui/components/text"
 import ThemedTextInput from "@/ui/components/themed-textinput"
-import NumberSelector from "@/ui/components/wheel-picker"
 import Ionicons from "@expo/vector-icons/Ionicons"
 import {useRouter} from "expo-router"
 import React, {useState} from "react"
@@ -50,7 +50,7 @@ const NewBatch = () => {
                     </Text>
 
                     <View className="w-full items-center">
-                        <NumberSelector value={duration} onChange={setDuration}/>
+                        <NumberPicker start={1} end={30} value={duration} onChange={setDuration}/>
                     </View>
                 </View>
 

@@ -2,9 +2,9 @@ import ActionBody from "@/app/batch/[id]/actions/components/action-body"
 import {useBatch} from "@/contexts/batch-context"
 import {useBatchService} from "@/contexts/batch-service-context"
 import {BatchState} from "@/models/batch"
+import NumberPicker from "@/ui/components/number-picker"
 import SimpleHeader from "@/ui/components/simple-header"
 import Text from "@/ui/components/text"
-import NumberSelector from "@/ui/components/wheel-picker"
 import Ionicons from "@expo/vector-icons/Ionicons"
 import {useRouter} from "expo-router"
 import React from "react"
@@ -15,7 +15,7 @@ const ExtendFermentation = () => {
     const batchService = useBatchService()
     const batch = useBatch()
 
-    const [duration, setDuration] = React.useState(10)
+    const [duration, setDuration] = React.useState(1)
 
     const handleExtend = () => {
         console.log(`Extending batch #${batch.id}[${batch.state}] by ${duration} days`)
@@ -53,7 +53,7 @@ const ExtendFermentation = () => {
                     How many extra days to ferment?
                 </Text>
 
-                <NumberSelector onChange={setDuration} value={duration} itemHeight={150} width={220}/>
+                <NumberPicker start={1} end={10} onChange={setDuration} value={duration} itemHeight={150} width={220}/>
 
                 <View>
                     <TouchableOpacity

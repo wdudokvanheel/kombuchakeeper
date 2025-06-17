@@ -11,23 +11,29 @@ import {Animated, StyleProp, TextStyle, View} from 'react-native'
 type NumberSelectorProps = {
     value: number
     onChange: (value: number) => void
-    data?: PickerItem<number>[]
+    start: number
+    end: number
     itemHeight?: number
     width?: number
 }
 
-const fallbackData: PickerItem<number>[] = [...Array(30).keys()].map(i => ({
-    value: i,
-    label: i.toString(),
-}))
-
-const NumberSelector = ({
+const NumberPicker = ({
                             value,
                             onChange,
-                            data = fallbackData,
+                            start,
+                            end,
                             width = 200,
                             itemHeight = 128,
                         }: NumberSelectorProps) => {
+
+    const data = useMemo<PickerItem<number>[]>(() => {
+        const length = end - start + 1
+        return Array.from({length}, (_, i) => {
+            const v = start + i
+            return {value: v, label: v.toString()}
+        })
+    }, [start, end])
+
     const renderItem: RenderItem<PickerItem<number>> = useCallback(
         props => <Item {...props} />,
         [],
@@ -57,7 +63,7 @@ const NumberSelector = ({
     )
 }
 
-export default NumberSelector
+export default NumberPicker
 
 const Item = ({
                   item: {value: itemValue, label},
