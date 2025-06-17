@@ -111,7 +111,7 @@ const BatchDetail = () => {
                         />
                     </View>
 
-                    {(batch.state === BatchState.Completed) &&
+                    {(batch.state === BatchState.Complete) &&
                         <>
                             <Text className="my-4 text-lg font-semibold text-brown-800">Rating</Text>
                             <RatingsPanel onChange={handleRate} rating={batch.rating}/>

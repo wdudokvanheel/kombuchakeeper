@@ -40,11 +40,12 @@ const CompleteBatch = () => {
                         How would you rate this batch?
                     </Text>
 
-                    <View className="flex-1 flex-row justify-between items-center p-4">
+                    <View className="items-center">
                         {Object
                             .values(SmileyVariant)
                             .map(v =>
                                 <SmileyButton
+                                    size={78}
                                     key={v}
                                     variant={v}
                                     selected={rating === v}
@@ -53,6 +54,7 @@ const CompleteBatch = () => {
                             )
                         }
                     </View>
+
 
                     <View>
                         <TouchableOpacity

@@ -1,4 +1,4 @@
-import Smiley, {SmileyColors, SmileyVariant} from '@/ui/graphics/smiley'
+import Smiley, {SmileyColors, SmileyVariant} from "@/ui/graphics/smiley"
 import React from 'react'
 import {TouchableOpacity, View} from 'react-native'
 

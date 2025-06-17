@@ -22,13 +22,13 @@ const RatingsPanel = ({rating, onChange}: RatingsPanelProps) => {
         }
     }
     return (
-        <View className="bg-brown-100 rounded-[2rem] flex-row justify-between px-12 py-4">
+        <View className="bg-brown-100 rounded-[2rem] flex-row justify-between p-4">
             {Object
                 .values(SmileyVariant)
                 .map(v =>
                     <SmileyButton
                         key={v}
-                        size={56}
+                        size={50}
                         variant={v}
                         shaded={value !== undefined}
                         selected={value === v}
