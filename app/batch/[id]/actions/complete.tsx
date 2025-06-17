@@ -1,7 +1,7 @@
 import ActionBody from "@/app/batch/[id]/actions/components/action-body"
 import {useBatch} from "@/contexts/batch-context"
 import {useBatchService} from "@/contexts/batch-service-context"
-import {BatchState} from "@/models/batch"
+import {BatchState, Rating} from "@/models/batch"
 import SimpleHeader from "@/ui/components/simple-header"
 import SmileyButton from "@/ui/components/smiley-button"
 import Text from "@/ui/components/text"
@@ -16,7 +16,7 @@ const CompleteBatch = () => {
     const batchService = useBatchService()
     const batch = useBatch()
 
-    const [rating, setRating] = useState<SmileyVariant | undefined>(undefined)
+    const [rating, setRating] = useState<Rating>(undefined)
 
     const handleComplete = () => {
         console.log(`Completing batch #${batch.id}[${batch.state}]`)

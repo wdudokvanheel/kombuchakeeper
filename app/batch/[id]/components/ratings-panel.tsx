@@ -5,7 +5,7 @@ import React, {useState} from "react"
 import {View} from "react-native"
 
 type RatingsPanelProps = {
-    rating: SmileyVariant | undefined
+    rating: Rating
     onChange: (rating: Rating) => void
 }
 
