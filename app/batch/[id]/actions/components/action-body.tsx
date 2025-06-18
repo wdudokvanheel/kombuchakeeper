@@ -9,7 +9,7 @@ const ActionBody = ({children}: ActionBodyProps) => {
 
     return (
         <View
-            className="flex-1 px-4 items-center"
+            className="flex-1 px-4"
         >
             {children}
         </View>
