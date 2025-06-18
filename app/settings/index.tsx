@@ -26,7 +26,7 @@ const Settings = () => {
 
                 <View className="flex-col gap-4">
                     <View className="flex-row bg-white rounded-[2rem] p-4 min-h-40">
-                        <View className="flex-1 pe-4">
+                        <View className="w-3/5 pe-4">
                             <Text className="text-gray-900 text-2xl font-semibold">
                                 First fermentation
                             </Text>
@@ -54,6 +54,7 @@ const Settings = () => {
                                 inputStyle={{
                                     fontSize: 24,
                                     fontWeight: "bold",
+                                    color: NativeWindColors.yellow[900],
                                 }}
                             />
                         </View>
@@ -88,18 +89,20 @@ const Settings = () => {
                                 inputStyle={{
                                     fontSize: 24,
                                     fontWeight: "bold",
+                                    color: NativeWindColors.orange[900],
                                 }}
                             />
                         </View>
                     </View>
 
                     <View className="flex-row bg-white rounded-[2rem] p-4 min-h-40">
-                        <View className="flex-1 pe-4">
+                        <View className="w-3/5 pe-4">
                             <Text className="text-gray-900 text-2xl font-semibold">
                                 Notification time
                             </Text>
                             <Text className="text-gray-800 mt-2">
-                                At what hour of the day would you like to be reminded that your batches have completed
+                                At what hour of the day would you like to be reminded that a batch has finished
+                                fermenting
                                 (0-23)
                             </Text>
                         </View>
@@ -123,6 +126,7 @@ const Settings = () => {
                                 inputStyle={{
                                     fontSize: 24,
                                     fontWeight: "bold",
+                                    color: NativeWindColors.brown[900],
                                 }}
                             />
                         </View>
@@ -133,7 +137,7 @@ const Settings = () => {
                     <TouchableOpacity activeOpacity={0.75} onPress={handleAbout}>
                         <View className="flex-row">
                             <Ionicons name="information-circle" size={24} color={NativeWindColors.purple[600]}/>
-                            <Text className="text-purple-600 text-xl font-semibold self-center">About</Text>
+                            <Text className="text-purple-600 text-xl font-semibold self-center ml-1">About</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
