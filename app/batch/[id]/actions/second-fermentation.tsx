@@ -1,6 +1,7 @@
 import ActionBody from "@/app/batch/[id]/actions/components/action-body"
 import {useBatch} from "@/contexts/batch-context"
 import {useBatchService} from "@/contexts/batch-service-context"
+import {Preference, usePreference} from "@/contexts/preference-context"
 import {BatchState} from "@/models/batch"
 import NumberPicker from "@/ui/components/number-picker"
 import SimpleHeader from "@/ui/components/simple-header"
@@ -12,10 +13,11 @@ import {TouchableOpacity, View} from "react-native"
 
 const SecondFermentation = () => {
     const router = useRouter()
-    const batch = useBatch()
     const batchService = useBatchService()
+    const batch = useBatch()
+    const [defaultDuration] = usePreference<number>(Preference.F2)
 
-    const [duration, setDuration] = React.useState(3)
+    const [duration, setDuration] = React.useState(defaultDuration)
 
     const handleStartNextFermentation = () => {
         console.log(`Starting F2 on batch #${batch.id}[${batch.state}] with a duration of ${duration} days`)
@@ -47,8 +49,16 @@ const SecondFermentation = () => {
                     How long will the second fermentation last?
                 </Text>
 
-                <NumberPicker start={1} end={10} onChange={setDuration} value={duration} itemHeight={150} width={220}/>
-
+                <View className="flex-1 items-center">
+                    <NumberPicker
+                        start={1}
+                        end={10}
+                        onChange={setDuration}
+                        value={duration}
+                        itemHeight={150}
+                        width={220}
+                    />
+                </View>
                 <View>
                     <TouchableOpacity
                         onPress={handleStartNextFermentation}

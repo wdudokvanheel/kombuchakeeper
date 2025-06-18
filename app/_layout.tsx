@@ -16,7 +16,6 @@ const RootLayout = () => {
     // let batchService = new MockBatchService()
 
     if (!useUrbanistFont()) {
-        console.warn("Failed to load Urbanist font")
         return
     }
 

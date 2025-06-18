@@ -53,7 +53,16 @@ const ExtendFermentation = () => {
                     Extend fermentation by how many days?
                 </Text>
 
-                <NumberPicker start={1} end={10} onChange={setDuration} value={duration} itemHeight={150} width={220}/>
+                <View className="flex-1 items-center">
+                    <NumberPicker
+                        start={1}
+                        end={10}
+                        onChange={setDuration}
+                        value={duration}
+                        itemHeight={150}
+                        width={220}
+                    />
+                </View>
 
                 <View>
                     <TouchableOpacity

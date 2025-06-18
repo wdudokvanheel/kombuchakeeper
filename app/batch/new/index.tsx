@@ -1,4 +1,5 @@
 import {useBatchService} from "@/contexts/batch-service-context"
+import {Preference, usePreference} from "@/contexts/preference-context"
 import {Batch} from "@/models/batch"
 import NumberPicker from "@/ui/components/number-picker"
 import Text from "@/ui/components/text"
@@ -13,8 +14,9 @@ const NewBatch = () => {
     const [name, setName] = useState("")
     const router = useRouter()
     const batchService = useBatchService()
+    const [defaultDuration] = usePreference<number>(Preference.F1)
 
-    const [duration, setDuration] = React.useState(10)
+    const [duration, setDuration] = React.useState(defaultDuration)
 
     const saveBatch = () => {
         const parsedDays = duration
