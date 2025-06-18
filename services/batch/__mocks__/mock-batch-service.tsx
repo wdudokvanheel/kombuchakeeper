@@ -1,6 +1,7 @@
 import {Batch, BatchState} from '@/models/batch'
 import {BATCHES_QUERY_KEY, BatchQueryOptions, BatchServiceInterface} from "@/services/batch/batch-service"
 import {queryClient} from '@/services/query-client'
+import {SmileyVariant} from "@/ui/graphics/smiley"
 import {useQuery} from '@tanstack/react-query'
 
 export default class MockBatchService implements BatchServiceInterface {
@@ -53,6 +54,7 @@ export default class MockBatchService implements BatchServiceInterface {
             }),
             new Batch({
                 id: 6,
+                rating: SmileyVariant.SuperSad,
                 name: 'Failed Attempt',
                 createdAt: d(-10),
                 state: BatchState.Failed,

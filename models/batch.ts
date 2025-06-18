@@ -140,6 +140,10 @@ export class Batch {
         return this.state === BatchState.Complete || this.state === BatchState.Failed
     }
 
+    hasRating(): boolean {
+        return this.rating !== undefined
+    }
+
     hasFirstFermentationEnded(): boolean {
         return this.secondFermentationEnd != undefined && this.state != BatchState.F1
     }

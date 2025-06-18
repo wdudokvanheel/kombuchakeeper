@@ -1,6 +1,7 @@
 import {Batch, BatchState} from "@/models/batch"
 import {BatchStateColor, BatchStateLabelColor} from "@/ui/batch-state-color"
 import AdaptiveProgressCircle from "@/ui/components/adaptive-progress-circle"
+import AdaptiveSmiley from "@/ui/components/adaptive-smiley"
 import Text from "@/ui/components/text"
 import {NativeWindColors} from "@/ui/nativewind"
 import Ionicons from "@expo/vector-icons/Ionicons"
@@ -103,35 +104,16 @@ const BatchListItem = ({batch}: BatchListItemProps) => {
                                 }
                             </View>
 
-                            <View className="p-0 w-1/4">
-                                <AdaptiveProgressCircle
-                                    className="aspect-square"
-                                    activeStrokeWidth={24}
-                                    inActiveStrokeWidth={24}
-                                    activeStrokeColor={batch.isCurrentFermentationComplete() ? NativeWindColors.green[600] : BatchStateColor[batch.state]}
-                                    inActiveStrokeColor={NativeWindColors.gray[200]}
-                                    value={batch.getDaysSinceStart() || 0}
-                                    maxValue={batch.getCurrentFermentationDuration()}
-                                >
-                                    {(batch.state === BatchState.F1 || batch.state === BatchState.F2) && (
-                                        !batch.isCurrentFermentationComplete() ?
-                                            <Text
-                                                className="text-2xl font-extrabold m-0 p-0 "
-                                                style={{
-                                                    color: BatchStateDarkColor[batch.state]
-                                                }}
-                                            >
-                                                {(batch.getDaysLeft() || 0) > 0 ? batch.getDaysLeft() : ''}
-                                            </Text>
-                                            :
-                                            <Ionicons name="checkmark-outline" size={36}
-                                                      color={NativeWindColors.green[800]}/>
-                                    )}
-                                    {batch.hasEnded() &&
-                                        <Ionicons name="checkmark-outline" size={36}
-                                                  color={NativeWindColors.green[800]}/>
-                                    }
-                                </AdaptiveProgressCircle>
+
+                            <View className="p-0 w-1/4 aspect-square">
+                                {(!batch.hasEnded() || !batch.hasRating()) &&
+                                    <ItemProgressCircle batch={batch}/>
+                                }
+                                {batch.hasEnded() && batch.hasRating() &&
+                                    <>
+                                        <AdaptiveSmiley variant={batch.rating!}/>
+                                    </>
+                                }
                             </View>
                         </View>
                     </View>
@@ -141,3 +123,45 @@ const BatchListItem = ({batch}: BatchListItemProps) => {
     )
 }
 
+type ItemProgressCircleProps = {
+    batch: Batch
+}
+
+const ItemProgressCircle = ({batch}: ItemProgressCircleProps) => {
+    let value = batch.getDaysSinceStart() || 0
+    let maxValue = batch.getCurrentFermentationDuration() || 0
+
+    if (batch.hasEnded()) {
+        value = 1
+        maxValue = 1
+    }
+
+    return (
+        <AdaptiveProgressCircle
+            className="aspect-square"
+            activeStrokeWidth={24}
+            inActiveStrokeWidth={24}
+            activeStrokeColor={batch.isCurrentFermentationComplete() ? NativeWindColors.green[600] : BatchStateColor[batch.state]}
+            inActiveStrokeColor={NativeWindColors.gray[200]}
+            value={value}
+            maxValue={maxValue}
+        >
+            {(batch.state === BatchState.F1 || batch.state === BatchState.F2) && (
+                !batch.isCurrentFermentationComplete() ?
+                    <Text
+                        className="text-2xl font-extrabold m-0 p-0 "
+                        style={{
+                            color: BatchStateDarkColor[batch.state]
+                        }}
+                    >
+                        {(batch.getDaysLeft() || 0) > 0 ? batch.getDaysLeft() : ''}
+                    </Text>
+                    :
+                    <Ionicons name="checkmark-outline" size={36} color={NativeWindColors.green[800]}/>
+            )}
+            {batch.hasEnded() &&
+                <Ionicons name="checkmark-outline" size={36} color={NativeWindColors.green[800]}/>
+            }
+        </AdaptiveProgressCircle>
+    )
+}

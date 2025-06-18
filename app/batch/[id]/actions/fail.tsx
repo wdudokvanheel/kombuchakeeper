@@ -4,6 +4,7 @@ import {useBatchService} from "@/contexts/batch-service-context"
 import {BatchState} from "@/models/batch"
 import SimpleHeader from "@/ui/components/simple-header"
 import Text from "@/ui/components/text"
+import {SmileyVariant} from "@/ui/graphics/smiley"
 import Ionicons from "@expo/vector-icons/Ionicons"
 import {useRouter} from "expo-router"
 import React from "react"
@@ -18,6 +19,7 @@ const FailBatch = () => {
         console.log(`Failing batch #${batch.id}[${batch.state}]`)
 
         batch.state = BatchState.Failed
+        batch.rating = SmileyVariant.SuperSad
         batchService.updateBatch(batch)
 
         // TODO Handle this is a less hacky way?

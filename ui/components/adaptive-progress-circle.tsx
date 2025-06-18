@@ -2,11 +2,12 @@ import React, {useState} from 'react'
 import {LayoutChangeEvent, View, ViewStyle} from 'react-native'
 import {CircularProgressBase} from 'react-native-circular-progress-indicator'
 
-type AdaptiveProgressCircle = Omit<React.ComponentProps<typeof CircularProgressBase>, 'radius'> & {
+type AdaptiveProgressCircle = Omit<typeof CircularProgressBase, 'radius'> & {
     style?: ViewStyle
     className?: string
     value: number
     maxValue: number
+    children?: React.ReactNode
 }
 
 const AdaptiveProgressCircle = ({

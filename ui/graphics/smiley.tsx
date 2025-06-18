@@ -37,7 +37,7 @@ export const SmileyColors = {
     },
 }
 
-type SmileyProps = {
+export type SmileyProps = {
     variant: SmileyVariant
     shaded?: boolean
     size?: number
