@@ -1,17 +1,23 @@
-import AboutPanel from "@/app/settings/about-panel"
+import {Preference, usePreference} from "@/contexts/preference-context"
 import Text from "@/ui/components/text"
 import {NativeWindColors} from "@/ui/nativewind"
 import Ionicons from "@expo/vector-icons/Ionicons"
 import {useRouter} from "expo-router"
-import React, {useState} from "react"
+import React from "react"
 import {TouchableOpacity, View} from "react-native"
 import InputSpinner from "react-native-input-spinner"
 import {useSafeAreaInsets} from "react-native-safe-area-context"
 
 const Settings = () => {
-    const [f1Duration, setF1Duration] = useState(12)
-    const [f2Duration, setF2Duration] = useState(3)
-    const [hour, setHour] = useState(12)
+    const router = useRouter()
+
+    const [f1Duration, setF1Duration] = usePreference<number>(Preference.F1)
+    const [f2Duration, setF2Duration] = usePreference<number>(Preference.F2)
+    const [hour, setHour] = usePreference<number>(Preference.NotificationTime)
+
+    const handleAbout = () => {
+        router.push("/settings/about")
+    }
     return (
         <>
             <SettingsHeader/>
@@ -29,27 +35,32 @@ const Settings = () => {
                                 batch
                             </Text>
                         </View>
-                        <InputSpinner
-                            max={30}
-                            min={1}
-                            step={1}
-                            color={NativeWindColors.yellow[500]}
-                            value={f1Duration}
-                            onChange={setF1Duration}
-                            skin="modern"
-                            style={{
-                                shadowOpacity: 0,
-                                padding: 8,
-                            }}
-                            inputStyle={{
-                                fontSize: 24,
-                                fontWeight: "bold",
-                            }}
-                        />
+
+                        <View className="items-center">
+                            <InputSpinner
+                                max={30}
+                                min={1}
+                                step={1}
+                                color={NativeWindColors.yellow[500]}
+                                value={f1Duration}
+                                onChange={setF1Duration}
+                                skin="modern"
+                                editable={false}
+                                style={{
+                                    shadowOpacity: 0,
+                                    padding: 8,
+                                    marginVertical: 'auto'
+                                }}
+                                inputStyle={{
+                                    fontSize: 24,
+                                    fontWeight: "bold",
+                                }}
+                            />
+                        </View>
                     </View>
 
                     <View className="flex-row bg-white rounded-[2rem] p-4 min-h-40">
-                        <View className="flex-1 pe-4">
+                        <View className="w-3/5 pe-4">
                             <Text className="text-gray-900 text-2xl font-semibold">
                                 Second fermentation
                             </Text>
@@ -59,23 +70,27 @@ const Settings = () => {
                             </Text>
                         </View>
 
-                        <InputSpinner
-                            max={30}
-                            min={1}
-                            step={1}
-                            color={NativeWindColors.orange[400]}
-                            value={f2Duration}
-                            onChange={setF2Duration}
-                            skin="modern"
-                            style={{
-                                shadowOpacity: 0,
-                                padding: 8,
-                            }}
-                            inputStyle={{
-                                fontSize: 24,
-                                fontWeight: "bold",
-                            }}
-                        />
+                        <View className="items-center">
+                            <InputSpinner
+                                max={30}
+                                min={1}
+                                step={1}
+                                color={NativeWindColors.orange[400]}
+                                value={f2Duration}
+                                onChange={setF2Duration}
+                                skin="modern"
+                                editable={false}
+                                style={{
+                                    shadowOpacity: 0,
+                                    padding: 8,
+                                    marginVertical: 'auto'
+                                }}
+                                inputStyle={{
+                                    fontSize: 24,
+                                    fontWeight: "bold",
+                                }}
+                            />
+                        </View>
                     </View>
 
                     <View className="flex-row bg-white rounded-[2rem] p-4 min-h-40">
@@ -84,31 +99,43 @@ const Settings = () => {
                                 Notification time
                             </Text>
                             <Text className="text-gray-800 mt-2">
-                                At what hour of the day would you like to be reminded that your batches have completed (0-23)
+                                At what hour of the day would you like to be reminded that your batches have completed
+                                (0-23)
                             </Text>
                         </View>
-                        <InputSpinner
-                            max={30}
-                            min={1}
-                            step={1}
-                            color={NativeWindColors.brown[500]}
-                            value={hour}
-                            onChange={setHour}
-                            skin="modern"
-                            style={{
-                                shadowOpacity: 0,
-                                padding: 8,
-                            }}
-                            inputStyle={{
-                                fontSize: 24,
-                                fontWeight: "bold",
-                            }}
-                        />
+                        <View className="items-center">
+
+                            <InputSpinner
+                                max={23}
+                                min={0}
+                                step={1}
+                                color={NativeWindColors.brown[500]}
+                                value={hour}
+                                onChange={setHour}
+                                skin="modern"
+                                editable={false}
+                                style={{
+                                    shadowOpacity: 0,
+                                    padding: 8,
+                                    marginVertical: 'auto'
+
+                                }}
+                                inputStyle={{
+                                    fontSize: 24,
+                                    fontWeight: "bold",
+                                }}
+                            />
+                        </View>
                     </View>
                 </View>
-                <View className="">
-                    <Text className="my-4 text-xl font-semibold text-gray-800">About</Text>
-                    <AboutPanel/>
+
+                <View className="items-center">
+                    <TouchableOpacity activeOpacity={0.75} onPress={handleAbout}>
+                        <View className="flex-row">
+                            <Ionicons name="information-circle" size={24} color={NativeWindColors.purple[600]}/>
+                            <Text className="text-purple-600 text-xl font-semibold self-center">About</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
             </View>
         </>

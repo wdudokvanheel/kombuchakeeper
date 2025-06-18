@@ -1,9 +1,45 @@
 import {expo} from "@/app.json"
+import SimpleHeader from "@/ui/components/simple-header"
 import Text from "@/ui/components/text"
+import {Image} from "expo-image"
 import React from "react"
 import {Linking, Platform, View} from "react-native"
+import {useSafeAreaInsets} from "react-native-safe-area-context"
 
-const AboutPanel = () => {
+const About = () => {
+    const insets = useSafeAreaInsets()
+
+    return (
+        <><View
+            className="flex-1"
+            style={[{
+                paddingBottom: Math.max(insets.bottom, 16),
+            }]}
+        >
+            <SimpleHeader title="About"/>
+            <View className="p-4 flex-col flex-1 justify-between">
+                <View className="h-1/2">
+                    <Image
+                        contentPosition={"center"}
+                        contentFit={"contain"}
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                        }}
+                        className="bg-white"
+                        source={require('@/assets/images/fail.png')}
+                    />
+                </View>
+
+                <InfoPanel/>
+            </View>
+        </View>
+        </>
+    )
+}
+export default About
+
+const InfoPanel = () => {
     const appVersion = expo.version ?? "1.0.0"
     const platformPrefix = Platform.OS === "ios" ? "iOS" : "Android"
 
@@ -42,5 +78,3 @@ const AboutPanel = () => {
         </View>
     )
 }
-
-export default AboutPanel
