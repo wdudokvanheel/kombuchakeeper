@@ -73,7 +73,7 @@ const InfoPanel = () => {
                 className="text-xl font-semibold text-gray-800"
                 onPress={() => Linking.openURL(URL_PRIVACY)}
             >
-                Privacy Policy
+                Privacy policy
             </Text>
         </View>
     )
