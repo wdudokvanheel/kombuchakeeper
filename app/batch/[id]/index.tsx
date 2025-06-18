@@ -189,7 +189,7 @@ const BatchDetailHeader = ({batch, onEdit, onDelete, children}: BatchDetailHeade
                     <TouchableOpacity
                         activeOpacity={0.8}
                         onPress={onEdit}
-                        className={`absolute items-center justify-center shadow-md ${batch.isCurrentFermentationComplete() ? 'bg-green-500 shadow-green-500' : 'bg-brown-800 shadow-black/50'}`}
+                        className={`absolute items-center justify-center shadow-md bg-brown-800 shadow-black/50'}`}
                         style={
                             {
                                 marginTop: -32,
@@ -200,8 +200,7 @@ const BatchDetailHeader = ({batch, onEdit, onDelete, children}: BatchDetailHeade
                             }
                         }
                     >
-                        <Ionicons name={batch.isCurrentFermentationComplete() ? 'checkmark' : 'pencil'} size={32}
-                                  color={NativeWindColors.brown[100]}/>
+                        <Ionicons name="pencil" size={32} color={NativeWindColors.brown[100]}/>
                     </TouchableOpacity>
                 )}
             </View>

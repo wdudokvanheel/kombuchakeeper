@@ -29,7 +29,7 @@ const BatchActionModal = () => {
 
             {batch.state === BatchState.F1 && (
                 <BatchActionCard
-                    title="End fermentation"
+                    title="Start second fermentation"
                     description="End the first fermentation and start the second phase of fermentation"
                     icon="checkmark"
                     colorCircle={NativeWindColors.green[500]}

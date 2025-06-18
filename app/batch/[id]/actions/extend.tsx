@@ -50,7 +50,7 @@ const ExtendFermentation = () => {
 
             <ActionBody>
                 <Text className="text-4xl text-brown-800 font-extrabold mb-8 text-center">
-                    How many extra days to ferment?
+                    Extend fermentation by how many days?
                 </Text>
 
                 <NumberPicker start={1} end={10} onChange={setDuration} value={duration} itemHeight={150} width={220}/>
