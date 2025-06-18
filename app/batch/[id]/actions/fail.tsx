@@ -50,7 +50,7 @@ const FailBatch = () => {
                     <View className="mb-8 bg-white rounded-[2rem] p-4 flex-row items-center">
                         <Ionicons name="information-circle" className="mr-4" size={48} color={NativeWindColors.purple[600]}/>
                         <Text className="flex-1 text-brown-900 text-lg font-medium">
-                            You can mark your batch as failed it has mold, is contaminated, or something else happened that prevents you from completing this batch.
+                            You can mark your batch as failed if it has mold, is contaminated, or something else happened that prevents you from completing this batch.
                         </Text>
                     </View>
 
