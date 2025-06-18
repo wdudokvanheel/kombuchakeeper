@@ -34,6 +34,7 @@ const BatchDetail = () => {
 
     const handleRate = (rating: Rating) => {
         batch.rating = rating
+        batchService.updateBatch(batch)
     }
 
     const handleDelete = () => {
