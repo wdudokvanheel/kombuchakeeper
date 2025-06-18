@@ -1,19 +1,110 @@
 import AboutPanel from "@/app/settings/about-panel"
 import Text from "@/ui/components/text"
+import {NativeWindColors} from "@/ui/nativewind"
 import Ionicons from "@expo/vector-icons/Ionicons"
 import {useRouter} from "expo-router"
-import React from "react"
+import React, {useState} from "react"
 import {TouchableOpacity, View} from "react-native"
+import InputSpinner from "react-native-input-spinner"
 import {useSafeAreaInsets} from "react-native-safe-area-context"
 
 const Settings = () => {
+    const [f1Duration, setF1Duration] = useState(12)
+    const [f2Duration, setF2Duration] = useState(3)
+    const [hour, setHour] = useState(12)
     return (
         <>
             <SettingsHeader/>
 
             <View className="justify-between flex-1 p-4">
-                <View>
 
+                <View className="flex-col gap-4">
+                    <View className="flex-row bg-white rounded-[2rem] p-4 min-h-40">
+                        <View className="flex-1 pe-4">
+                            <Text className="text-gray-900 text-2xl font-semibold">
+                                First fermentation
+                            </Text>
+                            <Text className="text-gray-800 mt-2">
+                                The default duration of the first fermentation, this can still be adjusted for each new
+                                batch
+                            </Text>
+                        </View>
+                        <InputSpinner
+                            max={30}
+                            min={1}
+                            step={1}
+                            color={NativeWindColors.yellow[500]}
+                            value={f1Duration}
+                            onChange={setF1Duration}
+                            skin="modern"
+                            style={{
+                                shadowOpacity: 0,
+                                padding: 8,
+                            }}
+                            inputStyle={{
+                                fontSize: 24,
+                                fontWeight: "bold",
+                            }}
+                        />
+                    </View>
+
+                    <View className="flex-row bg-white rounded-[2rem] p-4 min-h-40">
+                        <View className="flex-1 pe-4">
+                            <Text className="text-gray-900 text-2xl font-semibold">
+                                Second fermentation
+                            </Text>
+                            <Text className="text-gray-800 mt-2">
+                                The default duration of the second fermentation, this can still be adjusted when a batch
+                                has completed its first fermentation
+                            </Text>
+                        </View>
+
+                        <InputSpinner
+                            max={30}
+                            min={1}
+                            step={1}
+                            color={NativeWindColors.orange[400]}
+                            value={f2Duration}
+                            onChange={setF2Duration}
+                            skin="modern"
+                            style={{
+                                shadowOpacity: 0,
+                                padding: 8,
+                            }}
+                            inputStyle={{
+                                fontSize: 24,
+                                fontWeight: "bold",
+                            }}
+                        />
+                    </View>
+
+                    <View className="flex-row bg-white rounded-[2rem] p-4 min-h-40">
+                        <View className="flex-1 pe-4">
+                            <Text className="text-gray-900 text-2xl font-semibold">
+                                Notification time
+                            </Text>
+                            <Text className="text-gray-800 mt-2">
+                                At what hour of the day would you like to be reminded that your batches have completed (0-23)
+                            </Text>
+                        </View>
+                        <InputSpinner
+                            max={30}
+                            min={1}
+                            step={1}
+                            color={NativeWindColors.brown[500]}
+                            value={hour}
+                            onChange={setHour}
+                            skin="modern"
+                            style={{
+                                shadowOpacity: 0,
+                                padding: 8,
+                            }}
+                            inputStyle={{
+                                fontSize: 24,
+                                fontWeight: "bold",
+                            }}
+                        />
+                    </View>
                 </View>
                 <View className="">
                     <Text className="my-4 text-xl font-semibold text-gray-800">About</Text>
