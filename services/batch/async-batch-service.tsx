@@ -5,12 +5,29 @@ import {
     BatchQueryOptions,
     BatchServiceInterface
 } from "@/services/batch/batch-service"
+import NotificationService from "@/services/notification-service"
 import {queryClient} from "@/services/query-client"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import {useQuery, UseQueryResult} from "@tanstack/react-query"
 
 export default class AsyncStorageBatchService implements BatchServiceInterface {
-    private reviveDates(obj: any): Batch {
+
+    constructor(private readonly notifications: NotificationService) {
+        this.resetAllNotifications()
+    }
+
+    private async resetAllNotifications(): Promise<void> {
+        await this
+            .fetchRaw()
+            .then(async (batches) => {
+                    const incompleteBatches =  batches.filter((b) => !b.hasEnded())
+                    await this.notifications.wipeAllBatchNotifications()
+                    await this.notifications.refreshAllBatchNotifications(incompleteBatches)
+                }
+            )
+    }
+
+    private parseDates(obj: any): Batch {
         return new Batch({
             ...obj,
             createdAt: new Date(obj.createdAt),
@@ -23,7 +40,7 @@ export default class AsyncStorageBatchService implements BatchServiceInterface {
         const json = await AsyncStorage.getItem(BATCHES_STORAGE_KEY)
         if (json) {
             const parsed: any[] = JSON.parse(json)
-            return parsed.map(p => this.reviveDates(p))
+            return parsed.map(p => this.parseDates(p))
         }
         return []
     }
@@ -58,14 +75,16 @@ export default class AsyncStorageBatchService implements BatchServiceInterface {
         }
         batches.push(batch)
         await this.saveRaw(batches)
+        await this.notifications.rescheduleBatchNotification(batch)
     }
 
-    async updateBatch(updated: Batch): Promise<void> {
+    async updateBatch(batch: Batch): Promise<void> {
         const batches = await this.fetchRaw()
-        const idx = batches.findIndex(b => b.id === updated.id)
+        const idx = batches.findIndex(b => b.id === batch.id)
         if (idx >= 0) {
-            batches[idx] = updated
+            batches[idx] = batch
             await this.saveRaw(batches)
+            await this.notifications.rescheduleBatchNotification(batch)
         }
     }
 
@@ -73,6 +92,7 @@ export default class AsyncStorageBatchService implements BatchServiceInterface {
         const batches = await this.fetchRaw()
         const filtered = batches.filter(b => b.id !== id)
         await this.saveRaw(filtered)
+        await this.notifications.cancelBatchNotification(id)
     }
 
     allBatches(options?: BatchQueryOptions): UseQueryResult<Batch[], Error> {

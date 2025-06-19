@@ -1,7 +1,7 @@
 import {BatchServiceProvider} from "@/contexts/batch-service-context"
 import {MenuBarProvider} from "@/contexts/menubar-context"
+import {NotificationServiceProvider} from "@/contexts/notification-context"
 import {PreferenceProvider} from "@/contexts/preference-context"
-import AsyncStorageBatchService from "@/services/batch/async-batch-service"
 import {queryClient} from '@/services/query-client'
 import useUrbanistFont from "@/ui/font"
 import {QueryClientProvider} from '@tanstack/react-query'
@@ -12,9 +12,6 @@ import {initialWindowMetrics, SafeAreaProvider} from 'react-native-safe-area-con
 import "./tailwind.css"
 
 const RootLayout = () => {
-    let batchService = new AsyncStorageBatchService()
-    // let batchService = new MockBatchService()
-
     if (!useUrbanistFont()) {
         return
     }
@@ -23,39 +20,41 @@ const RootLayout = () => {
         <SafeAreaProvider initialMetrics={initialWindowMetrics}>
             <QueryClientProvider client={queryClient}>
                 <PreferenceProvider>
-                    <BatchServiceProvider service={batchService}>
-                        <MenuBarProvider>
-                            <View className="flex-1 bg-brown-100">
-                                <Stack screenOptions={{
-                                    headerShown: false,
-                                    animation: 'slide_from_right',
-                                }}
-                                >
-                                    <Stack.Screen name="(main)"/>
+                    <NotificationServiceProvider>
+                        <BatchServiceProvider>
+                            <MenuBarProvider>
+                                <View className="flex-1 bg-brown-100">
+                                    <Stack screenOptions={{
+                                        headerShown: false,
+                                        animation: 'slide_from_right',
+                                    }}
+                                    >
+                                        <Stack.Screen name="(main)"/>
 
-                                    <Stack.Screen
-                                        name="batch/[id]"
-                                        options={{
-                                            animation: Platform.OS === 'android' ? 'slide_from_right' : 'default',
-                                            animationDuration: 350,
-                                        }}
-                                    />
+                                        <Stack.Screen
+                                            name="batch/[id]"
+                                            options={{
+                                                animation: Platform.OS === 'android' ? 'slide_from_right' : 'default',
+                                                animationDuration: 350,
+                                            }}
+                                        />
 
-                                    <Stack.Screen
-                                        name="batch/new"
-                                        options={{
-                                            animation: 'slide_from_bottom',
-                                            animationDuration: 350
-                                        }}
-                                    />
+                                        <Stack.Screen
+                                            name="batch/new"
+                                            options={{
+                                                animation: 'slide_from_bottom',
+                                                animationDuration: 350
+                                            }}
+                                        />
 
-                                    <Stack.Screen
-                                        name="settings"
-                                    />
-                                </Stack>
-                            </View>
-                        </MenuBarProvider>
-                    </BatchServiceProvider>
+                                        <Stack.Screen
+                                            name="settings"
+                                        />
+                                    </Stack>
+                                </View>
+                            </MenuBarProvider>
+                        </BatchServiceProvider>
+                    </NotificationServiceProvider>
                 </PreferenceProvider>
             </QueryClientProvider>
         </SafeAreaProvider>

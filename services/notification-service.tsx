@@ -1,4 +1,4 @@
-import {Batch, BatchState} from "@/models/batch"
+import {Batch, BatchState} from '@/models/batch'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import * as Notifications from 'expo-notifications'
 
@@ -6,12 +6,14 @@ type BatchNotificationMap = Record<string, string>
 
 export default class NotificationService {
     private static readonly STORAGE_KEY = 'batchNotificationMap'
-    private notificationTime = {hour: 9, minute: 0}
+    private readonly notificationTime = {hour: 11, minute: 0}
 
-    constructor(notificationTime?: { hour: number, minute: number }) {
-        if (notificationTime) {
-            this.notificationTime = notificationTime
+    constructor(hour?: number, minute?: number) {
+        this.notificationTime = {
+            hour: hour || this.notificationTime.hour,
+            minute: minute || this.notificationTime.minute
         }
+        console.info('Notification service created with notifications at', this.notificationTime)
     }
 
     private async loadMap(): Promise<BatchNotificationMap> {
@@ -63,18 +65,23 @@ export default class NotificationService {
         if (!doneAt) {
             return
         }
-        if (doneAt.getTime() < Date.now()) {
+
+        const trigger = this.triggerFromDate(doneAt)
+        if (trigger.date.getTime() < Date.now()) {
             return
         }
+
         const id = await Notifications.scheduleNotificationAsync({
             content: {
                 title: `${batch.name} is ready`,
                 body: 'Your batch has finished fermenting',
                 sound: true
             },
-            trigger: this.triggerFromDate(doneAt)
+            trigger
         })
+
         if (batch.id !== undefined) {
+            console.info(`Notification scheduled for #${batch.id} @ ${trigger.date.toISOString()}`)
             const map = await this.loadMap()
             map[batch.id.toString()] = id
             await this.saveMap(map)
@@ -100,8 +107,6 @@ export default class NotificationService {
     }
 
     async wipeAllBatchNotifications(): Promise<void> {
-        console.debug("Clearing all notifications")
-
         await Notifications.cancelAllScheduledNotificationsAsync()
         if (typeof Notifications.dismissAllNotificationsAsync === 'function') {
             await Notifications.dismissAllNotificationsAsync()
@@ -114,5 +119,20 @@ export default class NotificationService {
         for (const b of batches) {
             await this.scheduleBatchNotification(b)
         }
+    }
+
+    async scheduleTestNotification(): Promise<void> {
+        const fireAt = new Date(Date.now() + 60 * 1000)
+        await Notifications.scheduleNotificationAsync({
+            content: {
+                title: 'Test notification',
+                body: 'Success!',
+                sound: true
+            },
+            trigger: {
+                seconds: 60,
+                repeats: false
+            }
+        })
     }
 }

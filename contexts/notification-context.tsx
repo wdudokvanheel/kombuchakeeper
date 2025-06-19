@@ -6,12 +6,13 @@ const NotificationServiceContext = createContext<NotificationService | null>(nul
 
 export function NotificationServiceProvider({children}: { children: React.ReactNode }) {
 
-    const [hour] = usePreference(Preference.NotificationTime)
+    const [hour, setHour] = usePreference(Preference.NotificationTime)
 
     const service = useMemo(
         () => {
-            console.info("Notification service created with notifications at ", hour)
-            return new NotificationService()
+            const notifications = new NotificationService(hour as number || 11, 31)
+            notifications.initialize()
+            return notifications
         },
         [hour]
     )
