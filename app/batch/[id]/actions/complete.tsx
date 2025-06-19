@@ -22,6 +22,7 @@ const CompleteBatch = () => {
         console.log(`Completing batch #${batch.id}[${batch.state}]`)
 
         batch.state = BatchState.Complete
+        batch.secondFermentationEnd = new Date()
         batch.rating = rating
         batchService.updateBatch(batch)
 
