@@ -13,7 +13,6 @@ export default class NotificationService {
             hour: hour || this.notificationTime.hour,
             minute: minute || this.notificationTime.minute
         }
-        console.info('Notification service created with notifications at', this.notificationTime)
     }
 
     private async loadMap(): Promise<BatchNotificationMap> {

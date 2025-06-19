@@ -10,7 +10,7 @@ export function NotificationServiceProvider({children}: { children: React.ReactN
 
     const service = useMemo(
         () => {
-            const notifications = new NotificationService(hour as number || 11, 31)
+            const notifications = new NotificationService(hour as number || 11, 0)
             notifications.initialize()
             return notifications
         },
