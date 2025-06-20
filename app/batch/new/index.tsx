@@ -23,8 +23,10 @@ const NewBatch = () => {
         const firstFermentationEnd = new Date()
         firstFermentationEnd.setDate(firstFermentationEnd.getDate() + parsedDays)
 
-        let batch = new Batch({
-            name: name,
+        const finalName = (name == undefined || name.trim().length == 0) ? "Unnamed batch" : name
+
+        const batch = new Batch({
+            name: finalName,
             firstFermentationEnd: firstFermentationEnd
         })
 
