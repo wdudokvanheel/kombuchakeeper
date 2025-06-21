@@ -31,7 +31,7 @@ export default class MockBatchService implements BatchServiceInterface {
             new Batch({
                 id: 3,
                 name: 'Big jug',
-                createdAt: d(-10),
+                createdAt: d(-20),
                 state: BatchState.F2,
                 firstFermentationEnd: d(-5),
                 secondFermentationEnd: d(2)
