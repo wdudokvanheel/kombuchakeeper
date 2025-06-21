@@ -9,9 +9,9 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
       "bundleIdentifier": "nl.wdudokvanheel.kombuchakeeper",
-      "buildNumber": "4",
+      "buildNumber": "1",
       "config": {
         "usesNonExemptEncryption": false
       },

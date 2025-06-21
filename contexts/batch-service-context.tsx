@@ -10,6 +10,7 @@ export function BatchServiceProvider({children}: { children: React.ReactNode }) 
     const notifications = useNotificationService()
 
     const service = useMemo(() => new AsyncStorageBatchService(notifications), [notifications])
+    // const service = new MockBatchService()
 
     return (
         <BatchServiceContext.Provider value={service}>
