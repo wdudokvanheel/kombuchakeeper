@@ -13,20 +13,20 @@ export default class MockBatchService implements BatchServiceInterface {
 
         this.batches = [
             new Batch({
-                id: 1,
-                name: 'Experimental batch',
-                createdAt: d(-5),
-                state: BatchState.F1,
-                firstFermentationEnd: d(14),
-                notes: "This is my first batch, I'm still learning but I think I did put some tea and sugar in a pot. Hopefully the Kombucha will magically appear. I've added 24 bottles of store bought Kombucha just to be sure there is some Kombucha culture inside."
-            }),
-            new Batch({
                 id: 2,
                 name: 'My first batch',
                 createdAt: d(-18),
                 state: BatchState.F2,
                 firstFermentationEnd: d(-6),
                 secondFermentationEnd: d(0)
+            }),
+            new Batch({
+                id: 1,
+                name: 'Experimental batch',
+                createdAt: d(-5),
+                state: BatchState.F1,
+                firstFermentationEnd: d(14),
+                notes: "This is my first batch, I'm still learning but I think I did put some tea and sugar in a pot. Hopefully the Kombucha will magically appear. I've added 24 bottles of store bought Kombucha just to be sure there is some Kombucha culture inside."
             }),
             new Batch({
                 id: 3,
@@ -45,18 +45,20 @@ export default class MockBatchService implements BatchServiceInterface {
             }),
             new Batch({
                 id: 5,
-                name: 'Completed Batch',
-                createdAt: d(-15),
+                name: 'Small test batch',
+                createdAt: d(-19),
                 state: BatchState.Complete,
-                firstFermentationEnd: d(-10),
-                secondFermentationEnd: d(-5),
-                notes: 'Tastes great—bottled 5 days ago and stored cold.'
+                firstFermentationEnd: d(-6),
+                secondFermentationEnd: d(-3),
+                rating: SmileyVariant.Happy,
+                notes: 'Great taste, but a bit sweet still, add and extra day to F2 next time.'
             }),
             new Batch({
                 id: 6,
                 rating: SmileyVariant.SuperSad,
-                name: 'Failed Attempt',
-                createdAt: d(-10),
+                name: 'First batch',
+                createdAt: d(-21),
+                firstFermentationEnd: d(-16),
                 state: BatchState.Failed,
                 notes: 'Mold appeared midway through F1.'
             }),
