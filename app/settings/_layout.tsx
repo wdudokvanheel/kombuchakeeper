@@ -9,9 +9,9 @@ const SettingsLayout = () => {
     return (
         <View
             className="flex-1"
-            style={[{
+            style={{
                 paddingBottom: Math.max(insets.bottom, 16),
-            }]}
+            }}
         >
             <Stack screenOptions={{headerShown: false}}>
                 <Stack.Screen

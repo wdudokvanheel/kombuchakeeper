@@ -12,7 +12,10 @@ const About = () => {
     return (
         <View
             className="flex-1"
-            style={{paddingBottom: Math.max(insets.bottom, 16)}}
+            style={{
+                paddingBottom: Math.max(insets.bottom, 16),
+                paddingTop: Platform.OS === 'android' ? insets.top : 0
+            }}
         >
             <SimpleHeader title="About"/>
 
