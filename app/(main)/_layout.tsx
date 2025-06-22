@@ -5,9 +5,11 @@ import {NativeWindColors} from "@/ui/nativewind"
 import {Slot, useRouter} from "expo-router"
 import React from "react"
 import {View} from "react-native"
+import {useSafeAreaInsets} from "react-native-safe-area-context"
 
 const MainLayout = () => {
     const router = useRouter()
+    const insets = useSafeAreaInsets()
 
     return (
         <>
@@ -24,7 +26,7 @@ const MainLayout = () => {
 
                 <View className="mx-0">
                     <MenuBar
-                        height={115}
+                        height={80 + insets.bottom}
                         dipWidth={160}
                         cornerRadius={100}
                         onPress={() => router.push("/batch/new")}

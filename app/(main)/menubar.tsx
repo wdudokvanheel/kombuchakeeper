@@ -12,7 +12,7 @@ type MenuBarWithButtonProps = {
     /** Explicit width. Leave undefined to make it fill its parent */
     width?: number
     /** Fixed height (stays constant even when width changes) */
-    height?: number
+    height: number
     cornerRadius?: number
     /** Depth of the dip measured from the top‑edge downwards */
     dipDepth?: number
@@ -26,7 +26,7 @@ type MenuBarWithButtonProps = {
 
 const MenuBar = ({
                      width,
-                     height = 80,
+                     height,
                      cornerRadius = 120,
                      dipDepth = 45,
                      dipWidth = 120,
@@ -83,7 +83,7 @@ const MenuBar = ({
                 dipWidth={dipWidth}
             />
 
-            <View className="absolute inset-0 items-start px-6 py-9 justify-between flex-row ">
+            <View className="absolute inset-0 items-start px-6 pt-9 justify-between flex-row ">
                 <MenuBarButton name="home" icon="home" onPress={handleBatchListButton}/>
                 <MenuBarButton name="archive" icon="archive" onPress={handleBatchListButton}/>
                 <View className="w-1/5"/>
@@ -136,12 +136,12 @@ const MenuBarButton = ({icon, name, onPress}: MenuBarButtonProps) => {
         <TouchableOpacity
             onPress={handlePress}
             activeOpacity={0.8}
-            className={`rounded-full p-3 items-center justify-center w-1/5 ${active ? 'bg-brown-100' : ''}`}
+            className={`rounded-full p-3 items-center justify-center w-1/5 ${active ? 'bg-brown-100' : 'bg-white'}`}
             style={{
                 width: 60,
                 height: 60,
                 borderRadius: 30,
-                elevation: 10
+                elevation: 0
             }}
         >
             <Ionicons
