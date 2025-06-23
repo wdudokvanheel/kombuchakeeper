@@ -26,6 +26,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#f7f4f2"
       },
+      "versionCode": 1,
       "edgeToEdgeEnabled": true,
       "softwareKeyboardLayoutMode": "pan",
       "package": "nl.wdudokvanheel.kombuchakeeper"
