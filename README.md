@@ -4,6 +4,8 @@ Kombucha Keeper helps you keep track of your Kombucha batches and notifies you w
 
 [![AppStore][appstore-image]][appstore-url]
 
+*(Play Store release pending)*
+
 ### Motivation
 Kombucha is a healthy, fizzy drink that is easy to brew at home. Its taste can be greatly influenced during 
 fermentation, which allows for a lot of experimentation. I needed a way to keep track of all my current and past 
