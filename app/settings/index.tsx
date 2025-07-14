@@ -97,14 +97,19 @@ const SettingsHeader = () => {
                 <View className="absolute bottom-0 -right-[100px] w-40 h-40 rounded-full bg-white/15"/>
             </View>
 
-            <View className="px-4 pb-8">
+            <View className="px-4 pb-6">
                 <TouchableOpacity activeOpacity={0.8} onPress={handleBack}>
                     <View className="w-12 h-12 rounded-full border border-white justify-center items-center mt-4 mb-8">
                         <Ionicons name="chevron-back" size={20} color="white"/>
                     </View>
                 </TouchableOpacity>
 
-                <Text className="text-5xl font-bold text-brown-100">Settings</Text>
+                <Text
+                    className="text-5xl font-bold text-brown-100"
+                    style={{lineHeight: 56}}
+                >
+                    Settings
+                </Text>
             </View>
         </View>
     )
