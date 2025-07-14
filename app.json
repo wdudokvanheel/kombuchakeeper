@@ -2,7 +2,7 @@
   "expo": {
     "name": "Kombucha Keeper",
     "slug": "kombuchakeeper",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "kombuchakeeper",
@@ -26,10 +26,10 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#f7f4f2"
       },
-      "versionCode": 1,
+      "versionCode": 2,
       "edgeToEdgeEnabled": true,
       "softwareKeyboardLayoutMode": "pan",
-      "package": "nl.wdudokvanheel.kombuchakeeper"
+      "package": "com.bitechular.kombuchakeeper"
     },
     "web": {
       "bundler": "metro",
