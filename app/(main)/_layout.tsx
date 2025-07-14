@@ -11,6 +11,11 @@ const MainLayout = () => {
     const router = useRouter()
     const insets = useSafeAreaInsets()
 
+    var bottomInset = insets.bottom
+    if (bottomInset == 0) {
+        bottomInset = 24
+    }
+
     return (
         <>
             <View className="flex-1 bg-brown-100">
@@ -26,7 +31,7 @@ const MainLayout = () => {
 
                 <View className="mx-0">
                     <MenuBar
-                        height={80 + insets.bottom}
+                        height={80 + bottomInset}
                         dipWidth={160}
                         cornerRadius={100}
                         onPress={() => router.push("/batch/new")}
