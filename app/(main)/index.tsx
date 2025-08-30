@@ -18,10 +18,10 @@ const Index = () => {
     if (archive) {
         return (
             <BatchList data={archived}>
-                <Text className="text-3xl font-semibold text-brown-900">
+                <Text className="w-full text-3xl font-semibold text-brown-900 text-center">
                     {t('index.noArchivedBatches')}
                 </Text>
-                <Text className="text-xl font-medium text-brown-800 text-center">
+                <Text className="w-full text-xl font-medium text-brown-800 text-center">
                     {t('index.archivedBatchesHint')}
                 </Text>
             </BatchList>
@@ -29,10 +29,10 @@ const Index = () => {
     } else {
         return (
             <BatchList data={active}>
-                <Text className="text-3xl font-semibold text-brown-900">
+                <Text className="w-full text-3xl font-semibold text-brown-900 text-center">
                     {t('index.noActiveBatches')}
                 </Text>
-                <Text className="text-xl font-medium text-brown-800">
+                <Text className="w-full text-xl font-medium text-brown-800 text-center">
                     {t('index.activeBatchesHint')}
                 </Text>
             </BatchList>
