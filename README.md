@@ -2,9 +2,8 @@
 
 Kombucha Keeper helps you keep track of your Kombucha batches and notifies you when it might be ready.
 
-[![AppStore][appstore-image]][appstore-url]
+[![AppStore][appstore-image]][appstore-url] [![PlayStore][playstore-image]][playstore-url]
 
-*(Play Store release pending)*
 
 ### Motivation
 Kombucha is a healthy, fizzy drink that is easy to brew at home. Its taste can be greatly influenced during 
@@ -40,4 +39,6 @@ input-wheel component and change its inner workings to match the design.
 ![Project stats](https://pstatool.wdudokvanheel.nl/wdudokvanheel/kombuchakeeper.svg)
 
 [appstore-image]: docs/appstore.png
-[appstore-url]: https://apps.apple.com/us/app/kombucha-keeper/id6746731068
+[appstore-url]: https://apps.apple.com/us/app/kombucha-keeper/id6746731068?platform=iphone
+[playstore-image]: docs/playstore.png
+[playstore-url]: https://play.google.com/store/apps/details?id=com.bitechular.kombuchakeeper
