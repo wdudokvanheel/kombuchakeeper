@@ -1,0 +1,111 @@
+{
+    "common": {
+        "cancel": "Annuleren",
+        "delete": "Verwijderen",
+        "dayShort": "{{count}}d"
+    },
+    "index": {
+        "noArchivedBatches": "Geen gearchiveerde batches gevonden",
+        "archivedBatchesHint": "Batches die zijn afgelopen verschijnen hier",
+        "noActiveBatches": "Geen actieve batches gevonden",
+        "activeBatchesHint": "Klik op de 'Plus'-knop hieronder om een nieuwe te starten"
+    },
+    "batchList": {
+        "readyForF2": "Klaar voor F2",
+        "readyToBeBottled": "Klaar om te bottelen",
+        "startedOn": "Gestart op {{date}}"
+    },
+    "settings": {
+        "title": "Instellingen",
+        "firstFermentation": {
+            "title": "Eerste fermentatie",
+            "description": "De standaardduur van de eerste fermentatie, dit kan nog per batch worden aangepast"
+        },
+        "secondFermentation": {
+            "title": "Tweede fermentatie",
+            "description": "De standaardduur van de tweede fermentatie, dit kan nog worden aangepast nadat een batch de eerste fermentatie heeft voltooid"
+        },
+        "notificationTime": {
+            "title": "Tijdstip melding",
+            "description": "Op welk uur van de dag wil je herinnerd worden dat een batch klaar is met fermenteren (0-23)"
+        },
+        "about": "Over"
+    },
+    "about": {
+        "title": "Over",
+        "appName": "Kombucha Keeper",
+        "clientVersion": "{{platform}} client · v{{version}}",
+        "sourceCode": "Broncode",
+        "license": "Licentie",
+        "privacyPolicy": "Privacybeleid"
+    },
+    "batchDetail": {
+        "daysRemainingLabel": "dagen resterend",
+        "fermentation": "Fermentatie",
+        "first": "Eerste",
+        "second": "Tweede",
+        "rating": "Beoordeling",
+        "notes": "Notities",
+        "addNote": "Notitie toevoegen",
+        "deleteTitle": "Batch verwijderen",
+        "deleteMessage": "Weet je zeker dat je deze batch wilt verwijderen?",
+        "notFound": "Batch niet gevonden"
+    },
+    "batchActions": {
+        "title": "Batchacties",
+        "startSecond": {
+            "title": "Start tweede fermentatie",
+            "description": "Beëindig de eerste fermentatie en start de tweede fermentatiefase"
+        },
+        "endFermentation": {
+            "title": "Fermentatie beëindigen",
+            "description": "Beëindig de tweede fermentatie en markeer deze batch als voltooid"
+        },
+        "extend": {
+            "title": "Fermentatie verlengen",
+            "description": "Voeg één of meer dagen toe aan de fermentatietimer"
+        },
+        "fail": {
+            "title": "Batch markeren als mislukt",
+            "description": "Archiveer deze batch als mislukt in je geschiedenis"
+        },
+        "complete": {
+            "title": "Batch voltooid",
+            "prompt": "Hoe zou je deze batch beoordelen?",
+            "button": "Markeer batch als voltooid"
+        },
+        "extendPage": {
+            "title": "Fermentatie verlengen",
+            "prompt": "Met hoeveel dagen wil je de fermentatie verlengen?",
+            "button": "Fermentatie verlengen"
+        },
+        "failPage": {
+            "title": "Batch mislukt",
+            "info": "Je kunt je batch als mislukt markeren als er schimmel is, besmetting is opgetreden of iets anders is gebeurd waardoor je de batch niet kunt voltooien.",
+            "button": "Batch mislukt"
+        },
+        "secondPage": {
+            "title": "Eerste fermentatie beëindigen",
+            "prompt": "Hoe lang duurt de tweede fermentatie?",
+            "button": "Start tweede fermentatie"
+        }
+    },
+    "notes": {
+        "editTitle": "Notities bewerken",
+        "placeholder": "Typ hier je notities…",
+        "save": "Notities opslaan"
+    },
+    "newBatch": {
+        "title": "Nieuwe batch starten",
+        "batchName": "Batchnaam",
+        "placeholderName": "Naamloze batch",
+        "duration": "Duur eerste fermentatie in dagen",
+        "save": "Batch toevoegen"
+    },
+    "notifications": {
+        "readyTitle": "{{name}} is klaar",
+        "readyBody": "Je batch is klaar met fermenteren",
+        "testTitle": "Testmelding",
+        "testBody": "Gelukt!"
+    }
+}

@@ -3,6 +3,7 @@ import Text from "@/ui/components/text"
 import {NativeWindColors} from "@/ui/nativewind"
 import Ionicons from "@expo/vector-icons/Ionicons"
 import {TouchableOpacity, View} from "react-native"
+import {useTranslation} from 'react-i18next'
 
 type NotesPanelProps = {
     batch: Batch
@@ -10,6 +11,7 @@ type NotesPanelProps = {
 }
 
 const NotesPanel = ({batch, onEdit}: NotesPanelProps) => {
+    const {t} = useTranslation()
     const isEmpty = batch.notes == undefined || batch.notes.trim().length == 0
 
     return (
@@ -21,7 +23,7 @@ const NotesPanel = ({batch, onEdit}: NotesPanelProps) => {
                 isEmpty &&
                 <View className="m-auto flex-row">
                     <Ionicons name="add-circle" size={24} color={NativeWindColors.green[500]}/>
-                    <Text className="text-xl ml-2">Add a note</Text>
+                    <Text className="text-xl ml-2">{t('batchDetail.addNote')}</Text>
                 </View>
             }
             {

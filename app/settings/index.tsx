@@ -7,9 +7,11 @@ import {useRouter} from "expo-router"
 import React from "react"
 import {TouchableOpacity, View} from "react-native"
 import {useSafeAreaInsets} from "react-native-safe-area-context"
+import {useTranslation} from 'react-i18next'
 
 const Settings = () => {
     const router = useRouter()
+    const {t} = useTranslation()
 
     const [f1Duration, setF1Duration] = usePreference<number>(Preference.F1)
     const [f2Duration, setF2Duration] = usePreference<number>(Preference.F2)
@@ -25,8 +27,8 @@ const Settings = () => {
             <View className="justify-between flex-1 p-4">
                 <View className="flex-col gap-4">
                     <NumberSetting
-                        title="First fermentation"
-                        description="The default duration of the first fermentation, this can still be adjusted for each new batch"
+                        title={t('settings.firstFermentation.title')}
+                        description={t('settings.firstFermentation.description')}
                         value={f1Duration}
                         onChange={setF1Duration}
                         min={1}
@@ -36,8 +38,8 @@ const Settings = () => {
                     />
 
                     <NumberSetting
-                        title="Second fermentation"
-                        description="The default duration of the second fermentation, this can still be adjusted when a batch has completed its first fermentation"
+                        title={t('settings.secondFermentation.title')}
+                        description={t('settings.secondFermentation.description')}
                         value={f2Duration}
                         onChange={setF2Duration}
                         min={1}
@@ -47,8 +49,8 @@ const Settings = () => {
                     />
 
                     <NumberSetting
-                        title="Notification time"
-                        description="At what hour of the day would you like to be reminded that a batch has finished fermenting (0-23)"
+                        title={t('settings.notificationTime.title')}
+                        description={t('settings.notificationTime.description')}
                         value={hour}
                         onChange={setHour}
                         min={0}
@@ -62,7 +64,7 @@ const Settings = () => {
                     <TouchableOpacity activeOpacity={0.75} onPress={handleAbout}>
                         <View className="flex-row">
                             <Ionicons name="information-circle" size={24} color={NativeWindColors.purple[600]}/>
-                            <Text className="text-purple-600 text-xl font-semibold self-center ml-1">About</Text>
+                            <Text className="text-purple-600 text-xl font-semibold self-center ml-1">{t('settings.about')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -76,6 +78,7 @@ export default Settings
 const SettingsHeader = () => {
     const insets = useSafeAreaInsets()
     const router = useRouter()
+    const {t} = useTranslation()
 
     const handleBack = () => {
         router.back()
@@ -108,7 +111,7 @@ const SettingsHeader = () => {
                     className="text-5xl font-bold text-brown-100"
                     style={{lineHeight: 56}}
                 >
-                    Settings
+                    {t('settings.title')}
                 </Text>
             </View>
         </View>

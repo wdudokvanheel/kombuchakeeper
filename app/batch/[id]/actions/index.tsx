@@ -7,10 +7,12 @@ import Ionicons from "@expo/vector-icons/Ionicons"
 import {useRouter} from "expo-router"
 import React from "react"
 import {TouchableOpacity, View} from "react-native"
+import {useTranslation} from 'react-i18next'
 
 const BatchActionModal = () => {
     const router = useRouter()
     const batch = useBatch()
+    const {t} = useTranslation()
 
     const handlePress = (target: string) => router.push(`/batch/${batch.id}/actions/${target}`)
     const handleBack = () => router.back()
@@ -24,13 +26,13 @@ const BatchActionModal = () => {
             </TouchableOpacity>
 
             <Text className="text-brown-800 mt-4 mb-6 text-4xl font-extrabold">
-                Batch actions
+                {t('batchActions.title')}
             </Text>
 
             {batch.state === BatchState.F1 && (
                 <BatchActionCard
-                    title="Start second fermentation"
-                    description="End the first fermentation and start the second phase of fermentation"
+                    title={t('batchActions.startSecond.title')}
+                    description={t('batchActions.startSecond.description')}
                     icon="checkmark"
                     colorCircle={NativeWindColors.green[500]}
                     colorIcon={NativeWindColors.green[100]}
@@ -40,8 +42,8 @@ const BatchActionModal = () => {
 
             {batch.state === BatchState.F2 && (
                 <BatchActionCard
-                    title="End fermentation"
-                    description="End the second fermentation and mark this batch complete"
+                    title={t('batchActions.endFermentation.title')}
+                    description={t('batchActions.endFermentation.description')}
                     icon="checkmark"
                     colorCircle={NativeWindColors.green[500]}
                     colorIcon={NativeWindColors.green[100]}
@@ -50,8 +52,8 @@ const BatchActionModal = () => {
             }
 
             <BatchActionCard
-                title="Extend fermentation"
-                description="Add one or more days to the fermentation timer"
+                title={t('batchActions.extend.title')}
+                description={t('batchActions.extend.description')}
                 icon="timer-outline"
                 colorCircle={NativeWindColors.orange[400]}
                 colorIcon={NativeWindColors.orange[100]}
@@ -59,8 +61,8 @@ const BatchActionModal = () => {
             />
 
             <BatchActionCard
-                title="Mark batch as failed"
-                description="Archive this batch as failed in your history"
+                title={t('batchActions.fail.title')}
+                description={t('batchActions.fail.description')}
                 icon="close-outline"
                 colorCircle={NativeWindColors.purple[500]}
                 colorIcon={NativeWindColors.purple[100]}

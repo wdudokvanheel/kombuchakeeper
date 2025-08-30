@@ -1,6 +1,7 @@
 import {Batch, BatchState} from '@/models/batch'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import * as Notifications from 'expo-notifications'
+import i18n from '@/locale/i18n'
 
 type BatchNotificationMap = Record<string, string>
 
@@ -72,8 +73,8 @@ export default class NotificationService {
 
         const id = await Notifications.scheduleNotificationAsync({
             content: {
-                title: `${batch.name} is ready`,
-                body: 'Your batch has finished fermenting',
+                title: i18n.t('notifications.readyTitle', {name: batch.name}),
+                body: i18n.t('notifications.readyBody'),
                 sound: true
             },
             trigger
@@ -124,8 +125,8 @@ export default class NotificationService {
         const fireAt = new Date(Date.now() + 60 * 1000)
         await Notifications.scheduleNotificationAsync({
             content: {
-                title: 'Test notification',
-                body: 'Success!',
+                title: i18n.t('notifications.testTitle'),
+                body: i18n.t('notifications.testBody'),
                 sound: true
             },
             trigger: {

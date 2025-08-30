@@ -13,12 +13,14 @@ import React from 'react'
 import {Alert, TouchableOpacity, View} from 'react-native'
 import {useSafeAreaInsets} from "react-native-safe-area-context"
 import Svg, {Path} from 'react-native-svg'
+import {useTranslation} from 'react-i18next'
 
 const BatchDetail = () => {
     const insets = useSafeAreaInsets()
     const router = useRouter()
     const batch = useBatch()
     const batchService = useBatchService()
+    const {t} = useTranslation()
 
     const handleEdit = () => {
         if (batch) {
@@ -40,15 +42,15 @@ const BatchDetail = () => {
     const handleDelete = () => {
         if (batch.id) {
             Alert.alert(
-                'Delete batch',
-                'Are you sure you want to delete this batch?',
+                t('batchDetail.deleteTitle'),
+                t('batchDetail.deleteMessage'),
                 [
                     {
-                        text: 'Cancel',
+                        text: t('common.cancel'),
                         style: 'cancel',
                     },
                     {
-                        text: 'Delete',
+                        text: t('common.delete'),
                         style: 'destructive',
                         onPress: () => {
                             batchService.deleteBatch(batch.id!)
@@ -81,18 +83,18 @@ const BatchDetail = () => {
                                 className="text-center  text-xl -mt-4"
                                 style={{color: foreground}}
                             >
-                                days remaining
+                                {t('batchDetail.daysRemainingLabel')}
                             </Text>
                         </View>
                     }
                 </BatchDetailHeader>
 
                 <View className="px-4 flex-1">
-                    <Text className="my-4 text-lg font-semibold text-brown-800">Fermentation</Text>
+                    <Text className="my-4 text-lg font-semibold text-brown-800">{t('batchDetail.fermentation')}</Text>
 
                     <View className="flex-row gap-8">
                         <FermentationPanel
-                            title="First"
+                            title={t('batchDetail.first')}
                             icon="bottle-tonic"
                             color={BatchStateColor.F1}
                             labelColor={NativeWindColors.brown[800]}
@@ -102,7 +104,7 @@ const BatchDetail = () => {
                         />
 
                         <FermentationPanel
-                            title="Second"
+                            title={t('batchDetail.second')}
                             icon="bottle-soda-classic"
                             color={BatchStateColor.F2}
                             labelColor={NativeWindColors.brown[800]}
@@ -114,13 +116,13 @@ const BatchDetail = () => {
 
                     {(batch.state === BatchState.Complete) &&
                         <>
-                            <Text className="my-4 text-lg font-semibold text-brown-800">Rating</Text>
+                            <Text className="my-4 text-lg font-semibold text-brown-800">{t('batchDetail.rating')}</Text>
                             <RatingsPanel onChange={handleRate} rating={batch.rating}/>
                         </>
                     }
 
                     <>
-                        <Text className="my-4 text-lg font-semibold text-brown-800">Notes</Text>
+                        <Text className="my-4 text-lg font-semibold text-brown-800">{t('batchDetail.notes')}</Text>
                         <NotesPanel batch={batch} onEdit={handleNotes}/>
                     </>
                 </View>

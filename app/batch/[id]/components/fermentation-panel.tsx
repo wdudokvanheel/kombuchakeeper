@@ -5,6 +5,7 @@ import {NativeWindColors} from "@/ui/nativewind"
 import MatIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import React from "react"
 import {View} from "react-native"
+import {useTranslation} from 'react-i18next'
 
 type FermentationPanelProps = {
     title: string
@@ -18,6 +19,7 @@ type FermentationPanelProps = {
 
 const FermentationPanel = ({title, icon, started, color, labelColor, start, end}: FermentationPanelProps) => {
     const msPerDay = 86_400_000
+    const {t} = useTranslation()
 
     const today = React.useMemo(() => {
         const d = new Date()
@@ -57,7 +59,7 @@ const FermentationPanel = ({title, icon, started, color, labelColor, start, end}
     const completed = endDay ? today.getTime() >= endDay.getTime() : false
 
     let strokeColor = color
-    let label = `${value}d`
+    let label = t('common.dayShort', {count: value})
 
     if (completed) {
         strokeColor = NativeWindColors.green[500]
@@ -66,7 +68,7 @@ const FermentationPanel = ({title, icon, started, color, labelColor, start, end}
     if (!started) {
         label = ""
     } else if (!completed) {
-        label = `${maxValue - value}d`
+        label = t('common.dayShort', {count: maxValue - value})
     }
 
     return (

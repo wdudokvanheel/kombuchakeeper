@@ -9,12 +9,14 @@ import {useRouter} from "expo-router"
 import React, {useState} from "react"
 import {TouchableOpacity, View} from "react-native"
 import {useSafeAreaInsets} from "react-native-safe-area-context"
+import {useTranslation} from 'react-i18next'
 
 const NewBatch = () => {
     const [name, setName] = useState("")
     const router = useRouter()
     const batchService = useBatchService()
     const [defaultDuration] = usePreference<number>(Preference.F1)
+    const {t} = useTranslation()
 
     const [duration, setDuration] = React.useState(defaultDuration)
 
@@ -23,7 +25,7 @@ const NewBatch = () => {
         const firstFermentationEnd = new Date()
         firstFermentationEnd.setDate(firstFermentationEnd.getDate() + parsedDays)
 
-        const finalName = (name == undefined || name.trim().length == 0) ? "Unnamed batch" : name
+        const finalName = (name == undefined || name.trim().length == 0) ? t('newBatch.placeholderName') : name
 
         const batch = new Batch({
             name: finalName,
@@ -40,17 +42,17 @@ const NewBatch = () => {
             <View className="flex-1 justify-between px-4 pt-4">
                 <View className="flex-1">
                     <Text className="text-xl font-semibold text-brown-900 mb-2">
-                        Batch name
+                        {t('newBatch.batchName')}
                     </Text>
 
                     <ThemedTextInput
                         value={name}
                         onChangeText={setName}
-                        placeholder="Unnamed batch"
+                        placeholder={t('newBatch.placeholderName')}
                     />
 
                     <Text className="text-xl font-semibold text-brown-900 mb-2">
-                        First fermentation duration in days
+                        {t('newBatch.duration')}
                     </Text>
 
                     <View className="w-full items-center">
@@ -63,7 +65,7 @@ const NewBatch = () => {
                         onPress={saveBatch}
                         className="bg-brown-800 rounded-[64px] py-4 px-6 flex-row items-center justify-center"
                     >
-                        <Text className="text-white text-2xl font-semibold">Add batch</Text>
+                        <Text className="text-white text-2xl font-semibold">{t('newBatch.save')}</Text>
                         <Ionicons name="add" size={28} color="white" className="ml-2"/>
                     </TouchableOpacity>
                 </View>
@@ -77,6 +79,7 @@ export default NewBatch
 const NewBatchHeader = () => {
     const insets = useSafeAreaInsets()
     const router = useRouter()
+    const {t} = useTranslation()
 
     const handleBack = () => {
         router.back()
@@ -105,7 +108,7 @@ const NewBatchHeader = () => {
                     </View>
                 </TouchableOpacity>
 
-                <Text className="text-5xl font-bold text-brown-100">Start new batch</Text>
+                <Text className="text-5xl font-bold text-brown-100">{t('newBatch.title')}</Text>
             </View>
         </View>
     )

@@ -3,10 +3,12 @@ import {useMenu} from "@/contexts/menubar-context"
 import Text from "@/ui/components/text"
 import React from 'react'
 import BatchList from './batch-list'
+import {useTranslation} from 'react-i18next'
 
 const Index = () => {
     const {page} = useMenu()
     const batchService = useBatchService()
+    const {t} = useTranslation()
 
     const archive = page === 'archive'
 
@@ -17,10 +19,10 @@ const Index = () => {
         return (
             <BatchList data={archived}>
                 <Text className="text-3xl font-semibold text-brown-900">
-                    No archived batches found
+                    {t('index.noArchivedBatches')}
                 </Text>
                 <Text className="text-xl font-medium text-brown-800 text-center">
-                    Batches that have ended will show up here
+                    {t('index.archivedBatchesHint')}
                 </Text>
             </BatchList>
         )
@@ -28,10 +30,10 @@ const Index = () => {
         return (
             <BatchList data={active}>
                 <Text className="text-3xl font-semibold text-brown-900">
-                    No active batches found
+                    {t('index.noActiveBatches')}
                 </Text>
                 <Text className="text-xl font-medium text-brown-800">
-                    Click the 'Plus'-button below start a new one
+                    {t('index.activeBatchesHint')}
                 </Text>
             </BatchList>
         )

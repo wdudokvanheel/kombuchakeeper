@@ -7,11 +7,13 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 import {useRouter} from 'expo-router'
 import React, {useState} from 'react'
 import {Keyboard, KeyboardAvoidingView, Platform, TouchableOpacity, TouchableWithoutFeedback, View,} from 'react-native'
+import {useTranslation} from 'react-i18next'
 
 const NotesModal = () => {
     const router = useRouter()
     const batch = useBatch()
     const batchService = useBatchService()
+    const {t} = useTranslation()
 
     const [notes, setNotes] = useState(batch.notes || '')
 
@@ -44,13 +46,13 @@ const NotesModal = () => {
                     </TouchableOpacity>
 
                     <Text className="text-brown-800 mt-4 mb-6 text-4xl font-extrabold">
-                        Edit notes
+                        {t('notes.editTitle')}
                     </Text>
 
                     <Textarea
                         onChangeText={setNotes}
                         value={notes}
-                        placeholder="Type your notes here…"
+                        placeholder={t('notes.placeholder')}
                     />
 
                     <View>
@@ -59,7 +61,7 @@ const NotesModal = () => {
                             className="bg-brown-800 rounded-[64px] py-4 px-6 flex-row items-center justify-center"
                         >
                             <Text className="text-white text-2xl font-semibold">
-                                Save notes
+                                {t('notes.save')}
                             </Text>
                             <Ionicons
                                 name="arrow-forward"

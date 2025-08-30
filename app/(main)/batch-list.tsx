@@ -8,6 +8,7 @@ import Ionicons from "@expo/vector-icons/Ionicons"
 import {Link} from "expo-router"
 import React from 'react'
 import {FlatList, TouchableOpacity, View} from "react-native"
+import {useTranslation} from 'react-i18next'
 
 const BatchStateDarkColor: Record<BatchState, string> = {
     [BatchState.F1]: NativeWindColors.yellow[600],
@@ -54,6 +55,7 @@ const BatchListItem = ({batch}: BatchListItemProps) => {
         day: '2-digit',
         month: '2-digit'
     }).format(new Date(batch.createdAt))
+    const {t} = useTranslation()
 
     return (
         <Link href={`/batch/${batch.id}`} asChild>
@@ -94,15 +96,15 @@ const BatchListItem = ({batch}: BatchListItemProps) => {
                                 {batch.getDaysLeft() == 0 && !batch.hasEnded() &&
                                     <Text className="text-lg font-bold text-white rounded-full bg-green-600 py-0 px-2"
                                           numberOfLines={1}>
-                                        {batch.state == BatchState.F1 ? 'Ready for F2' : 'Ready to be bottled'}
-                                    </Text>
-                                }
-                                {(batch.getDaysLeft() != 0 || batch.hasEnded()) &&
-                                    <Text className="text-lg font-medium text-brown-800/65" numberOfLines={1}>
-                                        Started on {formattedDate}
-                                    </Text>
-                                }
-                            </View>
+                                {batch.state == BatchState.F1 ? t('batchList.readyForF2') : t('batchList.readyToBeBottled')}
+                            </Text>
+                        }
+                        {(batch.getDaysLeft() != 0 || batch.hasEnded()) &&
+                            <Text className="text-lg font-medium text-brown-800/65" numberOfLines={1}>
+                                {t('batchList.startedOn', {date: formattedDate})}
+                            </Text>
+                        }
+                    </View>
 
 
                             <View className="p-0 w-1/4 aspect-square">

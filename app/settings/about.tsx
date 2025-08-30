@@ -5,9 +5,11 @@ import JarGraphic from "@/ui/graphics/logo-graphic"
 import React from "react"
 import {Linking, Platform, View} from "react-native"
 import {useSafeAreaInsets} from "react-native-safe-area-context"
+import {useTranslation} from 'react-i18next'
 
 const About = () => {
     const insets = useSafeAreaInsets()
+    const {t} = useTranslation()
 
     return (
         <View
@@ -17,7 +19,7 @@ const About = () => {
                 paddingTop: Platform.OS === 'android' ? insets.top : 0
             }}
         >
-            <SimpleHeader title="About"/>
+            <SimpleHeader title={t('about.title')}/>
 
             <View className="flex-1 px-4 pb-4">
                 <View className="flex-1  items-center justify-center">
@@ -34,6 +36,7 @@ export default About
 type InfoProps = { className?: string }
 
 const InfoPanel = ({className}: InfoProps) => {
+    const {t} = useTranslation()
     const appVersion = expo.version ?? "1.0.0"
     const platformPrefix = Platform.OS === "ios" ? "iOS" : "Android"
 
@@ -44,29 +47,29 @@ const InfoPanel = ({className}: InfoProps) => {
     return (
         <View className={`p-4 bg-white rounded-[2rem] ${className ?? ""}`}>
             <Text className="text-3xl font-semibold text-gray-900">
-                Kombucha Keeper
+                {t('about.appName')}
             </Text>
             <Text className="text-lg text-gray-800">
-                {platformPrefix} client · v{appVersion}
+                {t('about.clientVersion', {platform: platformPrefix, version: appVersion})}
             </Text>
 
             <Text
                 className="text-xl font-semibold text-gray-800 mt-2"
                 onPress={() => Linking.openURL(URL_SOURCE)}
             >
-                Source code
+                {t('about.sourceCode')}
             </Text>
             <Text
                 className="text-xl font-semibold text-gray-800"
                 onPress={() => Linking.openURL(URL_LICENSE)}
             >
-                License
+                {t('about.license')}
             </Text>
             <Text
                 className="text-xl font-semibold text-gray-800"
                 onPress={() => Linking.openURL(URL_PRIVACY)}
             >
-                Privacy policy
+                {t('about.privacyPolicy')}
             </Text>
         </View>
     )

@@ -9,11 +9,13 @@ import Ionicons from "@expo/vector-icons/Ionicons"
 import {useRouter} from "expo-router"
 import React from "react"
 import {TouchableOpacity, View} from "react-native"
+import {useTranslation} from 'react-i18next'
 
 const ExtendFermentation = () => {
     const router = useRouter()
     const batchService = useBatchService()
     const batch = useBatch()
+    const {t} = useTranslation()
 
     const [duration, setDuration] = React.useState(1)
 
@@ -46,11 +48,11 @@ const ExtendFermentation = () => {
 
     return (
         <>
-            <SimpleHeader title="Extend fermentation"/>
+            <SimpleHeader title={t('batchActions.extendPage.title')}/>
 
             <ActionBody>
                 <Text className="text-4xl text-brown-800 font-extrabold mb-8 text-center">
-                    Extend fermentation by how many days?
+                    {t('batchActions.extendPage.prompt')}
                 </Text>
 
                 <View className="flex-1 items-center">
@@ -69,7 +71,7 @@ const ExtendFermentation = () => {
                         onPress={handleExtend}
                         className="bg-brown-800 rounded-[64px] py-4 px-6 flex-row items-center justify-center"
                     >
-                        <Text className="text-white text-2xl font-semibold">Extend fermentation</Text>
+                        <Text className="text-white text-2xl font-semibold">{t('batchActions.extendPage.button')}</Text>
                         <Ionicons name="add" size={28} color="white" className="ml-2"/>
                     </TouchableOpacity>
                 </View>

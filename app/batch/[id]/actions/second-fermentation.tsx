@@ -10,12 +10,14 @@ import Ionicons from "@expo/vector-icons/Ionicons"
 import {useRouter} from "expo-router"
 import React from "react"
 import {TouchableOpacity, View} from "react-native"
+import {useTranslation} from 'react-i18next'
 
 const SecondFermentation = () => {
     const router = useRouter()
     const batchService = useBatchService()
     const batch = useBatch()
     const [defaultDuration] = usePreference<number>(Preference.F2)
+    const {t} = useTranslation()
 
     const [duration, setDuration] = React.useState(defaultDuration)
 
@@ -42,11 +44,11 @@ const SecondFermentation = () => {
 
     return (
         <>
-            <SimpleHeader title="End first fermentation"/>
+            <SimpleHeader title={t('batchActions.secondPage.title')}/>
 
             <ActionBody>
                 <Text className="text-4xl text-brown-800 font-extrabold mb-8 text-center">
-                    How long will the second fermentation last?
+                    {t('batchActions.secondPage.prompt')}
                 </Text>
 
                 <View className="flex-1 items-center">
@@ -64,7 +66,7 @@ const SecondFermentation = () => {
                         onPress={handleStartNextFermentation}
                         className="bg-brown-800 rounded-[64px] py-4 px-6 flex-row items-center justify-center"
                     >
-                        <Text className="text-white text-2xl font-semibold">Start second fermentation</Text>
+                        <Text className="text-white text-2xl font-semibold">{t('batchActions.secondPage.button')}</Text>
                         <Ionicons name="arrow-forward" size={28} color="white" className="ml-2"/>
                     </TouchableOpacity>
                 </View>

@@ -5,6 +5,7 @@ import Text from "@/ui/components/text"
 import {Stack, useLocalSearchParams} from "expo-router"
 import {useEffect, useState} from "react"
 import {ActivityIndicator, View} from "react-native"
+import {useTranslation} from 'react-i18next'
 
 const BatchLayout = () => {
     const batchService = useBatchService()
@@ -12,6 +13,7 @@ const BatchLayout = () => {
     const {id} = useLocalSearchParams()
     const [batch, setBatch] = useState<Batch | null>(null)
     const [loading, setLoading] = useState(true)
+    const {t} = useTranslation()
 
     useEffect(() => {
         if (!id) {
@@ -39,7 +41,7 @@ const BatchLayout = () => {
     if (!batch) {
         return (
             <View className='flex-1 justify-center items-center'>
-                <Text>Batch not found</Text>
+                <Text>{t('batchDetail.notFound')}</Text>
             </View>
         )
     }

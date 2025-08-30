@@ -11,11 +11,13 @@ import {Image} from "expo-image"
 import {useRouter} from "expo-router"
 import React from "react"
 import {TouchableOpacity, View} from "react-native"
+import {useTranslation} from 'react-i18next'
 
 const FailBatch = () => {
     const router = useRouter()
     const batchService = useBatchService()
     const batch = useBatch()
+    const {t} = useTranslation()
 
     const handleFail = () => {
         console.log(`Failing batch #${batch.id}[${batch.state}]`)
@@ -31,7 +33,7 @@ const FailBatch = () => {
 
     return (
         <>
-            <SimpleHeader title="Batch failed"/>
+            <SimpleHeader title={t('batchActions.failPage.title')}/>
 
             <ActionBody>
                 <View className="flex-1">
@@ -50,7 +52,7 @@ const FailBatch = () => {
                     <View className="mb-8 bg-white rounded-[2rem] p-4 flex-row items-center">
                         <Ionicons name="information-circle" className="mr-4" size={48} color={NativeWindColors.purple[600]}/>
                         <Text className="flex-1 text-brown-900 text-lg font-medium">
-                            You can mark your batch as failed if it has mold, is contaminated, or something else happened that prevents you from completing this batch.
+                            {t('batchActions.failPage.info')}
                         </Text>
                     </View>
 
@@ -59,7 +61,7 @@ const FailBatch = () => {
                             onPress={handleFail}
                             className="bg-brown-800 rounded-[64px] py-4 px-6 flex-row items-center justify-center"
                         >
-                            <Text className="text-white text-2xl font-semibold">Fail batch</Text>
+                            <Text className="text-white text-2xl font-semibold">{t('batchActions.failPage.button')}</Text>
                             <Ionicons name="arrow-forward" size={28} color="white" className="ml-2"/>
                         </TouchableOpacity>
                     </View>

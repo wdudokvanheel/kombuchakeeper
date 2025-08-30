@@ -1,0 +1,111 @@
+{
+    "common": {
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "dayShort": "{{count}}d"
+    },
+    "index": {
+        "noArchivedBatches": "No archived batches found",
+        "archivedBatchesHint": "Batches that have ended will show up here",
+        "noActiveBatches": "No active batches found",
+        "activeBatchesHint": "Click the 'Plus'-button below start a new one"
+    },
+    "batchList": {
+        "readyForF2": "Ready for F2",
+        "readyToBeBottled": "Ready to be bottled",
+        "startedOn": "Started on {{date}}"
+    },
+    "settings": {
+        "title": "Settings",
+        "firstFermentation": {
+            "title": "First fermentation",
+            "description": "The default duration of the first fermentation, this can still be adjusted for each new batch"
+        },
+        "secondFermentation": {
+            "title": "Second fermentation",
+            "description": "The default duration of the second fermentation, this can still be adjusted when a batch has completed its first fermentation"
+        },
+        "notificationTime": {
+            "title": "Notification time",
+            "description": "At what hour of the day would you like to be reminded that a batch has finished fermenting (0-23)"
+        },
+        "about": "About"
+    },
+    "about": {
+        "title": "About",
+        "appName": "Kombucha Keeper",
+        "clientVersion": "{{platform}} client · v{{version}}",
+        "sourceCode": "Source code",
+        "license": "License",
+        "privacyPolicy": "Privacy policy"
+    },
+    "batchDetail": {
+        "daysRemainingLabel": "days remaining",
+        "fermentation": "Fermentation",
+        "first": "First",
+        "second": "Second",
+        "rating": "Rating",
+        "notes": "Notes",
+        "addNote": "Add a note",
+        "deleteTitle": "Delete batch",
+        "deleteMessage": "Are you sure you want to delete this batch?",
+        "notFound": "Batch not found"
+    },
+    "batchActions": {
+        "title": "Batch actions",
+        "startSecond": {
+            "title": "Start second fermentation",
+            "description": "End the first fermentation and start the second phase of fermentation"
+        },
+        "endFermentation": {
+            "title": "End fermentation",
+            "description": "End the second fermentation and mark this batch complete"
+        },
+        "extend": {
+            "title": "Extend fermentation",
+            "description": "Add one or more days to the fermentation timer"
+        },
+        "fail": {
+            "title": "Mark batch as failed",
+            "description": "Archive this batch as failed in your history"
+        },
+        "complete": {
+            "title": "Batch complete",
+            "prompt": "How would you rate this batch?",
+            "button": "Mark batch as complete"
+        },
+        "extendPage": {
+            "title": "Extend fermentation",
+            "prompt": "Extend fermentation by how many days?",
+            "button": "Extend fermentation"
+        },
+        "failPage": {
+            "title": "Batch failed",
+            "info": "You can mark your batch as failed if it has mold, is contaminated, or something else happened that prevents you from completing this batch.",
+            "button": "Fail batch"
+        },
+        "secondPage": {
+            "title": "End first fermentation",
+            "prompt": "How long will the second fermentation last?",
+            "button": "Start second fermentation"
+        }
+    },
+    "notes": {
+        "editTitle": "Edit notes",
+        "placeholder": "Type your notes here…",
+        "save": "Save notes"
+    },
+    "newBatch": {
+        "title": "Start new batch",
+        "batchName": "Batch name",
+        "placeholderName": "Unnamed batch",
+        "duration": "First fermentation duration in days",
+        "save": "Add batch"
+    },
+    "notifications": {
+        "readyTitle": "{{name}} is ready",
+        "readyBody": "Your batch has finished fermenting",
+        "testTitle": "Test notification",
+        "testBody": "Success!"
+    }
+}

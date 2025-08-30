@@ -10,6 +10,7 @@ import {Platform, View} from "react-native"
 import {initialWindowMetrics, SafeAreaProvider} from 'react-native-safe-area-context'
 
 import "./tailwind.css"
+import '@/locale/i18n'
 
 const RootLayout = () => {
     if (!useUrbanistFont()) {
