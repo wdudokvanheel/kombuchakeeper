@@ -1,0 +1,111 @@
+{
+    "common": {
+        "cancel": "Abbrechen",
+        "delete": "Löschen",
+        "dayShort": "{{count}}T"
+    },
+    "index": {
+        "noArchivedBatches": "Keine archivierten Chargen gefunden",
+        "archivedBatchesHint": "Chargen, die beendet wurden, werden hier angezeigt",
+        "noActiveBatches": "Keine aktiven Chargen gefunden",
+        "activeBatchesHint": "Klicke unten auf den 'Plus'-Knopf, um eine neue zu starten"
+    },
+    "batchList": {
+        "readyForF2": "Bereit für F2",
+        "readyToBeBottled": "Bereit zum Abfüllen",
+        "startedOn": "Gestartet am {{date}}"
+    },
+    "settings": {
+        "title": "Einstellungen",
+        "firstFermentation": {
+            "title": "Erste Fermentation",
+            "description": "Die Standarddauer der ersten Fermentation, dies kann für jede neue Charge noch angepasst werden"
+        },
+        "secondFermentation": {
+            "title": "Zweite Fermentation",
+            "description": "Die Standarddauer der zweiten Fermentation, dies kann angepasst werden, nachdem eine Charge ihre erste Fermentation abgeschlossen hat"
+        },
+        "notificationTime": {
+            "title": "Benachrichtigungszeit",
+            "description": "Zu welcher Tageszeit möchtest du daran erinnert werden, dass eine Charge fertig fermentiert ist (0-23)"
+        },
+        "about": "Über"
+    },
+    "about": {
+        "title": "Über",
+        "appName": "Kombucha Keeper",
+        "clientVersion": "{{platform}}-Client · v{{version}}",
+        "sourceCode": "Quellcode",
+        "license": "Lizenz",
+        "privacyPolicy": "Datenschutzrichtlinie"
+    },
+    "batchDetail": {
+        "daysRemainingLabel": "verbleibende Tage",
+        "fermentation": "Fermentation",
+        "first": "Erste",
+        "second": "Zweite",
+        "rating": "Bewertung",
+        "notes": "Notizen",
+        "addNote": "Notiz hinzufügen",
+        "deleteTitle": "Charge löschen",
+        "deleteMessage": "Möchtest du diese Charge wirklich löschen?",
+        "notFound": "Charge nicht gefunden"
+    },
+    "batchActions": {
+        "title": "Chargenaktionen",
+        "startSecond": {
+            "title": "Zweite Fermentation starten",
+            "description": "Beende die erste Fermentation und starte die zweite Fermentationsphase"
+        },
+        "endFermentation": {
+            "title": "Fermentation beenden",
+            "description": "Beende die zweite Fermentation und markiere diese Charge als abgeschlossen"
+        },
+        "extend": {
+            "title": "Fermentation verlängern",
+            "description": "Füge dem Fermentations-Timer einen oder mehrere Tage hinzu"
+        },
+        "fail": {
+            "title": "Charge als fehlgeschlagen markieren",
+            "description": "Archiviere diese Charge als fehlgeschlagen in deiner Historie"
+        },
+        "complete": {
+            "title": "Charge abgeschlossen",
+            "prompt": "Wie würdest du diese Charge bewerten?",
+            "button": "Charge als abgeschlossen markieren"
+        },
+        "extendPage": {
+            "title": "Fermentation verlängern",
+            "prompt": "Um wie viele Tage die Fermentation verlängern?",
+            "button": "Fermentation verlängern"
+        },
+        "failPage": {
+            "title": "Charge fehlgeschlagen",
+            "info": "Du kannst deine Charge als fehlgeschlagen markieren, wenn sie Schimmel hat, kontaminiert ist oder etwas anderes passiert ist, das dich daran hindert, diese Charge abzuschließen.",
+            "button": "Charge als fehlgeschlagen markieren"
+        },
+        "secondPage": {
+            "title": "Erste Fermentation beenden",
+            "prompt": "Wie lange wird die zweite Fermentation dauern?",
+            "button": "Zweite Fermentation starten"
+        }
+    },
+    "notes": {
+        "editTitle": "Notizen bearbeiten",
+        "placeholder": "Notizen hier eingeben…",
+        "save": "Notizen speichern"
+    },
+    "newBatch": {
+        "title": "Neue Charge starten",
+        "batchName": "Chargenname",
+        "placeholderName": "Unbenannte Charge",
+        "duration": "Dauer der ersten Fermentation in Tagen",
+        "save": "Charge hinzufügen"
+    },
+    "notifications": {
+        "readyTitle": "{{name}} ist bereit",
+        "readyBody": "Deine Charge hat die Fermentation beendet",
+        "testTitle": "Testbenachrichtigung",
+        "testBody": "Erfolg!"
+    }
+}

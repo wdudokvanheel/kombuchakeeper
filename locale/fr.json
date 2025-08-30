@@ -1,0 +1,111 @@
+{
+    "common": {
+        "cancel": "Annuler",
+        "delete": "Supprimer",
+        "dayShort": "{{count}}j"
+    },
+    "index": {
+        "noArchivedBatches": "Aucun lot archivé trouvé",
+        "archivedBatchesHint": "Les lots qui sont terminés apparaîtront ici",
+        "noActiveBatches": "Aucun lot actif trouvé",
+        "activeBatchesHint": "Cliquez sur le bouton 'Plus' ci-dessous pour en démarrer un nouveau"
+    },
+    "batchList": {
+        "readyForF2": "Prêt pour F2",
+        "readyToBeBottled": "Prêt à être embouteillé",
+        "startedOn": "Commencé le {{date}}"
+    },
+    "settings": {
+        "title": "Paramètres",
+        "firstFermentation": {
+            "title": "Première fermentation",
+            "description": "La durée par défaut de la première fermentation, cela peut encore être ajusté pour chaque nouveau lot"
+        },
+        "secondFermentation": {
+            "title": "Deuxième fermentation",
+            "description": "La durée par défaut de la deuxième fermentation, cela peut encore être ajusté lorsqu'un lot a terminé sa première fermentation"
+        },
+        "notificationTime": {
+            "title": "Heure de notification",
+            "description": "À quelle heure de la journée souhaitez-vous être rappelé qu'un lot a terminé sa fermentation (0-23)"
+        },
+        "about": "À propos"
+    },
+    "about": {
+        "title": "À propos",
+        "appName": "Kombucha Keeper",
+        "clientVersion": "Client {{platform}} · v{{version}}",
+        "sourceCode": "Code source",
+        "license": "Licence",
+        "privacyPolicy": "Politique de confidentialité"
+    },
+    "batchDetail": {
+        "daysRemainingLabel": "jours restants",
+        "fermentation": "Fermentation",
+        "first": "Première",
+        "second": "Deuxième",
+        "rating": "Évaluation",
+        "notes": "Notes",
+        "addNote": "Ajouter une note",
+        "deleteTitle": "Supprimer le lot",
+        "deleteMessage": "Êtes-vous sûr de vouloir supprimer ce lot ?",
+        "notFound": "Lot introuvable"
+    },
+    "batchActions": {
+        "title": "Actions de lot",
+        "startSecond": {
+            "title": "Commencer la deuxième fermentation",
+            "description": "Terminez la première fermentation et commencez la deuxième phase de fermentation"
+        },
+        "endFermentation": {
+            "title": "Terminer la fermentation",
+            "description": "Terminez la deuxième fermentation et marquez ce lot comme terminé"
+        },
+        "extend": {
+            "title": "Prolonger la fermentation",
+            "description": "Ajoutez un ou plusieurs jours au minuteur de fermentation"
+        },
+        "fail": {
+            "title": "Marquer le lot comme échoué",
+            "description": "Archivez ce lot comme échoué dans votre historique"
+        },
+        "complete": {
+            "title": "Lot terminé",
+            "prompt": "Comment évalueriez-vous ce lot ?",
+            "button": "Marquer le lot comme terminé"
+        },
+        "extendPage": {
+            "title": "Prolonger la fermentation",
+            "prompt": "Prolonger la fermentation de combien de jours ?",
+            "button": "Prolonger la fermentation"
+        },
+        "failPage": {
+            "title": "Lot échoué",
+            "info": "Vous pouvez marquer votre lot comme échoué s'il a de la moisissure, est contaminé ou si quelque chose d'autre vous empêche de terminer ce lot.",
+            "button": "Marquer le lot comme échoué"
+        },
+        "secondPage": {
+            "title": "Terminer la première fermentation",
+            "prompt": "Combien de temps durera la deuxième fermentation ?",
+            "button": "Commencer la deuxième fermentation"
+        }
+    },
+    "notes": {
+        "editTitle": "Modifier les notes",
+        "placeholder": "Saisissez vos notes ici…",
+        "save": "Enregistrer les notes"
+    },
+    "newBatch": {
+        "title": "Commencer un nouveau lot",
+        "batchName": "Nom du lot",
+        "placeholderName": "Lot sans nom",
+        "duration": "Durée de la première fermentation en jours",
+        "save": "Ajouter le lot"
+    },
+    "notifications": {
+        "readyTitle": "{{name}} est prêt",
+        "readyBody": "Votre lot a terminé sa fermentation",
+        "testTitle": "Notification de test",
+        "testBody": "Succès !"
+    }
+}
